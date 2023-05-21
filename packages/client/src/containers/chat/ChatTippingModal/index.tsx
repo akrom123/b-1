@@ -8,14 +8,14 @@ import { useTranslation } from '../../../i18n';
 import styles from './styles.module.scss';
 import { useOnLogout } from '../../../hooks/useOnLogout';
 
-interface IProps extends ModalComponentProps {}
+interface IProps extends ModalComponentProps { }
 
 const Title = () => {
   const { t } = useTranslation('main');
 
   return (
     <div className={styles.title}>
-      <FontIcon name={FontIconName.Bitcoin} size={24} />
+      <FontIcon name={FontIconName.Bitcoin} size={'m'} />
       <span>{t('Tip')}</span>
     </div>
   );

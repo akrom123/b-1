@@ -1,18 +1,19 @@
 import React, { FC, useMemo } from 'react';
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { keys } from 'ramda';
 import classNames from 'classnames';
 import { Manager, Popper, Reference } from 'react-popper';
 import { CoinType } from '../../../types';
 import Coin from '../../Coin';
 import { FontIcon, FontIconName } from '../../FontIcon';
+import Button from '../../Button';
 import styles from './styles.module.scss';
 import { PopperArrow } from '../../PopperArrow';
 import { useFocusEvent } from '../../../hooks/useFocusEvent';
 import { usePopperDropdown } from '../../../hooks/ui/usePopperDropdown';
 import { WalletSelectPopup } from '../WalletSelectPopup';
 import { Balance } from '../../Balance';
-import {HeaderToggleButton} from "@betnomi/client/src/components/layout/HeaderToggleButton";
+import { HeaderToggleButton } from "@betnomi/client/src/components/layout/HeaderToggleButton";
 
 export interface WalletSelectProps {
   balances: Partial<Record<CoinType, number>>;
@@ -36,81 +37,83 @@ const WalletSelect: FC<WalletSelectProps> = ({
   viewInUSD,
 }) => {
   const { focused, onFocus, onBlur } = useFocusEvent();
-  const modifiers = usePopperDropdown(0, 25);
+  const modifiers = usePopperDropdown(0, 8);
   const history = useHistory();
 
   const selectedCoin = useMemo(
     () => (keys(balances).includes(selected) ? selected : ''),
     [selected, balances],
   );
-  
+
   const balance = useMemo(() => {
     if (viewInUSD) {
       return (rates[selected] || 0) * (balances[selected] || 0);
     }
-    
+
     return balances[selected] || 0;
   }, [balances, rates, viewInUSD, selected]);
 
   return (
-      <div className={styles.wrap}>
-        <div className={styles.manager}>
-          <Manager>
-            <Reference>
-              {({ ref }) => (
-                  <button
-                      className={styles.widget}
-                      onFocus={onFocus}
-                      onBlur={onBlur}
-                      ref={ref}
-                  >
-                    <div className={styles.selected}>
-                      {!!selectedCoin && <Coin coin={selected} size={16} />}
+    <div className={styles.wrap}>
+      <Button
+        size="m"
+        onClick={() => { history.push('/profile/wallet') }}
+        className={styles.wallet}
+      >
+        <FontIcon name={FontIconName.Wallet} />
+        Deposit
+      </Button>
+      <div className={styles.manager}>
+        <Manager>
+          <Reference>
+            {({ ref }) => (
+              <button
+                className={styles.widget}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                ref={ref}
+                onClick={!focused ? onFocus : onBlur}
+              >
+                <div className={styles.selected}>
+                  {!!selectedCoin && <Coin coin={selected} size={'m'} />}
 
-                      <span>{selectedCoin}</span>
+                  <span>{selectedCoin}</span>
 
-                      <FontIcon name={FontIconName.IconArrowBottom} size={12} />
-                    </div>
-                    <div className={styles.balance}>
-                      {viewInUSD && (<span>$</span>)}
-                      <Balance value={balance} precision={6} />
-                    </div>
-                  </button>
-              )}
-            </Reference>
+                  <FontIcon name={FontIconName.IconArrowBottom} size={'xxs'} />
+                </div>
+                <div className={styles.balance}>
+                  {viewInUSD && (<span>$</span>)}
+                  <Balance value={balance} precision={6} />
+                </div>
+              </button>
+            )}
+          </Reference>
 
-            <Popper modifiers={modifiers}>
-              {({ ref, style, arrowProps }) => (
-                  <div
-                      className={classNames(styles.floating, {
-                        [styles.hidden]: !focused || keys(balances).length === 0,
-                      })}
-                      ref={ref}
-                      style={style}
-                  >
-                    <PopperArrow props={arrowProps} />
-                    <WalletSelectPopup
-                        onSelect={onChange}
-                        balances={balances}
-                        rates={rates}
-                        selected={selected}
-                        onDepositClick={onDepositClick}
-                        onSettingsClick={onSettingsClick}
-                        viewInUSD={viewInUSD}
-                        setViewInUSD={setViewInUSD}
-                    />
-                  </div>
-              )}
-            </Popper>
-          </Manager>
-        </div>
-
-        <HeaderToggleButton
-            onClick={() => {history.push('/profile/wallet')}}
-            icon={FontIconName.Wallet}
-            className={styles.wallet}
-        />
+          <Popper modifiers={modifiers}>
+            {({ ref, style }) => (
+              <div
+                className={classNames(styles.popper, {
+                  [styles.hidden]: !focused || keys(balances).length === 0,
+                })}
+                ref={ref}
+                style={style}
+              >
+                <WalletSelectPopup
+                  onSelect={onChange}
+                  balances={balances}
+                  rates={rates}
+                  selected={selected}
+                  onDepositClick={onDepositClick}
+                  onSettingsClick={onSettingsClick}
+                  viewInUSD={viewInUSD}
+                  setViewInUSD={setViewInUSD}
+                />
+              </div>
+            )}
+          </Popper>
+        </Manager>
       </div>
+    </div>
   );
 };
 

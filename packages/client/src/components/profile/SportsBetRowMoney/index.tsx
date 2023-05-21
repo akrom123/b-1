@@ -11,6 +11,6 @@ type MoneyProp = {
 export const SportsBetRowMoney: React.FC<MoneyProp> = ({ coin, value }) => (
   <div className={styles.money}>
     <span>{`$ ${value}`}</span>
-    <Coin coin={coin} size={16} className={styles.coin} />
+    <Coin coin={coin} size={'m'} className={styles.coin} />
   </div>
 );

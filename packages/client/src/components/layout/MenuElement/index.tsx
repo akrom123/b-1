@@ -11,21 +11,12 @@ type Prop = {
   isMobile: boolean;
 };
 
-export const MenuElement:React.FC<Prop> = ({ el, long, isMobile }) => {
+export const MenuElement: React.FC<Prop> = ({ el, long, isMobile }) => {
   switch (el.type) {
-    case MenuItemType.Label: {
-      return (
-        <MenuLabel
-          label={el.options.label}
-          labelShort={el.options.labelShort}
-          long={long}
-        />
-      );
-    }
     case MenuItemType.Link: {
       return (
         <MenuLink
-          long={long} 
+          long={long}
           icon={el.options.icon}
           label={el.options.label}
           to={el.options.to}
@@ -46,7 +37,7 @@ export const MenuElement:React.FC<Prop> = ({ el, long, isMobile }) => {
     case MenuItemType.Line: {
       return <MenuLine />;
     }
-    default: 
+    default:
       return null;
   }
 };

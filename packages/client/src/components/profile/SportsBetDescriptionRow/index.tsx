@@ -32,7 +32,7 @@ export const SportsBetDescriptionRow: React.FC<RowProps> = ({
           {`${t('Game name')}:`}
         </div>
         <div className={styles.value}>
-          <FontIcon name={gameName.icon} size={16} className={styles.icon} />
+          <FontIcon name={gameName.icon} size={'s'} className={styles.icon} />
           <span>{gameName.label}</span>
         </div>
       </div>

@@ -1,66 +1,219 @@
 @import "../../../../../../node_modules/@betnomi/libs/assets/styles/mixins";
 
 .footer {
-	background: var(--color-background);
-	margin-top: 50px;
+	// background: var(--color-background);
+	// margin-top: 50px;
+	position: relative;
+	display: grid;
+	grid-template-columns: 39% 0 22% 39%;
+	grid-template-columns: 39% 0 22% 39%;
+	grid-template-areas: "coins coins coins coins" "logo logo menu menu" "license license menu menu" "socials socials menu menu" "copyright legal legal rate";
+	grid-row-gap: 1.25rem;
+	align-items: flex-start;
+	margin-top: 2.5rem;
+	padding-bottom: 1.56rem;
 
-	&_bottom {
-		@include flexbox(center, space-between);
-		padding-bottom: 16px;
+	@media(max-width: 1279.9px) {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: "coins coins" "menu menu" "socials socials" "license license" "logo legal" "copyright rate";
+		margin-top: 4.19rem
 	}
 
-	&_desc {
-		margin-bottom: 16px;
-		padding: 30px 0;
-		@include flexbox(center, center);
-		border-top: 1px solid var(--color-line-2);
-		border-bottom: 1px solid var(--color-line-2);
+	@media(max-width: 639.9px) {
+		margin-top: 2.58rem;
+		grid-row-gap: 1.66rem
 	}
 
-	&_text {
-		color: var(--color-icon);
-		font-size: 12px;
+}
+
+.footerLogo {
+	grid-area: logo;
+	width: 8.5625rem;
+	height: 1.875rem;
+
+	@media(max-width: 1279.9px) {
+		width: 11.474rem;
+		height: 2.513rem;
+		padding-right: 1.5rem
+	}
+}
+
+
+.licenseWrapper {
+	grid-area: license;
+	color: var(--color-icon);
+	padding-right: 4.75rem;
+
+	@media(min-width: 1280px) {
+		margin-top: -.31rem;
+		margin-bottom: -.5rem;
+		font-size: .81rem
 	}
 
-	@media(max-width: 768px) {
-		margin-top: 24px;
-		padding-bottom: 72px;
-		&_desc {
-			justify-content: space-between;
-			flex-wrap: wrap;
-			.logo{
-				order: 1;
-				margin-right: 0;
-			}
-			.footer_text{
-				order: 3;
-				width: 100%;
-				margin-top: 25px;
-			}
-			.desc_img_wrap{
-				order: 2;
-				margin-left: 0;
-			}
-		}
+	@media(max-width: 1279.9px) {
+		font-size: 1rem;
+		padding: 1.68rem 0 .67rem;
+		border-top: .09rem solid var(--color-line-2);
+		line-height: 1.66rem
 	}
 
+	@media(max-width: 639.9px) {
+		font-size: 1.17rem
+	}
+
+	.license {
+		opacity: .5;
+		white-space: pre-line
+	}
+}
+
+
+.socials {
+	grid-area: socials;
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: flex-start;
+	grid-gap: 1.25rem;
+	padding-right: 3.75rem;
+
+	@media(max-width: 1279.9px) {
+		justify-content: center;
+		padding: 1.66rem 0 0;
+		border-top: .09rem solid var(--color-line-2);
+		grid-gap: 3.97rem
+	}
+
+	@media(max-width: 639.9px) {
+		grid-gap: 3.05rem
+	}
 }
 
 .social {
-	width: 24px;
-	height: 24px;
-	margin-right: 16px;
 	color: var(--color-icon);
+	font-size: 1.5rem;
+	margin: -.2em;
+
+	@media(max-width: 1279.9px) {
+		font-size: 2.68rem
+	}
 }
 
 .copyright {
-	background: var(--color-black);
-	color: #696E87;
-	font-size: 12px;
-	line-height: 32px;
-	padding: 0 12px;
-	min-height: 32px;
-	border-radius: 8px;
+	grid-area: copyright;
+	justify-self: flex-start;
+
+	&:before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: 5.55rem;
+		border-top: .06rem solid var(--color-line-2)
+	}
+
+	@media(max-width: 1279.9px) {
+		&:before {
+			bottom: 6rem
+		}
+	}
+
+	@media(max-width: 639.9px) {
+		&:before {
+			bottom: 6.08rem;
+			border-top: .09rem solid var(--color-line-2)
+		}
+	}
+}
+
+.copyright,
+.btc_rates {
+	color: var(--color-icon);
+	border: .06rem solid var(--color-background-5);
+	font-size: var(--font-size-small);
+	font-weight: 500;
+	line-height: 2.63rem;
+	border-radius: 1.38rem;
+	padding: 0 1rem;
+	white-space: nowrap;
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: .75rem;
+	align-items: center;
+	margin-top: 1.56rem;
+}
+
+.legal {
+	grid-area: legal;
+	justify-content: center;
+	align-self: center;
+	display: grid;
+	grid-auto-flow: column;
+	grid-gap: 1.54rem;
+	align-items: center;
+	margin-top: 1.56rem;
+
+	@media(max-width: 1279.9px) {
+		justify-content: flex-end;
+		margin: 0
+	}
+
+	@media(max-width: 639.9px) {
+		direction: rtl;
+		justify-content: flex-start
+	}
+
+	span {
+		box-sizing: border-box;
+		display: inline-block;
+		overflow: hidden;
+		width: 52.269px;
+		height: 19.4142px;
+		background: none;
+		opacity: 1;
+		border: 0px;
+		margin: 0px;
+		padding: 0px;
+		position: relative;
+
+		img {
+			position: absolute;
+			inset: 0px;
+			box-sizing: border-box;
+			padding: 0px;
+			border: none;
+			margin: auto;
+			display: block;
+			width: 0px;
+			height: 0px;
+			min-width: 100%;
+			max-width: 100%;
+			min-height: 100%;
+			max-height: 100%;
+		}
+	}
+
+	.seal {
+		display: flex;
+		width: 6rem;
+		height: 2.2rem;
+		overflow: hidden;
+
+		@media(max-width: 639px) {
+			display: none;
+		}
+	}
+
+	.iframe {
+		width: 10rem;
+		height: 4rem;
+		-webkit-transform: scale(calc(.69 * var(--size, 1)));
+		transform: scale(calc(.69 * var(--size, 1)));
+		-webkit-transform-origin: left top;
+		transform-origin: left top;
+		border: none;
+		color-scheme: normal;
+		--size: 0.7467;
+	}
 }
 
 .logo {
@@ -73,8 +226,9 @@
 	@include flexbox(center, center);
 	margin-left: 100px;
 
-	.gambling{
+	.gambling {
 		height: 30px;
+
 		@media(max-width: 768px) {
 			height: auto;
 		}
@@ -92,31 +246,18 @@
 	}
 }
 
-.coins {
-	margin-bottom: 32px;
-	padding: 24px 0;
-	border-top: 1px solid var(--color-line-2);
-	border-bottom: 1px solid var(--color-line-2);
+.footer_bottom {
 
-	@media(max-width: 768px) {
-		padding: 16px 0;
-	}
+	grid-area: rate;
+	display: flex;
+	grid-gap: 1.25rem;
+	justify-content: flex-end
 }
 
-.btc_rates{
-	@include flexbox(center, center);
-	border-radius: 8px;
-	padding: 8px 10px;
-	background: var(--color-black);
-	color: var(--color-button);
-	font-size: 12px;
+.btc_rates {
+	grid-template-columns: 1rem auto;
 
-	img{
+	justify-self: flex-end img {
 		margin-right: 8px;
 	}
-
-	@media(max-width: 768px) {
-		display: none;
-	}
 }
-

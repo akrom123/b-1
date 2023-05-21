@@ -1,113 +1,123 @@
 @import "../../../../../node_modules/@betnomi/libs/assets/styles/mixins";
 
 .wrap {
-  @include flexbox(center, center);
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.63rem;
+  align-items: center;
 
-  .wallet{
-    background-color: var(--color-brand);
-    box-shadow: unset;
+  .wallet {
+    width: 8rem;
 
-    &:hover{
-      background-color: var(--color-brand-hover);
-    }
-
-    @media(max-width: 768px) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    @media(max-width: 639.9px) {
+      display: none;
     }
   }
 }
 
 .manager {
   position: relative;
+  font-weight: 500;
 
-  background-color: var(--color-header-coin-widget);
-  border-radius: 8px;
-  min-width: 0;
-  font-size: 14px;
-  line-height: 18px;
-  margin-right: 8px;
-
-  @media(max-width: 768px) {
-    margin-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  @media(max-width: 639.9px) {
+    position: static;
   }
 }
 
 .widget {
-  @include flexbox(center, center);
-
-  min-width: 0;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+  align-items: center;
   border: none;
-  background: transparent;
   color: inherit;
+  background: var(--color-background-4);
+  border-radius: .75rem;
+  font-weight: inherit;
+  font-size: var(--font-size-default);
+  height: 2.75rem;
+  cursor: pointer;
 
-  @media( min-width: 768px) and (max-width: 1400px)  {
-    font-size: 12px;
+  @media(min-width: 1280px) {
+    width: 15rem
   }
+
+  @media(max-width: 1279.9px) {
+    font-size: var(--font-size-small)
+  }
+
+  @media(max-width: 639.9px) {
+    height: 3.66rem;
+    width: 15.6rem
+  }
+
 }
 
-.selected, .balance {
-  @include flexbox(center, center);
-
-  flex-direction: row;
-  padding: 12px;
-  font-weight: var(--weight-500);
-  min-height: 44px;
-}
-
+.balance,
 .selected {
-  @include flexbox(center, stretch);
-  @include separator_right(24px);
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  padding: 0 .88rem 0 1.25rem;
 
-  font-weight: var(--weight-500);
-  position: relative;
-
-  span {
-    padding: 0 11px;
+  .selectedCurrencyName {
+    justify-content: center;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    width: 2.63rem;
   }
 
-  @media(max-width: 768px) {
-    padding: 13px 8px 13px 12px;
+  @media(max-width: 1279.9px) {
+    padding: 0 .67rem
+  }
 
-    span{
-      display: none;
+  @media(max-width: 639.9px) {
+
+    padding: 0 .58rem 0 .66rem;
+
+    .selectedCurrencyName {
+      width: unset;
+      padding-right: .3rem;
+      margin: 0
     }
 
-    img{
-      margin-right: 9px;
-    }
-
-    i{
-      color: #696E87;
+    .fontIcon {
+      font-size: .69rem;
+      margin-left: -.38rem
     }
   }
 }
 
-.floating {
+.balance {
+  display: block;
+  padding-left: 1.06rem;
+  width: 8rem;
+
+  @media(max-width: 639.9px) {
+    width: 7.9rem;
+    padding-right: .66rem
+  }
+
+}
+
+
+.popper {
   background-color: var(--color-modal-bg);
   border-radius: 8px;
   box-shadow: 0 40px 80px var(--color-profile-menu-shadow);
+  min-width: 100%;
 
   &.hidden {
     @include hidden();
   }
 
-  [data-popper-arrow] {
-    margin-top: -6px;
-
-    svg {
-      fill: var(--color-modal-bg);
-    }
+  @media(max-width: 639.9px) {
+    transform: none !important;
+    left: var(--padding-main-layout) !important;
+    right: var(--padding-main-layout) !important;
+    top: calc(100% + var(--padding-main-layout)) !important;
+    width: auto;
+    min-width: auto;
   }
-
-  @media(max-width: 768px){
-    transform: translate3d(-52px, 76px, 0px) !important;
-  }
-}
-
-.rest {
-  opacity: 0.5;
 }

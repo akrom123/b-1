@@ -1,9 +1,5 @@
 export const regulations = [
   {
-    label: 'RNG Certificate',
-    to: '/#',
-  },
-  {
     label: 'Terms & Conditions',
     to: '/#',
   },
@@ -13,6 +9,10 @@ export const regulations = [
   },
   {
     label: 'AML Web Policy',
+    to: '/#',
+  },
+  {
+    label: 'ANTI-Fraud Policy',
     to: '/#',
   },
 ];

@@ -20,7 +20,7 @@ const PromotionSlug: FC<IProps> = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
-    const isMobile =  window.matchMedia("(max-width: 768px)").matches;
+    const isMobile =  window.matchMedia("(max-width: 1279px)").matches;
     setIsMobile(isMobile)
   }
   React.useEffect(() => {

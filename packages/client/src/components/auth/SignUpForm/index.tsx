@@ -13,7 +13,7 @@ interface IProps {
   errors: FormikErrors<SignUpFormikValues>;
   touched: FormikTouched<SignUpFormikValues>;
   loading?: boolean;
-  
+
   onSubmit: FormEventHandler<HTMLFormElement>;
   onUserChange: (e: string | React.ChangeEvent<any>) => void;
   onEmailChange: (e: string | React.ChangeEvent<any>) => void;
@@ -27,8 +27,8 @@ interface IProps {
 
 export const SignUpForm: FC<IProps> = ({ onSubmit,
   values,
-  onEmailChange, 
-  onPasswordChange, 
+  onEmailChange,
+  onPasswordChange,
   onUserChange,
   onTermsChange,
   onRefferalChange,
@@ -42,10 +42,10 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
   return (
     <form onSubmit={onSubmit}>
       <div className={styles.user}>
-        <TextInput 
-          value={values.username} 
+        <TextInput
+          value={values.username}
           onChange={onUserChange}
-          left={<FontIcon name={FontIconName.User} size={16} />}
+          left={<FontIcon name={FontIconName.User} size={'s'} />}
           placeholder={t('Username')}
           hasError={!!(errors.username && touched.username)}
           onBlur={handleBlurUser}
@@ -53,10 +53,10 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
         />
       </div>
       <div className={styles.email}>
-        <TextInput 
-          value={values.email} 
+        <TextInput
+          value={values.email}
           onChange={onEmailChange}
-          left={<FontIcon name={FontIconName.Email} size={16} />}
+          left={<FontIcon name={FontIconName.Email} size={'s'} />}
           placeholder={t('Email')}
           onBlur={handleBlurEmail}
           hasError={!!(errors.email && touched.email)}
@@ -68,7 +68,7 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
           type="password"
           value={values.password}
           onChange={onPasswordChange}
-          left={<FontIcon name={FontIconName.Lock} size={16} />}
+          left={<FontIcon name={FontIconName.Lock} size={'s'} />}
           placeholder={t('Password')}
           hasError={!!(errors.password && touched.password)}
           onBlur={handleBlurPassword}
@@ -85,7 +85,7 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
         </Spoiler>
       </div>
       <div className={styles.terms}>
-        <Checkbox 
+        <Checkbox
           checked={values.terms}
           onCheck={onTermsChange}
           className={styles.terms_checkbox}
@@ -93,7 +93,7 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
         >
           <div className={styles.terms_text}>
             {t('I agree to all')}
-            <Link to={process.env.REACT_APP_TERMS_URL || '#'} className={styles.terms_link} stopPropagation> 
+            <Link to={process.env.REACT_APP_TERMS_URL || '#'} className={styles.terms_link} stopPropagation>
               {' '}
               {t('Terms & Conditions')}
               {' '}

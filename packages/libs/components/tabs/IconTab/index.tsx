@@ -8,7 +8,7 @@ interface Props {
 
 const IconTab: FC<Props> = ({ children, icon }) => (
   <div className={styles.tab}>
-    <FontIcon name={icon} size={24} />
+    <FontIcon name={icon} size={'m'} />
     <span>{children}</span>
   </div>
 );

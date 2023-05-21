@@ -9,11 +9,13 @@ type Props = {
 };
 
 export const FooterNavItem: React.FC<Props> = ({ items, label }) => {
-  const { t } = useTranslation('main'); 
+  const { t } = useTranslation('main');
   return (
     <div>
-      <p className={styles.navLabel}>{t(label)}</p>
       <ul className={styles.navGrp}>
+        <li className={styles.navLabel}>
+          {t(label)}
+        </li>
         {items.map((el) => (
           <li className={styles.navItem} key={el.label}>
             <Link to={el.to}>
@@ -23,5 +25,5 @@ export const FooterNavItem: React.FC<Props> = ({ items, label }) => {
         ))}
       </ul>
     </div>
-  ); 
+  );
 };

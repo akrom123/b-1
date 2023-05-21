@@ -12,13 +12,13 @@ interface IProps {
   onOpenSignInModal: () => void;
   onOpenSignUpModal: () => void;
   isMobile?: boolean;
-  isSmallDesktop?:boolean;
+  isSmallDesktop?: boolean;
   onMenuToggle?: (val: boolean) => void;
   menuActive?: boolean;
 }
 
 const HeaderGuest: FC<IProps> = ({
-  active, onChatToggle, onOpenSignInModal, onOpenSignUpModal, isMobile = false,isSmallDesktop,onMenuToggle,menuActive
+  active, onChatToggle, onOpenSignInModal, onOpenSignUpModal, isMobile = false, isSmallDesktop, onMenuToggle, menuActive
 }) => {
   const { t } = useTranslation();
   const onClick = useCallback(() => onChatToggle(!active), [
@@ -42,11 +42,28 @@ const HeaderGuest: FC<IProps> = ({
   return (
     <div className={styles.buttons}>
       {!isMobile && (
-          <HeaderToggleButton active={active} onClick={isSmallDesktop?onClickSmallDesktop :onClick} icon={FontIconName.Chat} />
+        <HeaderToggleButton
+          active={active}
+          onClick={onClick}
+          icon={FontIconName.Chat}
+          className={styles.chatButton}
+        />
       )}
 
-      <Button color={ButtonColor.Secondary} onClick={isSmallDesktop?onClickSmallDesktop:onOpenSignInModal}>{t('Sign in')}</Button>
-      <Button color={ButtonColor.Primary} onClick={onOpenSignUpModal}>{t('Sign up')}</Button>
+      <Button
+        color={ButtonColor.Secondary}
+        onClick={onOpenSignInModal}
+        className={styles.button}
+      >
+        {t('Sign in')}
+      </Button>
+      <Button
+        color={ButtonColor.Primary}
+        onClick={onOpenSignUpModal}
+        className={styles.button}
+      >
+        {t('Sign up')}
+      </Button>
     </div>
   );
 };

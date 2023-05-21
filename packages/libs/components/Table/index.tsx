@@ -12,10 +12,12 @@ import Tether from '@betnomi/libs/assets/img/coins/tether.svg';
 import Tron from '@betnomi/libs/assets/img/coins/tron.svg';
 import Zcash from '@betnomi/libs/assets/img/coins/zcash.svg';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 type Props = {
   type?: string
   columns: any,
   data: any,
+  className?: string,
 };
 interface Data {
   name: string;
@@ -25,7 +27,7 @@ interface Data {
   payout: number;
 }
 
-export const Table: React.FC<Props> = ({ type = "primary", columns, data}) => {
+export const Table: React.FC<Props> = ({ columns, data, className }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -34,12 +36,12 @@ export const Table: React.FC<Props> = ({ type = "primary", columns, data}) => {
     prepareRow
   } = useTable<Data>({ columns, data }, useSortBy);
   return (
-    <table className={type == 'primary' ? styles.table : styles.STable} {...getTableProps()}>
-      <thead className={type == 'primary' ? styles.head : styles.headSecondary}>
+    <table className={classNames(styles.table, className)} {...getTableProps()}>
+      <thead className={styles.head}>
         {headerGroups.map(headerGroup => (
           <tr className={styles.tr} {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th className={type == 'primary' ? styles.th : styles.thSecondary} {...column.getHeaderProps()}>
+            {headerGroup.headers.map((column: any) => (
+              <th className={classNames(styles.th, column?.className)} {...column.getHeaderProps()}>
                 {column.render("Header")}
               </th>
             ))}
@@ -50,9 +52,11 @@ export const Table: React.FC<Props> = ({ type = "primary", columns, data}) => {
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <tr className={styles.tr} {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td className={type == 'primary' ?styles.td:styles.tdSecondary} {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+            <tr className={classNames(styles.tr, { [styles.trOdd]: i % 2 })} {...row.getRowProps()}>
+              {row.cells.map((cell: any) => {
+                return <td className={classNames(styles.td, cell.column?.className)} {...cell.getCellProps()}>
+                  {cell.render("Cell")}
+                </td>;
               })}
             </tr>
           );

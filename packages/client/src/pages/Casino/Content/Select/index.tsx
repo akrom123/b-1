@@ -1,12 +1,12 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 
-import {useTranslation} from "../../../../i18n";
+import { useTranslation } from "../../../../i18n";
 
 import cx from "classnames";
 import styles from './styles.module.scss';
-import {FontIcon, FontIconName} from "@betnomi/libs/components/FontIcon";
+import { FontIcon, FontIconName } from "@betnomi/libs/components/FontIcon";
 
-interface IProps {}
+interface IProps { }
 interface Option {
     value: string;
     label: string;
@@ -33,11 +33,11 @@ const SelectWrap: FC<IProps> = () => {
     const [selectedProviders, setSelectedProviders]: any = useState({})
 
     const handleSelectedProviders = (elem: Option) => {
-        const providers = {...selectedProviders}
-        if(!providers[elem.value]){
+        const providers = { ...selectedProviders }
+        if (!providers[elem.value]) {
             providers[elem.value] = elem
             setSelectedProviders(providers)
-        }else {
+        } else {
             delete providers[elem.value]
             setSelectedProviders(providers)
         }
@@ -48,13 +48,13 @@ const SelectWrap: FC<IProps> = () => {
         setSelectIsOpen(!selectIsOpen)
     }
 
-    const optionRenderer = ( elem:Option ) => {
-        return(
+    const optionRenderer = (elem: Option) => {
+        return (
             <div onClick={() => handleSelectedProviders(elem)} className={cx(styles.option, { [styles.selected]: selectedProviders[elem.value] })}>
-                <label htmlFor={elem.value} className={cx({[styles.active]: selectedProviders[elem.value]}, styles.checkboxLabel)}>
+                <label htmlFor={elem.value} className={cx({ [styles.active]: selectedProviders[elem.value] }, styles.checkboxLabel)}>
                     <FontIcon
                         name={FontIconName.Checked}
-                        size={12}
+                        size={'xxs'}
                         className={styles.check_icon}
                     />
                 </label>
@@ -65,7 +65,7 @@ const SelectWrap: FC<IProps> = () => {
     }
 
     return (
-        <div  className={styles.select}>
+        <div className={styles.select}>
             <p>Providers:</p>
             <button
                 className={styles.button}
@@ -78,8 +78,8 @@ const SelectWrap: FC<IProps> = () => {
 
                 <FontIcon
                     name={FontIconName.ChevronDown}
-                    size={16}
-                    className={cx({[styles.active]: selectIsOpen}, styles.chevron)}
+                    size={'s'}
+                    className={cx({ [styles.active]: selectIsOpen }, styles.chevron)}
                 />
             </button>
 

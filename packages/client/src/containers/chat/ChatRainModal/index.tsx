@@ -19,14 +19,14 @@ import { useOnLogout } from '../../../hooks/useOnLogout';
 import { useUser } from '../../../hooks/useUser';
 import { useChatMinRainAmount } from '../../../hooks/money/useChatMinRainAmount';
 
-interface IProps extends ModalComponentProps {}
+interface IProps extends ModalComponentProps { }
 
 const Title = () => {
   const { t } = useTranslation('main');
 
   return (
     <div className={styles.title}>
-      <FontIcon name={FontIconName.Water} size={24} />
+      <FontIcon name={FontIconName.Water} size={'m'} />
       <span>{t('Rain')}</span>
     </div>
   );

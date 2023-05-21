@@ -2,51 +2,111 @@
 @import '../../assets/styles/variables';
 
 .button {
-  @include flexbox(center, center);
-
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: var(--weight-500);
-  font-size: 14px;
-  line-height: 21px;
-  transition: all $transition-time;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-gap: .5rem;
+  justify-content: center;
+  padding: var(--padding, 0 1rem);
+  height: var(--height);
+  border-radius: calc(var(--height)/2);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  transition: background-color var(--transition-time-primary);
   white-space: nowrap;
+  border: .06rem solid transparent;
 
   &:focus {
     outline: none;
   }
 
-  &.primary {
-    background-color: $color-button-primary;
-    color: $color-button-primary-text;
 
-    &:hover, &:focus {
-      background-color: $color-button-primary-hover;
+  @media(max-width: 639px) {
+    grid-gap: .66rem;
+    padding: var(--padding, 0 1.33rem);
+    border: .09rem solid transparent;
+    font-size: 1.33rem
+  }
+
+  &.primary {
+    background-color: var(--color-brand);
+    color: var(--color-white);
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-brand-hover)
     }
 
     &:disabled {
-      opacity: 0.5;
+      background-color: var(--color-brand-disabled)
+    }
+
+    &.inverse {
+      background-color: var(--color-white);
+      color: var(--color-brand);
+
+      &:focus,
+      &:hover {
+        opacity: .8
+      }
+
+      &:disabled {
+        opacity: .5
+      }
+    }
+
+
+    &.alt {
+      background-color: var(--color-brand);
+      color: var(--color-white);
+
+      &:focus,
+      &:hover {
+        background-color: var(--color-brand-hover)
+      }
+
+      &:disabled {
+        background-color: var(--color-background-5);
+        color: var(--color-icon)
+      }
     }
   }
 
   &.secondary {
-    background-color: $color-button-secondary;
-    color: $color-button-secondary-text;
-    box-shadow: inset var(--color-button-secondary-border) 0 0 0 1.5px;
+    color: var(--color-white);
+    border-color: var(--color-button-secondary-border);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: $color-button-secondary-hover;
     }
 
     &:disabled {
       opacity: 0.5;
+    }
+
+    &.alt {
+      color: var(--color-white);
+      border-color: var(--color-icon);
+
+      &,
+      &:focus,
+      &:hover {
+        background-color: var(--color-background-6)
+      }
+
+      &:disabled {
+        opacity: .5
+      }
     }
   }
 
   &.transparent {
     color: $color-button-gray;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: $color-button-secondary-hover;
     }
 
@@ -55,21 +115,71 @@
     }
   }
 
-  &.gray {
-    background-color: var(--color-button);
-    color: $color-button-secondary-text;
 
-    &:hover, &:focus {
-      background-color: $color-button-secondary;
-      box-shadow: inset var(--color-button-secondary-border) 0 0 0 1.5px;
+  &.tertiary {
+    color: var(--color-button);
+
+    &,
+    &:focus,
+    &:hover {
+      background-color: var(--color-background-3)
     }
 
     &:disabled {
-      opacity: 0.5;
+      opacity: .5
+    }
+
+    &.alt {
+      color: var(--color-button);
+
+      &,
+      &:focus,
+      &:hover {
+        background-color: var(--color-background-4)
+      }
+
+      &:disabled {
+        opacity: .5
+      }
     }
   }
 
+  .gray {
+    background-color: var(--color-button);
+    color: var(--color-white);
+
+    &:focus,
+    &:hover {
+      background-color: var(--color-black);
+      border-color: var(--color-button-secondary-border)
+    }
+
+    &:disabled {
+      opacity: .5
+    }
+  }
+
+
   &.full_width {
     width: 100%;
+  }
+
+  &.size--m {
+    --height: 2.75rem
+  }
+
+  @media(max-width: 639px) {
+    &.size--m {
+      --height: 3.67rem
+    }
+  }
+
+  &.size--s {
+    --height: 2.25rem;
+    font-size: .86rem
+  }
+
+  &.size--xs {
+    --height: 1.88rem
   }
 }

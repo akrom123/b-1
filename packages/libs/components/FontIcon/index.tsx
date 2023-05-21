@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
+import styles from './styles.module.scss'
 
 interface IProps {
   name: string;
-  size?: number;
+  size?: 'l' | 'm' | 'm2' | 's' | 'xs' | 'xxs';
   className?: string;
   onClick?: () => void;
 }
@@ -13,13 +14,18 @@ export enum FontIconName {
   Instagram = 'icon-instagram',
   Chat = 'icon-chat',
   Twitter = 'icon-twitter',
+  Discord = 'icon-discord',
   Menu = 'icon-menu',
+  MobileMenu = 'icon-mobilemenu',
   Notify = 'icon-notify',
   Telegram = 'icon-telegram',
   IconArrowBottom = 'icon-arrow-bottom-1',
   User = 'icon-user',
   Wallet = 'icon-wallet',
-  Transaction = 'icon-transaction',
+  Wallet1 = 'icon-wallet-1',
+  Deposit = 'icon-deposit',
+  Withdraw = 'icon-withdraw',
+  Transactions = 'icon-transactions',
   VIP = 'icon-vip',
   Promo = 'icon-promo',
   Settings = 'icon-settings',
@@ -72,7 +78,7 @@ export enum FontIconName {
   Email = 'icon-email',
   Checked = 'icon-checked',
   Casino = 'icon-casino',
-  LiveCasinoPlay = 'icon-live-casino-play',
+  LiveCasinoPlay = 'icon-live-casino',
   OddsNew = 'icon-odds-new',
   Roulette = 'icon-roulette',
   Deleted = 'icon-deleted',
@@ -85,10 +91,28 @@ export enum FontIconName {
   Info = 'icon-info',
   Calendar = 'icon-calendar',
   Home = 'icon-home',
+  LiveSports = 'icon-live-sports',
+  Popular = 'icon-popular',
+  Bonus = 'icon-bonus',
+  Baccarat1 = 'icon-baccarat-1',
+  Blackjack = 'icon-blackjack',
+  All = 'icon-all',
+  Trophy = 'icon-trophy'
+
 }
 
-const FontIcon: FC<IProps> = ({ name, size = 24, className, onClick }) => (
-  <i onClick={onClick} className={classNames(name, className)} style={{ fontSize: size }} />
+const FontIcon: FC<IProps> = ({ name, size, className, onClick }) => (
+  <i
+    onClick={onClick}
+    className={classNames(name, className, styles.fontIcon, {
+      [styles.fontIconSizeL]: size === 'l',
+      [styles.fontIconSizeM]: size === 'm',
+      [styles.fontIconSizeM2]: size === 'm2',
+      [styles.fontIconSizeS]: size === 's',
+      [styles.fontIconSizeXS]: size === 'xs',
+      [styles.fontIconSizeXXS]: size === 'xxs',
+    })}
+  />
 );
 
 export { FontIcon };

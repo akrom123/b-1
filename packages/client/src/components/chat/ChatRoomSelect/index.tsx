@@ -35,7 +35,7 @@ const ChatRoomSelect: FC<IProps> = ({ current, onChange, active }) => {
           <div className={styles.select}>
             <FontIcon
               name={FontIconName.World}
-              size={16}
+              size={'s'}
               className={styles.world}
             />
 
@@ -43,7 +43,7 @@ const ChatRoomSelect: FC<IProps> = ({ current, onChange, active }) => {
 
             <FontIcon
               name={FontIconName.ChevronDown}
-              size={12}
+              size={'xxs'}
               className={styles.chevron}
             />
           </div>

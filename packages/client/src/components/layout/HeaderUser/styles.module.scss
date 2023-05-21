@@ -2,33 +2,62 @@
 
 .buttons {
   display: grid;
-  grid-auto-flow: column;
-  column-gap: 16px;
+  grid-template-columns: auto auto;
+  grid-column-gap: var(--padding-main-layout);
+  -webkit-column-gap: var(--padding-main-layout);
+  column-gap: var(--padding-main-layout);
+  margin-left: auto;
+  padding: 0 .75rem;
 
-  @media(max-width: 768px) {
-    column-gap: 8px;
+  @media(max-width: 1279.9px) {
+    -webkit-column-gap: 1.34rem;
+    column-gap: 1.34rem;
+    padding: 0 1.01rem
   }
 
-  @media( min-width: 768px) and (max-width: 1400px)  {
-    column-gap: 10px;
+  @media(min-width: 1280px) {
+    grid-template-columns: auto calc(min(30vw, 20.5rem))
   }
+
+  @media(max-width: 639.9px) {
+    -webkit-column-gap: 1.75rem;
+    column-gap: 1.75rem;
+    padding: 0
+  }
+
 }
 
-.wallet, .user {
-  @include flexbox(center, center);
+.aboveSidebar {
+  display: flex;
+
+  align-items: center;
+
+  @media(min-width: 1280px) {
+    padding-left: 1.25rem;
+    border-left: .06rem solid var(--color-background-4)
+  }
 }
 
 .wallet {
-  padding-right: 16px;
-  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: .63rem;
+  align-items: center;
 
-  @include separator_right();
+  .deposit {
+    width: 8rem;
 
-  @media(max-width: 768px) {
-    padding-right: 0;
-
-    &:after{
-      content: unset;
+    @media(max-width: 639.9px) {
+      display: none
     }
   }
+
+}
+
+.notifyButton {
+  margin-right: 1.25rem;
+}
+
+.chatButton {
+  margin-right: 1.56rem;
 }

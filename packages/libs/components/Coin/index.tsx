@@ -1,14 +1,16 @@
 import React from 'react';
 import { coinIcons, CoinType } from '../../types/ui';
 import { coins } from '../../assets/img/coins';
+import classNames from 'classnames';
+import styles from './styles.module.scss'
 
 type Props = {
   coin: CoinType;
   className?: string;
-  size?: number;
+  size?: 'm' | 'l' | 'xl' | 'xxl' | 'xxxl';
 };
 
-const Coin: React.FC<Props> = ({ coin, className, size = 44 }) => {
+const Coin: React.FC<Props> = ({ coin, className, size = 'm' }) => {
   const name = coinIcons[coin];
   const src = coins[coin];
 
@@ -16,9 +18,15 @@ const Coin: React.FC<Props> = ({ coin, className, size = 44 }) => {
     <img
       src={src}
       alt={name}
-      width={size}
-      height={size}
-      className={className}
+      className={classNames(className,
+        styles.coin,
+        {
+          [styles.coinSizeM]: size === 'm',
+          [styles.coinSizeL]: size === 'l',
+          [styles.coinSizeXL]: size === 'xl',
+          [styles.coinSizeXXL]: size === 'xxl',
+          [styles.coinSizeXXXL]: size === 'xxxl',
+        })}
     />
   );
 };

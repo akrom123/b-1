@@ -56,7 +56,7 @@ export const GameLiveStatsModal: FC<Props> = ({ onCloseModal }) => {
                         value={fieldValue}
                         className={styles.select}
                     />
-                    <Button size={44} className={styles.button}>
+                    <Button className={styles.button}>
                         <img src={refreshIcon} alt='refresh Icon' />
                     </Button>
                 </div>
@@ -68,14 +68,14 @@ export const GameLiveStatsModal: FC<Props> = ({ onCloseModal }) => {
                                 <p className={styles.label}>Profit</p>
                                 <p className={styles.profit}>
                                     <span> {viewInUSD && (<span>$</span>)} - 0.000000</span>
-                                    <Coin coin={CoinType.bitcoin} size={24} />
+                                    <Coin coin={CoinType.bitcoin} size={'xxl'} />
                                 </p>
                             </div>
                             <div>
                                 <p className={styles.label}>Wagered</p>
                                 <p className={styles.wagered}>
                                     <span> {viewInUSD && (<span>$</span>)} 0.000000</span>
-                                    <Coin coin={CoinType.bitcoin} size={24} />
+                                    <Coin coin={CoinType.bitcoin} size={'xxl'} />
                                 </p>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ export const GameLiveStatsModal: FC<Props> = ({ onCloseModal }) => {
                             </div>
                         </div>
 
-                        <div  className={styles.chartWrap}>
+                        <div className={styles.chartWrap}>
                             <ResponsiveContainer width="100%" height="100%">
                                 <LineChart width={300} height={100} data={data}>
                                     <Line type="monotone" dataKey="amt" stroke="#6AD035FF" strokeWidth={2} />
@@ -104,9 +104,9 @@ export const GameLiveStatsModal: FC<Props> = ({ onCloseModal }) => {
                 )}
 
                 {(fieldValue.value === 'Wager contest' || fieldValue.value === 'All') &&
-                (<div className={styles.wagerContest}>
+                    (<div className={styles.wagerContest}>
                         <p className={styles.label}>$ 1,000,000 - 30 days <FontIcon name={FontIconName.IconArrowBottom}
-                                                                                    size={16} /></p>
+                            size={'s'} /></p>
                         <div className={styles.progressbarWrap}>
                             <p>in 11 days</p>
                             <div className={styles.progressbar}>
@@ -118,19 +118,19 @@ export const GameLiveStatsModal: FC<Props> = ({ onCloseModal }) => {
                                 <p className={styles.label}>Prize</p>
                                 <p className={styles.profit}>
                                     <span> {viewInUSD && (<span>$</span>)} - 0.000000</span>
-                                    <Coin coin={CoinType.bitcoin} size={24} />
+                                    <Coin coin={CoinType.bitcoin} size={'xxl'} />
                                 </p>
                             </div>
                             <div>
                                 <p className={styles.label}>Wagered</p>
                                 <p className={styles.wagered}>
                                     <span> {viewInUSD && (<span>$</span>)} 0.000000</span>
-                                    <Coin coin={CoinType.bitcoin} size={24} />
+                                    <Coin coin={CoinType.bitcoin} size={'xxl'} />
                                 </p>
                             </div>
                         </div>
                     </div>
-                )}
+                    )}
 
             </div>
         </HocModal>

@@ -1,29 +1,29 @@
-.games {
-  padding: 32px 0;
-  @media(max-width: 768px)  {
-    padding: 22px 15px 30px 15px;
+.games {}
+
+.list {}
+
+.banners {}
+
+.categories {}
+
+.gameProvider {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+  align-items: center;
+}
+
+.tag {
+
+@media(max-width: 639.9px) {
+  .HomePage_carousel__5mi7G {
+      margin-top:3.32rem
+  }
+
+  &:nth-child(2),&:nth-child(3),.HomePage_title__MgfId span {
+      display: none
   }
 }
 
-.list {
-  &:not(:last-child){
-    margin-bottom: 32px;
-  }
-}
-
-.banners {
-  margin: 40px 0 20px;
-
-  @media(max-width: 768px)  {
-    margin: 15px 0;
-    padding: 0 15px;
-  }
-}
-
-.categories {
-  margin: 20px 0;
-}
-
-.hr {
-  border: 1px solid #212536;
 }

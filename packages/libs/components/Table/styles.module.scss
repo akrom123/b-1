@@ -1,115 +1,162 @@
 .table {
-  //for padding and - margin
-  width: calc(100%);
+  --color-first: var(--color-background-3);
+  --color-second: var(--color-background-4);
+  width: 100%;
   border-collapse: collapse;
-  background-color: var(--color-progile-table-background);
-  border-collapse: separate;
-  padding:12px 0 20px 32px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  @media (max-width: 768px){
-    padding-left: 0px;
-}
-}
+  background-color: var(--color-second);
+  overflow: hidden;
+  font-size: 1rem;
+  line-height: 1.13;
+  color: var(--color-icon);
+  border-radius: 1rem;
+  margin-top: 1.25rem;
+  grid-column: 1/3;
 
-.STable{
-  width: calc(100%);
-  border-collapse: collapse;
-
-  background-color: var(--color-progile-table-background);
-  // border-collapse: separate;
-  padding:12px 0 20px 32px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  text-align: center;
-}
-.thBody{
-  padding-bottom: 22px;
-}
-.head {
-}
-.tr{
-  // border-bottom: 1px solid #313549;
-
-  
-}
-.td{
-  text-align: left;
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-button);
-  padding: 10px 0;
-  width: calc(100%/5);
-  @media (max-width: 768px){
-      div {
-        justify-content: center;
-      }
+  @media(max-width:639.9px) {
+    font-size: 1.14rem
   }
-  @media (min-width: 768px){
-    &:last-child{
-      padding-right:32px;
-      > div {
-        justify-content: flex-end;
-      }
+
+  thead th {
+    font-weight: 600
+  }
+
+  thead tr {
+    background-color: var(--color-background-2)
+  }
+
+  tbody tr.trOdd {
+    background-color: var(--color-first)
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: .88rem;
+    font-weight: 500
+  }
+
+  @media(min-width:1280px) {
+
+    td:first-child,
+    th:first-child {
+      padding-left: 1.25rem
+    }
+
+    td:last-child,
+    th:last-child {
+      padding-right: 1.25rem
     }
   }
 
+  @media(max-width:1279.9px) {
+
+    td,
+    th {
+      padding: 1.51rem
+    }
+  }
+
+  @media(max-width:639.9px) {
+
+    td,
+    th {
+      padding: 1.16rem
+    }
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: -webkit-min-content auto;
+    grid-template-columns: min-content auto;
+    justify-content: flex-start;
+    align-items: center;
+    grid-gap: 0.63rem;
+    white-space: nowrap;
+  }
 }
-.tr:last-child{
-  border-bottom-style:hidden; 
+
+
+
+
+
+
+// .Table_tableWrapper__RYkTy {
+//   position: relative;
+//   grid-column: 1/3;
+//   width: 100%
+// }
+
+// .Table_loading__y9SQI {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 2.88rem;
+//   bottom: 0
+// }
+
+// @media(max-width:639.9px) {
+//   .Table_loading__y9SQI {
+//     top: 3.84rem
+//   }
+// }
+
+// .Tables_table__mI9GT:not(.Tables_expanded__Gn_jV) tr:nth-child(n+6) {
+//   display: none
+// }
+
+
+
+.Tables_buttonWrapper__5j9oW {
+  display: flex;
+  justify-content: flex-end
+}
+
+.Tables_arrow__1JMT3 {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg)
+}
+
+.Tables_arrow__1JMT3.Tables_expanded__Gn_jV {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg)
+}
+
+@media(max-width:639.9px) {
+  .Tables_arrow__1JMT3.Tables_expanded__Gn_jV:before {
+    margin-top: .2rem
+  }
+}
+
+.trOdd {
+  background: var(--color-first);
+}
+
+.td {}
+
+.td,
+.th {
+  text-align: left;
+  padding: 0.88rem;
+  font-weight: 500;
+
+  @media (max-width: 639px) {
+
+    padding: 1.16rem;
+  }
+
+  @media (max-width: 1279px) {
+    padding: 1.51rem;
+  }
+}
+
+.tr:last-child {
+  border-bottom-style: hidden;
   text-align: right;
 }
-.th{
-  text-align: left;
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-button);
-  padding:12px 0;
-  @media (max-width: 768px) {
-    text-align: center;
-    
-  }
-  @media (min-width: 768px){
-    &:last-child{
-      padding-right:32px;
-      text-align: right;
-    }
-  }
-}
-.tdSecondary{
-  text-align: left;
-  padding: 16px 0;
 
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-white);
-  border-bottom: 1px solid #313549;
-  padding-left: 32px;
-  width: calc(100%/4);
-}
-.thSecondary{
-  text-align: left;
-  padding: 16px 0;
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-icon);
-  padding-left: 32px;
-}
-
-.headSecondary{
-  background: #1C1F2F;
-}
-.headingFootballer{
-  color:var(--color-white);
-}
-
-.colorBrand{
-  color:var(--color-brand);
-}
-.colorButton{
-  color:var(--color-button)
+.th {
+  font-weight: 600;
 }

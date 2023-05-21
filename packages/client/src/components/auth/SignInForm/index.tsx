@@ -32,7 +32,7 @@ export const SignInForm: React.FC<IProps> = ({ onSubmit, values, onUserChange, h
           value={values.username} 
           onChange={onUserChange}
           onBlur={handleBlurUser}
-          left={<FontIcon name={FontIconName.User} size={16} />}
+          left={<FontIcon name={FontIconName.User} size={'s'} />}
           placeholder={t('Username or Email')}
           hasError={!!(errors.username && touched.username)}
           inputClasses={styles.background}
@@ -44,7 +44,7 @@ export const SignInForm: React.FC<IProps> = ({ onSubmit, values, onUserChange, h
           value={values.password}
           onChange={onPasswordChange}
           onBlur={handleBlurPassword}
-          left={<FontIcon name={FontIconName.Lock} size={16} />}
+          left={<FontIcon name={FontIconName.Lock} size={'s'} />}
           placeholder={t('Password')}
           hasError={!!(errors.password && touched.password)}
           inputClasses={styles.background}

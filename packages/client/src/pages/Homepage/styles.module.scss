@@ -1,11 +1,9 @@
 @import "~@betnomi/libs/assets/styles/variables";
 
 .page {
-  padding: 0 $main_layout_padding;
-  max-width: 1500px;
   margin: 0 auto;
 
-  @media(max-width: 768px)  {
+  @media(max-width: 768px) {
     padding: 0;
   }
 }

@@ -24,7 +24,7 @@ interface ValueProps {
 
 function TabsSelect({
   active = 0,
-  onChange = () => {},
+  onChange = () => { },
   children,
   controlled,
 }: ContainerProps) {
@@ -33,11 +33,11 @@ function TabsSelect({
     (val: number) => {
       const indexTab = children.findIndex((child: any) => child.props.value === val);
       onChange(indexTab);
-  
+
       if (controlled) {
         return;
       }
-  
+
       setCurrent(val);
     },
     [setCurrent, onChange, controlled],
@@ -61,8 +61,8 @@ function TabsSelect({
           {({ ref }) => (
             <button className={styles.select} onFocus={onFocus} onBlur={offFocus} type="button" ref={ref}>
               {pages[current]}
-              <FontIcon name={FontIconName.IconArrowBottom} className={styles.arrow_icon} size={16} />
-            </button> 
+              <FontIcon name={FontIconName.IconArrowBottom} className={styles.arrow_icon} size={'s'} />
+            </button>
           )}
         </Reference>
       </TextInputWrap>
@@ -86,10 +86,10 @@ function TabsSelect({
 }
 const Value: FC<ValueProps> = ({ value, icon }) => (
   <div className={styles.tab}>
-    <FontIcon name={icon} size={24} />
+    <FontIcon name={icon} size={'m'} />
     <span>{value}</span>
   </div>
-); 
+);
 
 TabsSelect.Value = Value;
 

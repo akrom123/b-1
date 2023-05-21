@@ -40,7 +40,7 @@ const WalletWithdrawFormAmount: FC<Props> = ({
 
   return (
     <>
-      <hr className={styles.mobile_margin}/>
+      <hr className={styles.mobile_margin} />
 
       <div className={classNames(styles.label, styles.mobile_direction)}>
         <p className={styles.mobile_label_margin}>{t('Withdraw amount')}</p>
@@ -48,7 +48,7 @@ const WalletWithdrawFormAmount: FC<Props> = ({
           <span className={styles.white}>{`${balance} ${coin} `}
           </span>
           {t('available')}
-          <FontIcon name={FontIconName.Info} size={16} />
+          <FontIcon name={FontIconName.Info} size={'s'} />
         </span>
       </div>
 
@@ -67,7 +67,7 @@ const WalletWithdrawFormAmount: FC<Props> = ({
             {`${limitLeft} ${coin} / ${limit} ${coin} `}
           </span>
           <span>
-          {t('24h remaining left')}
+            {t('24h remaining left')}
           </span>
         </span>
       </div>
@@ -83,11 +83,11 @@ const WalletWithdrawFormAmount: FC<Props> = ({
           <div className={styles.fee}>
             {t('{{fee}} {{coin}} network fee included', { fee, coin })}
 
-            <FontIcon name={FontIconName.Info} size={16} />
+            <FontIcon name={FontIconName.Info} size={'s'} />
           </div>
         </div>
 
-        <Button type="submit" size={52} isLoading={isLoading} className={styles.mobile_width}>
+        <Button type="submit" isLoading={isLoading} className={styles.mobile_width}>
           {t('Withdraw')}
         </Button>
       </div>

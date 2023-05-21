@@ -56,7 +56,7 @@ const CashBackTable: FC<Props> = ({ data }) => {
               <th className={styles.th}>{t('Withdrawn')}</th>
               <th className={styles.th}>{t('Pending')}</th>
               <th className={styles.th}>{t('Available')}</th>
-              <th className={styles.th}>{}</th>
+              <th className={styles.th}>{ }</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +83,7 @@ const CashBackTable: FC<Props> = ({ data }) => {
                 <td className={styles.td}>
                   <div className={styles.td_wrap}>
                     <button className={classNames(styles.withdrawn_button, { [styles.active]: active })}>
-                      <FontIcon name={FontIconName.Bitcoin} size={16} />
+                      <FontIcon name={FontIconName.Bitcoin} size={'s'} />
                       Withdrawn
                     </button>
                   </div>

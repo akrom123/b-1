@@ -21,8 +21,7 @@ storiesOf('Basic', module).add('GameList', () => {
       <GameList
         games={games}
         gameType={gameType}
-        items={items}
-        spaceBetween={spaceBetween}
+        breakpoints={[]}
       />
     </div>
   );

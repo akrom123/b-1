@@ -25,7 +25,7 @@ const WalletWithdrawSecuritySummary: FC<Props> = ({
     <div className={styles.summary}>
       <div className={styles.label}>{t('Amount')}</div>
       <div className={styles.value}>
-        <Coin coin={coin} size={12} className={styles.coin} />
+        <Coin coin={coin} size={'m'} className={styles.coin} />
         <span>
           {t('Receive {{amount}} {{coin}} (Network fee {{fee}} {{coin}})', {
             amount: parseFloat(amount.toFixed(precision)),

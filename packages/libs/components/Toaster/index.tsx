@@ -15,12 +15,12 @@ const Content: FC<{ text: string; title?: string }> = ({ title, text }) => (
 
 const Close: FC = () => (
   <button className={styles.close}>
-    <FontIcon name={FontIconName.Close} size={16} />
+    <FontIcon name={FontIconName.Close} size={'s'} />
   </button>
 );
 
 toast.configure({
-  position: (window && window.matchMedia("(max-width: 768px)").matches) ? 'top-center' :'bottom-left',
+  position: (window && window.matchMedia("(max-width: 1279px)").matches) ? 'top-center' : 'bottom-left',
   hideProgressBar: true,
   closeOnClick: true,
   toastClassName: (context) =>

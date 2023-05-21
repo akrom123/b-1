@@ -11,7 +11,7 @@ interface IProps extends ButtonProps {
 const IconButton: FC<IProps> = ({ name, className, ...props }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Button className={classNames(styles.button, className)} {...props}>
-    <FontIcon name={name} size={16} />
+    <FontIcon name={name} size={'s'} />
   </Button>
 );
 

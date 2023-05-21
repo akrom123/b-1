@@ -9,22 +9,20 @@ import { FontIcon, FontIconName } from '../../FontIcon';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import styles from './styles.module.scss';
-import {Breakpoints} from "../GameList";
-import {getSlidesPerView} from "../GameList";
-import {useShallowSelector} from "@betnomi/client/src/hooks";
-import {selectAuthUI} from "@betnomi/client/src/store/auth/selectors";
+import { useShallowSelector } from "@betnomi/client/src/hooks";
+import { selectAuthUI } from "@betnomi/client/src/store/auth/selectors";
 
 interface Props {
-  categories: GameCategory[]
-  spaceBetween?: number
-  breakpoints?: SwiperOptions['breakpoints']
+    categories: GameCategory[]
+    spaceBetween?: number
+    breakpoints?: SwiperOptions['breakpoints']
 }
 
 const categoryPrev = 'category-prev';
 const categoryNext = 'category-next';
 const navigation: NavigationOptions = {
-  prevEl: `.${categoryPrev}`,
-  nextEl: `.${categoryNext}`,
+    prevEl: `.${categoryPrev}`,
+    nextEl: `.${categoryNext}`,
 };
 
 SwiperCore.use([Navigation]);
@@ -61,13 +59,13 @@ const GameCategoriesList: FC<Props> = ({ categories, spaceBetween = 16, breakpoi
     return (
         <div className={styles.main_wrapper}>
             <button className={cx(styles.arrow, styles.left, categoryPrev)}>
-                <FontIcon name={FontIconName.ArrowLeftBold} size={14} />
+                <FontIcon name={FontIconName.ArrowLeftBold} size={'xs'} />
             </button>
             <button className={cx(styles.arrow, styles.right, categoryNext)}>
-                <FontIcon name={FontIconName.ArrowRightBold} size={14} />
+                <FontIcon name={FontIconName.ArrowRightBold} size={'xs'} />
             </button>
             <Swiper
-                slidesPerView={getSlidesPerView(CategoriesBreakpoints, isChatActive, 'gameCategories')}
+                slidesPerView={6}
                 spaceBetween={spaceBetween}
                 navigation={navigation}
                 breakpoints={CategoriesBreakpoints}

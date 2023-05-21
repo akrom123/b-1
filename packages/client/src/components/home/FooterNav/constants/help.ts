@@ -3,7 +3,7 @@ export const help = [
     to: '/#' },
   { label: 'Contact us',
     to: '/#' },
-  { label: 'Sport betting rules',
+  { label: 'Sports rules',
     to: '/#' },
   { label: 'Poker',
     to: '/#' },

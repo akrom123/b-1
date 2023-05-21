@@ -19,9 +19,9 @@ type Props = {
   price?: string,
 };
 
-export const SportsBetRowResult:React.FC<Props> = ({ type, label, price }) => (
+export const SportsBetRowResult: React.FC<Props> = ({ type, label, price }) => (
   <div className={cx(styles.result, styles[type])}>
-    <FontIcon name={sportResultIcons[type]} size={16} />
+    <FontIcon name={sportResultIcons[type]} size={'s'} />
     <div className={styles.label}>
       {price && <span className={styles.price}>{`$ ${price} - `}</span>}
       {label}

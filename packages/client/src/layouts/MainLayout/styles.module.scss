@@ -1,31 +1,37 @@
 @import "~@betnomi/libs/assets/styles/_variables";
 
+
 .container {
   width: 100%;
-  background-color: var(--color-background);
+  scrollbar-width: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: var(--color-background-1);
   color: var(--color-white);
-  transition: all $transition-time;
-  padding-right: 0;
-  padding-left: $menu_width_close;
-  padding-top: $header_height;
+  padding: var(--height-header) 0 0;
 
-  &.chat_active {
-    padding-right: $chat_width;
-  }
 
-  &.menu_active {
-    padding-left: $menu_width;
-  }
+  @media(min-width: 1280px) {
+    transition: padding-left var(--transition-time-primary);
+    padding-left: var(--width-side-menu-shrink);
 
-  @media(max-width: 768px){
-    padding-left: 0;
-    &.menu_active {
-      padding-left: 0;
+    &.right_padding {
+      padding-right: calc(min(30vw, 21.25rem));
     }
+
     &.chat_active {
-      padding-right: 0;
+      padding-right: calc(min(30vw, 21.25rem));
     }
 
+    &.menu_active {
+      padding-left: var(--width-side-menu);
+    }
+  }
+
+  @media(max-width: 639.9px) {
+    height: 100%;
+    padding-bottom: 5.38rem
   }
 }
 
@@ -40,63 +46,87 @@
 
 .left {
   position: fixed;
-  left: 0;
-  top: $header_height;
-  height: calc(100vh - #{$header_height});
-  width: $menu_width_close;
-  transition: all $transition-time;
-  z-index: 2;
+  top: var(--height-header);
+  height: calc(100% - var(--height-header));
+  width: var(--width-side-menu-shrink);
+  z-index: 10;
+  transition: width var(--transition-time-primary);
   background: var(--color-menu-bg);
+  left: 0;
 
-  &.active {
-    width: $menu_width;
+  @media (min-width: 1280px) {
+    &.active {
+      width: var(--width-side-menu);
+    }
   }
 
-  @media(max-width: 768px){
-    z-index: 9999;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    transform: translateX(-100%);
+  @media(max-width: 1279.9px) {
+    width: 100%;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    transition: -webkit-transform var(--transition-time-primary);
+    transition: transform var(--transition-time-primary);
+    transition: transform var(--transition-time-primary), -webkit-transform var(--transition-time-primary);
+    z-index: 103;
+    background-color: var(--color-background-1);
 
     &.active {
-      transform: translateX(0);
-      width: 100%;
+      -webkit-transform: translateY(0);
+      transform: translateY(0)
     }
   }
 }
 
 .content {
   grid-area: content;
+  padding: 3.13rem var(--padding-main-layout) 0;
+  margin: 0 auto;
 }
 
 .right {
+
   position: fixed;
+  bottom: 0;
+  top: var(--height-header);
+  height: calc(100% - var(--height-header));
+  width: calc(min(30vw, 21.25rem));
+  background-color: var(--color-background-1);
   right: 0;
-  top: $header_height;
-  height: calc(100vh - #{$header_height});
-  width: 0;
-  transition: all $transition-time;
-  z-index: 3;
+  transition: -webkit-transform var(--transition-time-primary);
+  transition: transform var(--transition-time-primary);
+  transition: transform var(--transition-time-primary), -webkit-transform var(--transition-time-primary);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  padding: 3.13rem .75rem 0 0;
 
-  &.active {
-    width: $chat_width;
-  }
-
-  @media(max-width: 768px) {
-    height: calc(100vh - #{$header_height} - 71px);
+  @media(min-width: 1280px) {
     &.active {
-      width: 100%;
+      -webkit-transform: translate(0);
+      transform: translate(0);
     }
   }
-}
 
-.footer {
-  padding: 0 $main_layout_padding;
-  max-width: 1500px;
-  margin: 0 auto;
+  @media(max-width: 1279.9px) {
+    z-index: 110;
+    width: 100%;
+    padding: .59rem;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
 
-  @media(max-width: 768px) {
-    padding: 0 15px;
+    &.active {
+      -webkit-transform: translate(0);
+      transform: translate(0);
+    }
+  }
+
+  @media(max-width: 639.9px) {
+    padding: 0;
+
+    font-size: var(--font-size-default);
+
+    &.activeMobile {
+      margin-top: calc(var(--height-header)*-1);
+      height: 100%
+    }
   }
 }

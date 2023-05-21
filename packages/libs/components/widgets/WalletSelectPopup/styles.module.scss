@@ -1,60 +1,135 @@
 @import "~@betnomi/libs/assets/styles/mixins";
 
 .head {
-  @include flexbox(center, stretch);
+  display: grid;
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+  align-items: center;
+  grid-column-gap: .63rem;
+  padding: .75rem 1rem;
+  border-bottom: .06rem solid var(--color-line-1);
+  font-size: var(--font-size-small);
 
-  flex-direction: row;
-  padding: 12px;
-  border-bottom: 1px solid var(--color-line-1);
-  font-weight: var(--weight-500);
-  font-size: 16px;
-  line-height: 24px;
-
-  div {
-    flex: 1;
-    padding: 0 12px;
+  @media(max-width: 639.9px) {
+    padding: 1.2rem 1.33rem;
+    font-size: 1.17rem
   }
 
-  @media(max-width: 768px){
-    div {
-      padding: 0 6px;
+  &>* {
+    white-space: nowrap;
+    text-align: right
+  }
+
+  .title {
+    grid-row: 1/3;
+    text-align: left;
+    font-size: var(--font-size-default);
+  }
+
+  .gray {
+    color: var(--color-icon);
+  }
+
+
+  @media(max-width: 639.9px) {
+    .title {
+      font-weight: 600;
+      font-size: 1.5rem
+    }
+
+    .amount {
+      font-size: 1.34rem
+    }
+  }
+
+}
+
+.list {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  flex-direction: column;
+  width: 100%;
+  left: 1.25rem;
+  background-color: var(--color-modal-bg);
+  border-radius: .75rem
+}
+
+.coins {
+  display: grid;
+  grid-auto-flow: row;
+  height: 16.06rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 100%;
+
+  @media(min-width: 640px) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand) transparent;
+
+    &::-webkit-scrollbar {
+      width: .25rem
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: .19rem solid var(--color-brand);
+      background-color: var(--color-brand)
+    }
+  }
+
+  &:focus {
+    outline: none
+  }
+
+  @media(max-width: 639.9px) {
+    & {
+      height: 27rem;
+      padding: 1.33rem 0
     }
   }
 }
 
-.list {
-  @include flexbox(stretch, stretch);
-
-  flex-direction: column;
-  max-height: 50vh;
-  max-width: 290px;
-  width: 100vw;
-
-  @media(max-width: 768px)  {
-    max-width: 345px;
-    max-height: 460px;
-  }
-}
-
-.coins {
-  @include with_scrollbar(var(--color-modal-bg), var(--color-profile-menu-shadow));
-  overflow: auto;
-  flex: 1;
-  max-height: 100%;
-  padding: 12px 0;
-}
-
 .coin {
-  @include flexbox(center, stretch);
-  padding: 12px 24px;
+  display: grid;
+  grid-template-columns: 1.66rem auto -webkit-min-content;
+  grid-template-columns: 1.66rem auto min-content;
+  grid-gap: .63rem;
+  align-items: center;
+  padding: .63rem .38rem .63rem 1rem;
   border: none;
   background: transparent;
   color: inherit;
   width: 100%;
-  min-height: 24px;
+  font-weight: inherit;
 
-  &.with_rate {
-    padding: 6px 24px;
+  &.withRate {
+    padding: .25rem .38rem .25rem 1rem
+  }
+
+  &:hover {
+    background-color: var(--color-background-5)
+  }
+
+  @media(min-width: 1280px) {
+    grid-template-columns: 1.25rem auto -webkit-min-content;
+    grid-template-columns: 1.25rem auto min-content;
+    padding: .2rem .72rem .2rem 1rem;
+
+    &.withRate {
+      padding: .25rem .72rem .25rem 1rem
+    }
+  }
+
+  @media(max-width: 639.9px) {
+    padding: .33rem 1.33rem;
+
+    &.withRate {
+      padding: .55rem 1.33rem
+    }
+
+    .coinImage {
+      --size: 1.6rem
+    }
   }
 
   &:hover {
@@ -62,33 +137,59 @@
   }
 
   &_name {
-    padding: 0 11px;
-    flex: 1;
-    font-weight: var(--weight-500);
     text-align: left;
+    font-weight: 500;
+    font-size: .87rem;
+
+    @media(max-width: 1279.9px) {
+      color: var(--color-icon);
+      font-size: var(--font-size-default);
+    }
+
+    @media(max-width: 639.9px) {
+      font-size: 1.34rem
+    }
+  }
+
+
+
+  &_rate {
+    font-weight: 500;
+    font-size: .87rem;
+    line-height: 1;
+
+
+    @media(max-width: 639.9px) {
+      font-weight: 500;
+      font-size: 1.25rem
+    }
   }
 
   &_balance {
-    font-weight: var(--weight-500);
-    font-size: 14px;
-    line-height: 18px;
+    line-height: 1.963;
+
+    @media(max-width: 1279.9px) {
+      font-size: var(--font-size-default)
+    }
+
+    @media(max-width: 639.9px) {
+      font-size: 1.34rem
+    }
+
   }
 
   &_rate_balance {
-    font-weight: var(--weight-600);
-    font-size: 8px;
-    line-height: 12px;
+    font-size: var(--font-size-smallest);
+    line-height: 1.5;
     text-align: right;
+
+    @media(max-width: 639.9px) {
+      font-size: .92rem
+    }
   }
 
   &_in_usd {
-    font-weight: var(--weight-500);
-    font-size: 14px;
-    line-height: 18px;
-  }
-
-  @media(max-width: 768px){
-    padding: 12px 4px 12px 18px;
+    line-height: 1.13rem
   }
 }
 
@@ -97,59 +198,60 @@
 }
 
 .footer {
-  @include flexbox(center, center);
-  padding: 12px 24px;
-  border-top: 1px solid var(--color-line-1);
+  display: grid;
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+  align-items: center;
+  padding: .75rem;
+  border-top: .06rem solid var(--color-line-1);
 
-  @media(max-width: 768px){
-    padding: 12px 18px;
+  @media(max-width: 639.9px) {
+    padding: 1.33rem
   }
 }
 
 .settings {
-  flex: 0 0 36px;
-  margin-right: 12px;
-  border-radius: 4px;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--color-line-1);
-  color: var(--color-button);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--color-icon)
 }
 
 .price {
-  flex: 1;
-  :last-child {
-    margin-bottom: 0;
+  color: var(--color-white);
+  width: 100%;
+  font-weight: 400;
+  font-size: .75rem;
+
+  @media(max-width: 639.9px) {
+    font-weight: 400;
+    font-size: 1.13rem
   }
 
-  &_row {
-    @include flexbox(center, flex-end);
-
-    font-weight: var(--weight-500);
-    font-size: 14px;
-    line-height: 18px;
-    width: 100%;
-    text-align: right;
-    min-height: 18px;
-    margin-bottom: 8px;
-
-    & > span {
-      margin-left: 4px;
-    }
-  }
 }
 
 .gray {
-  opacity: 0.5;
+  color: var(--color-icon);
 }
 
 .dollar {
   color: var(--color-brand);
 }
 
-.toggle {
-  @include flexbox(center, center);
-  padding-left: 6px;
+.toggleWrap {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: center;
+  cursor: pointer;
+
+  .togglePreLabel {
+    white-space: nowrap;
+    color: var(--color-button);
+    margin-right: 0.5rem;
+  }
 }
 
 .deposit {

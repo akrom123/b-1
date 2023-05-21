@@ -35,8 +35,8 @@ const RadioButton: FC<IProps> = ({
     >
       <span className={classNames(styles.inner, { [styles.error]: hasError })}>
         {checked && <i className={styles.inner_circle} />}
-        {disabled && !checked && 
-        <FontIcon name={FontIconName.Close} size={12} className={styles.close} />}
+        {disabled && !checked &&
+          <FontIcon name={FontIconName.Close} size={'xxs'} className={styles.close} />}
       </span>
       {!!children && <div className={styles.label}>{children}</div>}
     </button>

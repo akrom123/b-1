@@ -1,40 +1,62 @@
 @import "~@betnomi/libs/assets/styles/_variables";
 @import "~@betnomi/libs/assets/styles/_mixins";
 
-.menuWrap{
+
+.menuWrap {
   position: fixed;
   bottom: 0;
-  z-index: 99999;
+  z-index: 102;
   background-color: var(--color-chat-background);
   width: 100%;
-  min-height: 71px;
-  padding: 10px 21px;
-  border-top: 1px solid var(--color-line-1);
-}
+  min-height: var(--height-mobile-menu);
+  padding: .65rem 1rem .59rem;
 
-.menu_toggle {
-  color: var(--color-icon);
-  cursor: pointer;
-  margin-left: -5px;
-  font-size: 12px;
-  line-height: 18px;
-  min-height: 48px;
+  border-top: .06rem solid var(--color-line-1);
 
-  a{
-    @include flexbox(center, center);
-    flex-direction: column;
-    font-size: inherit;
+  &:not(.withGameView) {
+    border-radius: 1.33rem 1.33rem 0 0
   }
 
-  span{
+  @media(min-width: 1280px) {
+    display: none
+  }
+
+  @media(max-width: 639.9px) {
+    min-height: 5.41rem
+  }
+}
+
+
+.menu_toggle {
+  a {
+    display: grid;
+    font-weight: 500;
+    color: var(--color-icon);
+    text-align: center;
+    min-width: 10vw;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus {
+      outline: none
+    }
+  }
+
+  span {
     display: block;
     margin-top: 5px;
   }
 }
 
-.menu{
+
+.menu {
   @include flexbox(center, space-between);
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.icon {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
 }

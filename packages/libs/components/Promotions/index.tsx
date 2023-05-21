@@ -8,33 +8,22 @@ import SummerDots from '@betnomi/libs/assets/img/promotions/background2.png';
 
 
 interface IProps {
-  type:boolean
-  bgImage:string
-  elipisis:string
-  bgColor:string,
-  title:string,
-  para:string,
-  round:string
+  title: string,
+  para: string,
+  round: string
 
 }
 
-const Promotions = ({ type, bgImage, elipisis, bgColor, round,title,para }: any) => (
-  <div style={{background:bgColor}} className={styles.promotionMain}>
-    {
-      !type && (<>
-        <img className={styles.promoBackgroundImg} src={bgImage} alt="" />
-        <img className={styles.ellips} src={elipisis} alt="" />
-        <img className={styles.round} src={round} alt="" /></>)
-    }
+const Promotions = ({ round, title, para }: any) => (
+  <div className={styles.promotionMain}>
+    <div className={styles.promotionInner}>
+      <img src="https://images.betnomi.com/f231fcee-3403-43ec-8612-54d8b415cc88?auto=format&fit=max&w=3840&q=70" alt="" />
+    </div>
     <div className={styles.promotionHeadingBlock}>
       <h2 className={styles.headingPromotion}>{title}</h2>
-      <p className={styles.promo}>Promo</p>
+      <span className={styles.promoPara} dangerouslySetInnerHTML={{ __html: para }}></span>
+      <span className={styles.promo}>Promo</span>
     </div>
-    <p className={styles.promoPara}>{para}</p>
-    {
-      type && (<> <img className={styles.elipisis} src={elipisis} alt="" />
-        <img className={styles.mainPicDots} src={bgImage} alt="" /></>)
-    }
   </div>
 );
 

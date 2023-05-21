@@ -11,8 +11,8 @@ import { CoinType } from '../../types/ui';
 const elements = {
   nothing: undefined,
   text: 'text',
-  icon: <FontIcon name={FontIconName.User} size={16} />,
-  coin: <Coin coin={CoinType.bitcoin} size={16} />,
+  icon: <FontIcon name={FontIconName.User} size={'s'} />,
+  coin: <Coin coin={CoinType.bitcoin} size={'s'} />,
 };
 
 storiesOf('Basic', module).add('TextInput', () => {

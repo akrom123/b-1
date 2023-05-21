@@ -1,70 +1,84 @@
-import React, { FC } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, {
-  Pagination,
-  Autoplay, SwiperOptions,
-} from 'swiper/core';
-import { PaginationOptions } from 'swiper/types/components/pagination';
-import 'swiper/swiper.scss';
-import 'swiper/components/pagination/pagination.scss';
+import React, { FC, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import styles from './styles.module.scss';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css'
+import classNames from 'classnames';
+import useResizeObserver from '@betnomi/libs/hooks/useResizeObserver';
 
-export interface  Banner {
-  image: string,
+export interface Banner {
+  imageDefault: string,
+  imageTablet: string,
+  imageMobile: string,
   link: string
   title?: string
   text?: string
+  textColor?: string
 }
 
 interface Props {
-  banners: Banner[]
-  autoplay?: boolean
-  delay?: number
-  withPagination?: boolean,
-  items: number,
-  breakpoints?: SwiperOptions['breakpoints']
-  children?: (item: any) => void
+  banners: Banner[],
+  isMenuActive: boolean,
   overlay?: any,
+
 }
-
-SwiperCore.use([Pagination, Autoplay]);
-
-const pagination: PaginationOptions = {
-  clickable: true,
-  bulletClass: styles.bullet,
-  bulletActiveClass: styles.active,
-  modifierClass: `${styles.pagination} `,
-};
 
 const BannerList: FC<Props> = ({
   banners,
-  autoplay,
-  delay = 5000,
-  withPagination = false,
-  items,
-  breakpoints,
   overlay,
+  isMenuActive,
   ...props
-}) => (
-  <div className={styles.wrapper}>
-    <Swiper
-      slidesPerView={items}
-      spaceBetween={30}
-      pagination={withPagination ? pagination : false}
-      autoplay={autoplay ? { delay } : false}
-      className={withPagination ? styles.pagination_padding : ''}
-      breakpoints={breakpoints}
-      observeParents
-      resizeObserver
-    >
-      {banners.map((banner) => (
-        <SwiperSlide key={banner.image}>
-          <img className={styles.banner} src={banner.image} alt="banner" />
+}) => {
+  const [currentSlide, setCurrentSlide] = React.useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [sliderRef, instanceRef] = useKeenSlider(
+    {
+      initial: 0,
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel)
+      },
+      created() {
+        setLoaded(true)
+      },
+    },
+    [
+    ]
+  )
+
+  const onResize = useCallback((target: HTMLDivElement) => {
+    instanceRef.current?.update()
+  }, []);
+
+  const wrapperRef = useResizeObserver(onResize);
+
+  return <div className={styles.wrapper} ref={wrapperRef}>
+    <div ref={sliderRef} className={classNames('keen-slider', styles.keenSlider)}>
+      {banners.map((banner, index) => (
+        <div key={index} className={classNames('keen-slider__slide', styles.slide)}>
+          <img className={classNames(styles.banner, styles.bannerDefault)} src={banner.imageDefault} alt="banner" />
+          <img className={classNames(styles.banner, styles.bannerTablet)} src={banner.imageTablet} alt="banner" />
+          <img className={classNames(styles.banner, styles.bannerMobile)} src={banner.imageMobile} alt="banner" />
           {overlay(banner)}
-        </SwiperSlide>
+        </div>
       ))}
-    </Swiper>
+    </div>
+    {loaded && instanceRef.current && (
+      <div className={styles.dots}>
+        {[
+          ...Array(instanceRef.current.track.details.slides.length).keys(),
+        ].map((idx) => {
+          return (
+            <button
+              key={idx}
+              onClick={() => {
+                instanceRef.current?.moveToIdx(idx)
+              }}
+              className={classNames(styles.dot, (currentSlide === idx ? styles.dotActive : ""))}
+            ></button>
+          )
+        })}
+      </div>
+    )}
   </div>
-);
+};
 
 export default BannerList;

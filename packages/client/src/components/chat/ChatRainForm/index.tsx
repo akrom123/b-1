@@ -73,7 +73,7 @@ const ChatRainForm: FC<IProps> = ({
       <ChatMinValue min={min} coin={coin} />
 
       <TextInput
-        left={<FontIcon name={FontIconName.Users} size={16} />}
+        left={<FontIcon name={FontIconName.Users} size={'s'} />}
         right={t('1~100')}
         type="number"
         onChange={onChangePersons}

@@ -24,9 +24,9 @@ interface IProps {
   timeOptions: Option<string>[];
   resultOptions: Option<string>[];
 }
-  
-export const TransactionAllForm: React.FC<IProps> = ({ 
-  onSubmit, 
+
+export const TransactionAllForm: React.FC<IProps> = ({
+  onSubmit,
   onChangeType,
   onTimeChange,
   onResultChange,
@@ -43,23 +43,23 @@ export const TransactionAllForm: React.FC<IProps> = ({
   buttonText,
   ClassName = ''
 }) => {
-  const optionRenderer = (active:Option<string>) => ({ label, value }:Option<string>) => (
+  const optionRenderer = (active: Option<string>) => ({ label, value }: Option<string>) => (
     <div className={cx(styles.option, { [styles.selected]: value === active.value })}>
       {label}
       {value === active.value && (
-      <FontIcon 
-        name={FontIconName.Checked} 
-        size={16}
-        className={styles.check_icon}
-      />
+        <FontIcon
+          name={FontIconName.Checked}
+          size={'s'}
+          className={styles.check_icon}
+        />
       )}
     </div>
   );
 
-  
+
   return (
     <form className={cx(styles.form, styles[ClassName])} onSubmit={onSubmit}>
-      <div className={styles.filters}> 
+      <div className={styles.filters}>
         <div className={styles.type}>
           <div className={styles.label}>{firstLabel}</div>
           <Select
@@ -85,7 +85,7 @@ export const TransactionAllForm: React.FC<IProps> = ({
         <div className={styles.result}>
           <div className={styles.label}>{thirdLabel}</div>
           <Select
-            variants={timeOptions} 
+            variants={timeOptions}
             onChange={onTimeChange}
             value={time}
             optionRenderer={optionRenderer(time)}
@@ -96,11 +96,11 @@ export const TransactionAllForm: React.FC<IProps> = ({
       </div>
       <Button
         type="submit"
-        isLoading={loading} 
+        isLoading={loading}
         className={styles.submit}
       >
         {buttonText}
       </Button>
     </form>
-  ); 
+  );
 };

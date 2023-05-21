@@ -25,6 +25,19 @@ interface IProps {
 }
 
 
+const slotsBreakpoints: Breakpoints = {
+  '(max-width: 639px)': {
+    slides: {
+      perView: 5
+    }
+  },
+  '(min-width: 640px)': {
+    slides: {
+      perView: 6
+    }
+  },
+};
+
 const GameSlug: FC<IProps> = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { gameProviders, isLoading, ...allGames } = useShallowSelector(selectHomeGames);
@@ -51,7 +64,7 @@ const GameSlug: FC<IProps> = () => {
 
 
   const handleResize = () => {
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isMobile = window.matchMedia('(max-width: 1279px)').matches;
     setIsMobile(isMobile);
   };
 
@@ -88,18 +101,6 @@ const GameSlug: FC<IProps> = () => {
     },
   };
 
-  const recommended: Breakpoints = {
-    320: { slidesPerView: 2 },
-    375: { slidesPerView: 2 },
-    500: { slidesPerView: 3 },
-    700: { slidesPerView: 4 },
-    1000: { slidesPerView: 4 },
-    1280: { slidesPerView: 5 },
-    1440: { slidesPerView: 6 },
-    1620: { slidesPerView: 7 },
-    2160: { slidesPerView: 'auto' },
-  };
-
   const [activeScreen, setActiveScreen]: any = useState(false);
   const handleActiveScreen = () => {
     setActiveScreen(!activeScreen);
@@ -109,7 +110,7 @@ const GameSlug: FC<IProps> = () => {
 
   const reportChange = useCallback((state, handle) => {
     if (handle === gameFullScreen) {
-      if(!state){
+      if (!state) {
         setActiveScreen(false);
       }
     }
@@ -128,24 +129,22 @@ const GameSlug: FC<IProps> = () => {
 
         <div className={styles.list}>
           <GameList
-            breakpoints={recommended}
             games={generatePlaceholders(160, 220)}
             gameType={GameType.RecommendedGames}
-            spaceBetween={isMobile ? 12 : 24}
+            breakpoints={slotsBreakpoints}
           />
         </div>
 
         <div className={styles.list}>
           <GameList
-            breakpoints={gameProvidersBreakpoints}
             games={isLoading ? generatePlaceholders(130, 80) : getGames(gameProviders, gameImgSizes.gameProviders)}
             gameType={GameType.GameProviders}
-            spaceBetween={smallScreen ? 22 : 12}
+            breakpoints={gameProvidersBreakpoints}
           />
         </div>
 
         <div className={styles.list}>
-          <GameProvider isMobile={isMobile} />
+          <GameProvider />
         </div>
       </div>
     </MainLayout>

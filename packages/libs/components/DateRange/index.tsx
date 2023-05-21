@@ -12,7 +12,7 @@ interface Props {
   onEndChange: (value: string) => void
   dateFormat?: string
   divorce?: JSX.Element
-  title?:JSX.Element;
+  title?: JSX.Element;
   classNameContainer?: string;
 }
 
@@ -39,7 +39,7 @@ const DateRange: FC<Props> = ({
   const onDateBeginChange = useCallback((value: string) => {
     onBeginChange(value);
   }, [onBeginChange]);
-  
+
   const onDateEndChange = useCallback((value: string) => {
     onEndChange(value);
   }, [onEndChange]);
@@ -50,7 +50,7 @@ const DateRange: FC<Props> = ({
     if (beginValue.length <= 0) return;
     onBeginChange('');
   }, [onBeginChange]);
-  
+
   const clearDateEnd = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -64,7 +64,7 @@ const DateRange: FC<Props> = ({
       <div className={styles.wrapper}>
         <div className={cx(styles.input_wrapper, classNameContainer)}>
           <div className={styles.icon_wrapper}>
-            <FontIcon name={FontIconName.Calendar} size={16} />
+            <FontIcon name={FontIconName.Calendar} size={'s'} />
             <div className={styles.line} />
           </div>
           <DateInput
@@ -74,8 +74,8 @@ const DateRange: FC<Props> = ({
             onChange={onDateBeginChange}
             customInput={customInput}
           />
-          <button 
-            className={styles.icon} 
+          <button
+            className={styles.icon}
             onClick={clearDateBegin}
           >
             {beginValue.length > 0
@@ -86,7 +86,7 @@ const DateRange: FC<Props> = ({
         {divorce || <div className={styles.rectangle} />}
         <div className={cx(styles.input_wrapper, classNameContainer)}>
           <div className={styles.icon_wrapper}>
-            <FontIcon name={FontIconName.Calendar} size={16} />
+            <FontIcon name={FontIconName.Calendar} size={'s'} />
             <div className={styles.line} />
           </div>
           <DateInput
@@ -96,11 +96,11 @@ const DateRange: FC<Props> = ({
             onChange={onDateEndChange}
             customInput={customInput}
           />
-          <button 
+          <button
             className={styles.icon}
             onClick={clearDateEnd}
           >
-            {endValue.length > 0 
+            {endValue.length > 0
               ? (<FontIcon name={FontIconName.Close} size={fontIconSize} />)
               : (<FontIcon name={FontIconName.Plus} size={fontIconSize} />)}
           </button>

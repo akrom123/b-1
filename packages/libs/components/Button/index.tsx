@@ -1,5 +1,5 @@
 import React, {
-  ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren, 
+  ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren,
 } from 'react';
 import cx from 'classnames';
 import { ButtonColor, IconName } from '../../types';
@@ -8,23 +8,27 @@ import Loader from '../Loader';
 import styles from './styles.module.scss';
 
 export type ButtonProps = DetailedHTMLProps<
-ButtonHTMLAttributes<HTMLButtonElement>,
-HTMLButtonElement
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
 > & {
   color?: string,
-  size?: number,
+  size?: 's' | 'm' | 'xs',
   fullWidth?: boolean,
   onClick?: (event: React.MouseEvent) => void,
   icon?: IconName,
   iconClassName?: string,
   isLoading?: boolean,
+  inverse?: boolean,
+  alt?: boolean
 };
 
 const Button: FC<PropsWithChildren<ButtonProps>> = ({
   color = ButtonColor.Primary,
-  size = 44,
+  inverse = false,
+  alt = false,
+  size = 'm',
   fullWidth = false,
-  onClick = () => {},
+  onClick = () => { },
   className,
   type = 'button',
   children,
@@ -42,7 +46,13 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
       className,
       {
         [styles.full_width]: fullWidth,
+        [styles['size--m']]: size === 'm',
+        [styles['size--s']]: size === 's',
+        [styles['size--xs']]: size === 'xs',
+        [styles.inverse]: inverse,
+        [styles.alt]: alt
       },
+
     )}
     style={{ height: size }}
     onClick={onClick}
@@ -52,10 +62,10 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
     {isLoading ? <Loader /> : (
       <>
         {icon && (
-        <Icon
-          value={icon}
-          className={iconClassName}
-        />
+          <Icon
+            value={icon}
+            className={iconClassName}
+          />
         )}
         {children}
       </>

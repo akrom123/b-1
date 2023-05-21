@@ -14,7 +14,7 @@ export interface UserImageProps {
 }
 
 const UserImage: FC<UserImageProps> = ({
-  image, progress, level, size = 44,
+  image, progress, level, size = 40,
 }) => {
   const perc = Math.min(Math.max(2, progress || 0), 100);
   const arc = useMemo(() => describeArc(22, 22, 21, 0, 359 * (perc / 100)), [perc]);
@@ -22,30 +22,32 @@ const UserImage: FC<UserImageProps> = ({
   const onLoad = useCallback(() => setLoaded(true), []);
 
   return (
-    <svg className={styles.user} width={size} height={size} viewBox="0 0 44 44">
-      <defs>
-        <clipPath id="cut-off-bottom">
-          <circle cx={22} cy={22} r={17} fill="white" />
-        </clipPath>
-      </defs>
+    <div className={styles.userWrapper}>
+      <svg className={styles.user} viewBox="0 0 44 44">
+        <defs>
+          <clipPath id="cut-off-bottom">
+            <circle cx={22} cy={22} r={17} fill="white" />
+          </clipPath>
+        </defs>
 
-      <circle cx={22} cy={22} r={16.5} fill="var(--color-button)" />
+        <circle cx={22} cy={22} r={16.5} fill="var(--color-button)" />
 
-      <image
-        xlinkHref={image}
-        x={5}
-        y={5}
-        width={34}
-        height={34}
-        preserveAspectRatio="xMidYMid slice"
-        clipPath="url(#cut-off-bottom)"
-        onLoad={onLoad}
-        opacity={loaded ? 1 : 0}
-      />
+        <image
+          xlinkHref={image}
+          x={5}
+          y={5}
+          width={34}
+          height={34}
+          preserveAspectRatio="xMidYMid slice"
+          clipPath="url(#cut-off-bottom)"
+          onLoad={onLoad}
+          opacity={loaded ? 1 : 0}
+        />
 
-      <circle cx={22} cy={22} r={21} fill="none" stroke={LevelColors[level]} strokeWidth={2} opacity={0.5} />
-      <path d={arc} stroke={LevelColors[level]} strokeWidth={2} opacity={1} fill="none" />
-    </svg>
+        <circle cx={22} cy={22} r={21} fill="none" stroke={LevelColors[level]} strokeWidth={2} opacity={0.5} />
+        <path d={arc} stroke={LevelColors[level]} strokeWidth={2} opacity={1} fill="none" />
+      </svg>
+    </div>
   );
 };
 

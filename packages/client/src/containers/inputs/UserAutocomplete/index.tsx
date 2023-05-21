@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useMemo } from 'react';
 import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
-import { Autocomplete,
-  AutocompleteProps } from '@betnomi/libs/components/Autocomplete';
+import {
+  Autocomplete,
+  AutocompleteProps
+} from '@betnomi/libs/components/Autocomplete';
 import { useUserAutocomplete } from '../../../hooks/autocomplete/useUserAutocomplete';
 
 interface IProps extends Omit<AutocompleteProps, 'onSearch' | 'variants' | 'placeholder' | 'left'> {
@@ -32,7 +34,7 @@ const UserAutocomplete: FC<IProps> = ({ label, exclude, ...props }) => {
       onSearch={onSearch}
       variants={variantsWithoutExcluded}
       placeholder={label}
-      left={<FontIcon name={FontIconName.User} size={16} />}
+      left={<FontIcon name={FontIconName.User} size={'s'} />}
     />
   );
 };

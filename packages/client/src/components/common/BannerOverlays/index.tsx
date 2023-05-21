@@ -17,8 +17,8 @@ export const bannerCasinoOverlay: FC<IProps> = (item: any) => {
           <p className={styles.bannerTitle}>{item.title}</p>
           <p className={styles.bannerText}>{item.text}</p>
         </div>
-        <button className={playBtn} onClick={() => {}}>
-          <img src={playIcon} alt="play btn"/>
+        <button className={playBtn} onClick={() => { }}>
+          <img src={playIcon} alt="play btn" />
         </button>
       </div>
     </div>
@@ -29,12 +29,16 @@ export const bannerHomeOverlay: FC<IProps> = (item: any) => {
   return (
     <div className={cx(styles.bannerOverlay, styles.homeBanOverlay)}>
       <div className={styles.mainBlock}>
-        <div>
-          <p className={styles.title}>{item.title}</p>
-          <p className={styles.text}>{item.text}</p>
+        <h3 className={styles.title} dangerouslySetInnerHTML={{ __html: item.title }}></h3>
+        <p
+          className={styles.text}
+          dangerouslySetInnerHTML={{ __html: item.text }}
+          style={{ color: item.textColor }}
+        ></p>
+        <div className={styles.buttonWrapper}>
+          <Button inverse className={styles.button}>Claim Bonus</Button>
         </div>
-        <Button size={52}>Find out more</Button>
       </div>
-    </div>
+    </div >
   )
 }

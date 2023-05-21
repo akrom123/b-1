@@ -107,7 +107,6 @@ const WalletWithdrawSecurityConfirmation: FC<Props> = ({
           color={ButtonColor.Primary}
           disabled={!googleCode && !emailCode}
           fullWidth
-          size={52}
           className={styles.submit}
           isLoading={isLoading}
           type="submit"

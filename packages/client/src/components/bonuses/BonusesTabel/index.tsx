@@ -77,7 +77,7 @@ const BonusesTable: FC<Props> = ({ data }) => {
                   <td className={classNames(styles.td, styles.status)}>
                     {status}
                     <button className={classNames(styles.icon, { [styles.active]: checkActive(i) })}>
-                      <FontIcon name={FontIconName.IconArrowBottom} size={16} />
+                      <FontIcon name={FontIconName.IconArrowBottom} size={'s'} />
                     </button>
                   </td>
                 </tr>

@@ -12,14 +12,14 @@ type Prop = {
 export const ThemeIcon: React.FC<Prop> = ({ icon, active, long }) => (
   <div
     className={cx(
-      styles.icon_wrap, 
+      styles.icon_wrap,
       { [styles.active]: active },
       { [styles.long]: !long },
     )}
-  > 
+  >
     <FontIcon
-      name={icon} 
-      size={16}
+      name={icon}
+      size={'s'}
       className={styles.icon}
     />
   </div>

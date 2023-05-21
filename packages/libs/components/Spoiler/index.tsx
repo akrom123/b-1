@@ -30,14 +30,14 @@ export const Spoiler: React.FC<Props> = ({
         <div className={styles.arrow}>
           <FontIcon
             name={FontIconName.IconArrowBottom}
-            size={12}
+            size={'xxs'}
           />
         </div>
       </button>
       {isOpen && (
-      <div className={styles.hide}>
-        {children}
-      </div>
+        <div className={styles.hide}>
+          {children}
+        </div>
       )}
     </div>
   );

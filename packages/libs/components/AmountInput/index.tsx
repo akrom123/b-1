@@ -18,7 +18,7 @@ const AmountInput: FC<IProps> = ({ balance, amount, onChangeAmount, precision = 
   const Balance = () => <p className={styles.balance}>{t('Balance {{count}}', { count })}</p>;
   return (
     <TextInput
-      left={<FontIcon name={FontIconName.Bitcoin} size={16} />}
+      left={<FontIcon name={FontIconName.Bitcoin} size={'s'} />}
       right={!amount ? <Balance /> : <></>}
       type="number"
       onChange={onChangeAmount}

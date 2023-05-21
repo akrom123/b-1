@@ -25,8 +25,6 @@ const GameBanner: FC<Props> = ({
       className={imageClassname}
       src={image}
       alt={name}
-      width={width}
-      height={height}
     />
   </div>
 );

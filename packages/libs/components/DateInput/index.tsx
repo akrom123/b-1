@@ -70,9 +70,9 @@ const DateInput: React.FunctionComponent<Props> = ({
 
   return (
     <div className={cx(
-      styles.wrapper, 
-      styles.datepicker_wrapper, 
-      className, 
+      styles.wrapper,
+      styles.datepicker_wrapper,
+      className,
       { [styles.error]: hasError },
     )}
     >
@@ -87,14 +87,14 @@ const DateInput: React.FunctionComponent<Props> = ({
           <FontIcon
             className={styles.arrow}
             name={FontIconName.ArrowRightBold}
-            size={16}
+            size={'s'}
           />
         )}
         previousMonthButtonLabel={(
           <FontIcon
             className={styles.arrow}
             name={FontIconName.ArrowLeftBold}
-            size={16}
+            size={'s'}
           />
         )}
         fixedHeight

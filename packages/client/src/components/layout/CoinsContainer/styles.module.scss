@@ -2,22 +2,51 @@
 
 .container {
   @include flexbox(center, space-between);
-  
+
+  grid-area: coins;
+  padding: 1.5rem 0;
+  margin-bottom: 0.31rem;
+  border-top: 0.06rem solid var(--color-line-2);
+  border-bottom: 0.06rem solid var(--color-line-2);
+
   flex-wrap: wrap;
   flex-direction: row;
-  
-  & > img:not(:last-child) {
-    margin-right: 10px;
+
+  @media(max-width: 1279.9px) {
+    margin: 0;
+    padding: 1.68rem 0
   }
 
-  @include for_breakpoint_width(1439px){
-    justify-content: center;
+  @media(max-width: 639.9px) {
+    padding: 1.33rem 0
+  }
+}
+
+.CoinImage_icon__OMzEC {
+  min-width: var(--size);
+  width: var(--size);
+  height: var(--size)
+}
+
+
+.coin {
+  --size: 2.75rem;
+
+  @media(max-width: 1279.9px) {
+    --size: 3.53rem
   }
 
-  @media(max-width: 768px) {
-    & > img:not(:last-child) {
-      margin-right: 8px;
+  @media(max-width: 639.9px) {
+    --size: 2.5rem;
+
+    .Coins_desktop__A_esO {
+      display: none
     }
   }
 }
 
+.coinA {
+  @media (max-width: 639.9px) {
+    display: none;
+  }
+}

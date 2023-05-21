@@ -30,11 +30,11 @@ const ChatHead: FC<IProps> = ({
     <div className={styles.participants}>
       <span className={classNames(styles.online, { [styles.active]: online })} />
       <span>{participants}</span>
-      <FontIcon name={FontIconName.Users} size={16} />
+      <FontIcon name={FontIconName.Users} size={'s'} />
     </div>
 
     <button className={styles.close} onClick={onClose} type="button">
-      <FontIcon name={FontIconName.Close} size={16} />
+      <FontIcon name={FontIconName.Close} size={'s'} />
     </button>
   </div>
 );

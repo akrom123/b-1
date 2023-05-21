@@ -1,5 +1,5 @@
 import React, {
-  ChangeEventHandler, FC, FormEventHandler, useCallback, 
+  ChangeEventHandler, FC, FormEventHandler, useCallback,
 } from 'react';
 import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
 import classNames from 'classnames';
@@ -57,7 +57,7 @@ const ChatInput: FC<IProps> = ({
           type="button"
           disabled={disabled}
         >
-          <FontIcon name={FontIconName.Smile} size={16} />
+          <FontIcon name={FontIconName.Smile} size={'s'} />
         </button>
       </div>
 
@@ -69,7 +69,7 @@ const ChatInput: FC<IProps> = ({
           disabled={disabled}
         >
           <span className={styles.button_icon}>
-            <FontIcon name={FontIconName.Bitcoin} size={16} />
+            <FontIcon name={FontIconName.Bitcoin} size={'s'} />
           </span>
 
           <span>{t('Send a tip')}</span>
@@ -83,7 +83,7 @@ const ChatInput: FC<IProps> = ({
           type="button"
           disabled={disabled}
         >
-          <FontIcon name={FontIconName.Water} size={16} />
+          <FontIcon name={FontIconName.Water} size={'s'} />
         </button>
 
         <div className={styles.spacer} />
@@ -94,7 +94,7 @@ const ChatInput: FC<IProps> = ({
           type="button"
           disabled={disabled}
         >
-          <FontIcon name={FontIconName.GIF} size={16} />
+          <FontIcon name={FontIconName.GIF} size={'s'} />
         </button>
 
         <button
@@ -102,7 +102,7 @@ const ChatInput: FC<IProps> = ({
           type="button"
         >
           <input type="file" onChange={onAttachmentsClick} disabled={disabled} />
-          <FontIcon name={FontIconName.Attachments} size={16} />
+          <FontIcon name={FontIconName.Attachments} size={'s'} />
         </button>
       </div>
     </form>

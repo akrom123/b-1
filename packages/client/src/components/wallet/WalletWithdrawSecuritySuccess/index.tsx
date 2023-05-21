@@ -65,7 +65,6 @@ const WalletWithdrawSecuritySuccess: FC<Props> = ({
         <Button
           color={ButtonColor.Primary}
           fullWidth
-          size={52}
           className={styles.submit}
           type="button"
           onClick={onClose}

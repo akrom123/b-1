@@ -1,5 +1,5 @@
 import React, {
-  FC, MouseEventHandler, useCallback, useMemo, 
+  FC, MouseEventHandler, useCallback, useMemo,
 } from 'react';
 import cx from 'classnames';
 import format from 'date-fns/format';
@@ -116,7 +116,7 @@ const FileUpload: FC<Props> = ({
               <FontIcon
                 className={styles.close_icon}
                 name={FontIconName.Deleted}
-                size={24}
+                size={'m'}
               />
             </button>
           )}

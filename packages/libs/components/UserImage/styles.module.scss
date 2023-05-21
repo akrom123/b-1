@@ -1,6 +1,28 @@
 @import "../../assets/styles/variables";
 
+.userWrapper {
+  --size: 3rem;
+  --fixed-size: var(--size, 1.63rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: var(--fixed-size);
+  height: var(--fixed-size);
+  border-radius: 50%;
+
+  @media(max-width: 639px) {
+    --size: 3.66rem
+  }
+}
+
 svg.user {
+  position: absolute;
+  width: var(--fixed-size);
+  height: var(--fixed-size);
+  left: 0;
+  top: 0;
+
   image {
     transition: opacity $transition-time;
   }

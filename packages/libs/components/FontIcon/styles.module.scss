@@ -1,0 +1,63 @@
+.fontIcon {
+  font-size: inherit
+}
+
+.fontIconSizeL {
+  font-size: 2rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeL {
+    font-size: 2.66rem
+  }
+}
+
+.fontIconSizeM {
+  font-size: 1.5rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeM {
+    font-size: 2rem;
+  }
+}
+
+.fontIconSizeM2 {
+  font-size: 1.25rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeM2 {
+    font-size: 1.66rem
+  }
+}
+
+.fontIconSizeS {
+  font-size: 1rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeS {
+    font-size: 1.33rem
+  }
+}
+
+.fontIconSizeXS {
+  font-size: .88rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeXS {
+    font-size: 1.17rem
+  }
+}
+
+.fontIconSizeXXS {
+  font-size: .75rem
+}
+
+@media(max-width: 639px) {
+  .fontIconSizeXXS {
+    font-size: 1rem
+  }
+}

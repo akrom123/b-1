@@ -11,19 +11,19 @@ export interface MenuLinkOptions {
   long?: boolean;
 }
 
-export const MenuLink:React.FC<MenuLinkOptions> = ({
-  icon, to, label, long, 
+export const MenuLink: React.FC<MenuLinkOptions> = ({
+  icon, to, label, long,
 }) => (
   <NavLink to={to} activeClassName={styles.activeLink} className={cx(styles.link, { [styles.active]: !long })}>
     {icon && (
       <FontIcon
         name={icon}
-        size={long ? 16 : 24}
+        size={long ? 's' : 'm'}
         className={cx(styles.icon, { [styles.active]: long })}
       />
     )}
     <span className={cx(
-      styles.text, 
+      styles.text,
       { [styles.active]: long },
     )}
     >

@@ -6,11 +6,12 @@ import { UserImage } from '../../UserImage';
 import { UserMenu } from '../UserMenu';
 import { useFocusEvent } from '../../../hooks/useFocusEvent';
 import { usePopperDropdown } from '../../../hooks/ui/usePopperDropdown';
-import { LevelBadge } from '../../LevelBadge';
-import { PopperArrow } from '../../PopperArrow';
+// import { LevelBadge } from '../../LevelBadge';
+// import { PopperArrow } from '../../PopperArrow';
 import styles from './styles.module.scss';
 import imgConfirmed from '../../../assets/img/profile/confirmed.svg';
 import imgUnconfirmed from '../../../assets/img/profile/unconfirmed.svg';
+import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
 
 export interface UserWidgetProps {
   level: PlayerLevel;
@@ -29,55 +30,72 @@ const UserWidget: FC<UserWidgetProps> = ({
   image,
   confirmed,
   onLogout,
-  isMobile= false
+  isMobile = false
 }) => {
   const confirmedIcon = confirmed ? imgConfirmed : imgUnconfirmed;
   const {
     focused, onBlur, onFocus,
   } = useFocusEvent();
 
-  const modifiers = usePopperDropdown(0, 30);
-
   return (
-    <Manager>
-      <Reference>
-        {({ ref }) => (
-          <button className={styles.widget} onFocus={onFocus} onBlur={onBlur} ref={ref}>
-            <UserImage image={image} progress={progress} level={level} size={44} />
+    <div className={styles.wrap}>
+      <Manager>
+        <Reference>
+          {({ ref }) => (
+            <button
+              className={styles.widget}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              ref={ref}
+              onClick={!focused ? onFocus : onBlur}
+            >
+              <div className={styles.profile}>
 
-            {!isMobile && (
-                <div className={styles.info}>
-                  <div className={styles.name}>
-                    <span>{name}</span>
-                    <img src={confirmedIcon} alt="" />
+                <UserImage image={image} progress={progress} level={level} />
+
+                {!isMobile && (
+                  <div className={styles.info}>
+                    <div className={styles.name}>
+
+                      <span>{name}</span>
+                      {/* <img src={confirmedIcon} alt="" /> */}
+                    </div>
+                    {/* <LevelBadge level={level} /> */}
                   </div>
+                )}
+              </div>
+              <FontIcon name={FontIconName.IconArrowBottom} size="xxs" />
+            </button>
+          )}
+        </Reference>
 
-                  <LevelBadge level={level} />
-                </div>
-            )}
-
-          </button>
-        )}
-      </Reference>
-
-      {focused && (
-          <Popper placement="bottom" modifiers={modifiers}>
+        {focused && (
+          <Popper>
             {({
-                ref, style, arrowProps,
-              }) => (
-                <div
-                    className={classNames(styles.floating, { [styles.hidden]: !focused })}
-                    ref={ref}
-                    style={style}
-                >
-                  <PopperArrow props={arrowProps} />
-                  <UserMenu confirmed={confirmed} isMobile={isMobile} name={name} level={level} progress={progress} onLogout={onLogout} />
-                </div>
+              ref, style,
+            }) => (
+              <div
+                className={classNames(styles.popper, { [styles.hidden]: !focused })}
+                ref={ref}
+                style={style}
+              >
+                <UserMenu
+                  confirmed={confirmed}
+                  isMobile={isMobile}
+                  name={name}
+                  level={level}
+                  progress={progress}
+                  onLogout={onLogout}
+                  image={image}
+                />
+              </div>
             )}
           </Popper>
-      )}
+        )}
 
-    </Manager>
+      </Manager>
+    </div>
+
   );
 };
 

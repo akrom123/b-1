@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useState} from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import cx from 'classnames';
 import { CoinType } from '@betnomi/libs/types';
 import { useDispatch } from 'react-redux';
@@ -24,7 +24,7 @@ interface IProps {
   isMobile?: boolean
 }
 
-const MainLayout: FC<IProps> = ({ children , isMobile = false}) => {
+const MainLayout: FC<IProps> = ({ children, isMobile = false }) => {
   const dispatch = useDispatch();
 
   const {
@@ -66,9 +66,9 @@ const MainLayout: FC<IProps> = ({ children , isMobile = false}) => {
   }, [push]);
 
   useEffect(() => {
-    if(typeof isMobile === 'boolean' && isMobile){
-        setIsMenuActive(false)
-    }else {
+    if (typeof isMobile === 'boolean' && isMobile) {
+      setIsMenuActive(false)
+    } else {
       setIsMenuActive(true)
     }
   }, [isMobile])
@@ -77,6 +77,7 @@ const MainLayout: FC<IProps> = ({ children , isMobile = false}) => {
     <div
       className={cx(
         styles.container,
+        styles.right_padding,
         { [styles.chat_active]: isChatActive },
         { [styles.menu_active]: isMenuActive },
       )}
@@ -112,19 +113,19 @@ const MainLayout: FC<IProps> = ({ children , isMobile = false}) => {
 
       <div className={cx(styles.left, { [styles.active]: isMenuActive })}>
         <Menu
-            onMenuToggle={setIsMenuActive}
-            menuActive={isMenuActive}
-            isMobile={isMobile}
+          onMenuToggle={setIsMenuActive}
+          menuActive={isMenuActive}
+          isMobile={isMobile}
         />
       </div>
 
       {isMobile && (
-          <MobileMenu
-              onMenuToggle={setIsMenuActive}
-              menuActive={isMenuActive}
-              chatActive={isChatActive}
-              onChatToggle={setIsChatActive}
-          />
+        <MobileMenu
+          onMenuToggle={setIsMenuActive}
+          menuActive={isMenuActive}
+          chatActive={isChatActive}
+          onChatToggle={setIsChatActive}
+        />
       )}
 
 
@@ -135,10 +136,7 @@ const MainLayout: FC<IProps> = ({ children , isMobile = false}) => {
       <div className={styles.content}>
         {children}
 
-        <div className={styles.footer}>
-          <ShowMore />
-          <Footer isMobile={isMobile} rates={rates}/>
-        </div>
+        <Footer isMobile={isMobile} rates={rates} />
       </div>
     </div>
   );

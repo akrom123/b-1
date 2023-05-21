@@ -26,31 +26,31 @@ const Row: FC<{
   rate: number;
   withRates: boolean;
 }> = ({
-  coin, balance, rate, withRates, 
+  coin, balance, rate, withRates,
 }) => (
-  <>
-    <Coin coin={coin} size={16} />
+    <>
+      <Coin coin={coin} size={'l'} className={styles.coinImage} />
 
-    <div className={styles.coin_name}>{coin}</div>
+      <div className={styles.coin_name}>{coin}</div>
 
-    {withRates ? (
-      <div className={styles.coin_rate}>
-        <div className={styles.coin_in_usd}>
-          $
-          <Balance value={rate * balance} precision={6} />
+      {withRates ? (
+        <div className={styles.coin_rate}>
+          <div className={styles.coin_in_usd}>
+            $
+            <Balance value={rate * balance} precision={6} />
+          </div>
+
+          <div className={styles.coin_rate_balance}>
+            <Balance value={balance} />
+          </div>
         </div>
-
-        <div className={styles.coin_rate_balance}>
+      ) : (
+        <div className={styles.coin_balance}>
           <Balance value={balance} />
         </div>
-      </div>
-    ) : (
-      <div className={styles.coin_balance}>
-        <Balance value={balance} />
-      </div>
-    )}
-  </>
-);
+      )}
+    </>
+  );
 
 const WalletSelectPopup: FC<Props> = ({
   balances,
@@ -73,16 +73,21 @@ const WalletSelectPopup: FC<Props> = ({
   return (
     <div className={styles.list}>
       <div className={styles.head}>
-        <div>{t('Your coins')}</div>
-        <Button
-          color={ButtonColor.Primary}
-          size={32}
-          className={styles.deposit}
-          type="button"
-          onMouseDown={onDepositClick}
-        >
-          {t('Deposit')}
-        </Button>
+        <div className={styles.title}>{t('Coins')}</div>
+        {hovered ? (
+          <>
+            <span className={styles.gray}>
+              {t('{{coin}} price', { coin: hovered })}
+              {': '}
+            </span>
+            <span>
+              <span className={styles.dollar}>$</span>
+              {hovered ? parseFloat(rates[hovered]?.toFixed(4) || '') : 0}
+            </span>
+          </>
+        ) : (
+          <span> </span>
+        )}
       </div>
 
       <div
@@ -93,7 +98,7 @@ const WalletSelectPopup: FC<Props> = ({
         {coinOrder.map((coin) => (
           <button
             className={classNames(styles.coin, {
-              [styles.with_rate]: viewInUSD,
+              [styles.withRate]: viewInUSD,
             })}
             onMouseDown={() => onSelect(coin)}
             onMouseOver={() => setHovered(coin)}
@@ -112,33 +117,17 @@ const WalletSelectPopup: FC<Props> = ({
 
       <div className={styles.footer}>
         <button className={styles.settings} type="button" onMouseDown={onSettingsClick}>
-          <FontIcon name={FontIconName.Settings} size={16} />
+          <FontIcon name={FontIconName.Settings} size={'m'} />
         </button>
 
-        <div className={styles.price}>
-          <div className={styles.price_row}>
-            {hovered ? (
-              <>
-                <span className={styles.gray}>
-                  {t('{{coin}} price', { coin: hovered })}
-                  {': '}
-                </span>
-                <span>
-                  <span className={styles.dollar}>$</span>
-                  {hovered ? parseFloat(rates[hovered]?.toFixed(4) || '') : 0}
-                </span>
-              </>
-            ) : (
-              <span> </span>
-            )}
+        <div className={styles.toggleWrap}>
+          <div className={styles.togglePreLabel}>
+            <div className={styles.price}>
+              <span className={styles.gray}>{t('View in')}</span>
+              <span>USD</span>
+            </div>
           </div>
-          <div className={styles.price_row}>
-            <span className={styles.gray}>{t('View in')}</span>
-            <span>USD</span>
-            <span className={styles.toggle}>
-              <Toggle value={viewInUSD} onChange={toggleWithRates} />
-            </span>
-          </div>
+          <Toggle value={viewInUSD} onChange={toggleWithRates} size={'m'} />
         </div>
       </div>
     </div>

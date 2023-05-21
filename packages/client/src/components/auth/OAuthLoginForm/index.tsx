@@ -43,7 +43,7 @@ const OAuthLoginForm: FC<Props> = ({
         hasError={!!(touched.login && errors.login)}
         onBlur={onBlurLogin}
         value={login}
-        left={<FontIcon name={FontIconName.User} size={16} />}
+        left={<FontIcon name={FontIconName.User} size={'s'} />}
         placeholder={t('Username')}
       />
 

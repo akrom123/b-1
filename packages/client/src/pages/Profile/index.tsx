@@ -17,7 +17,7 @@ import { Routes } from '../../constants/routes';
 import { Authorized } from '../../containers/app/Authorized';
 import { TabsSelect } from '../../../../libs/components/TabsSelect';
 
-interface Props {}
+interface Props { }
 
 enum Tab {
   Profile = 'kyc',
@@ -33,7 +33,7 @@ const tabOrder = [Tab.Profile, Tab.Wallet, Tab.Bets, Tab.Transactions, Tab.VIP, 
 const Profile: FC<Props> = () => {
   const [isMobile, setIsMobile] = useState(false);
   const handleResize = () => {
-    const mobile = window.matchMedia('(max-width: 768px)').matches;
+    const mobile = window.matchMedia('(max-width: 1279px)').matches;
     setIsMobile(mobile);
   };
   React.useEffect(() => {
@@ -66,7 +66,7 @@ const Profile: FC<Props> = () => {
                     <IconTab icon={FontIconName.User}>{t('Profile')}</IconTab>
                     <IconTab icon={FontIconName.Wallet}>{t('Wallet')}</IconTab>
                     <IconTab icon={FontIconName.Football}>{t('Sport Bets')}</IconTab>
-                    <IconTab icon={FontIconName.Transaction}>{t('Transactions')}</IconTab>
+                    <IconTab icon={FontIconName.Transactions}>{t('Transactions')}</IconTab>
                     <IconTab icon={FontIconName.VIP}>{t('VIP Lounge')}</IconTab>
                     <IconTab icon={FontIconName.Promo}>{t('Bonuses')}</IconTab>
                   </Tabs.Head>
@@ -77,7 +77,7 @@ const Profile: FC<Props> = () => {
                   <TabsSelect.Value icon={FontIconName.User} value="Profile" />
                   <TabsSelect.Value icon={FontIconName.Wallet} value="Wallet" />
                   <TabsSelect.Value icon={FontIconName.Football} value="Sport Bets" />
-                  <TabsSelect.Value icon={FontIconName.Transaction} value="Transactions" />
+                  <TabsSelect.Value icon={FontIconName.Transactions} value="Transactions" />
                   <TabsSelect.Value icon={FontIconName.VIP} value="VIP Lounge" />
                   <TabsSelect.Value icon={FontIconName.Promo} value="Bonuses" />
                 </TabsSelect>

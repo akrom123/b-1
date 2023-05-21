@@ -1,133 +1,688 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot?6203113');
-  src: url('../font/fontello.eot?6203113#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?6203113') format('woff2'),
-       url('../font/fontello.woff?6203113') format('woff'),
-       url('../font/fontello.ttf?6203113') format('truetype'),
-       url('../font/fontello.svg?6203113#fontello') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?6203113#fontello') format('svg');
-  }
-}
-*/
-[class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "fontello";
-  font-style: normal;
+  src: url("../font/fontello.eot?6203113");
+  src: url("../font/fontello.eot?6203113#iefix") format("embedded-opentype"),
+    url("../font/fontello.woff2?6203113") format("woff2"),
+    url("../font/fontello.woff?6203113") format("woff"),
+    url("../font/fontello.ttf?6203113") format("truetype"),
+    url("../font/fontello.svg?6203113#fontello") format("svg");
   font-weight: normal;
-  speak: never;
+  font-style: normal;
+}
 
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: fontello;
+  font-style: normal;
+  font-weight: 400;
+  speak: never;
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   text-align: center;
-  /* opacity: .8; */
-
-  /* For safety - reset parent styles, that can break glyph codes*/
+  -webkit-font-feature-settings: normal;
+  font-feature-settings: normal;
   font-variant: normal;
   text-transform: none;
-
-  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
-
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
-
-  /* Font smoothing. That was taken from TWBS */
+  margin-left: 0.2em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-facebook:before { content: '\e800'; } /* '' */
-.icon-instagram:before { content: '\e801'; } /* '' */
-.icon-chat:before { content: '\e802'; } /* '' */
-.icon-twitter:before { content: '\e803'; } /* '' */
-.icon-menu:before { content: '\e804'; } /* '' */
-.icon-notify:before { content: '\e805'; } /* '' */
-.icon-telegram:before { content: '\e806'; } /* '' */
-.icon-arrow-bottom:before { content: '\e807'; } /* '' */
-.icon-user:before { content: '\e808'; } /* '' */
-.icon-wallet:before { content: '\e809'; } /* '' */
-.icon-football:before { content: '\e80a'; } /* '' */
-.icon-transaction:before { content: '\e80b'; } /* '' */
-.icon-vip:before { content: '\e80c'; } /* '' */
-.icon-promo:before { content: '\e80d'; } /* '' */
-.icon-settings:before { content: '\e80e'; } /* '' */
-.icon-logout:before { content: '\e80f'; } /* '' */
-.icon-live:before { content: '\e810'; } /* '' */
-.icon-livegames:before { content: '\e811'; } /* '' */
-.icon-smile:before { content: '\e812'; } /* '' */
-.icon-affiliates:before { content: '\e813'; } /* '' */
-.icon-flag:before { content: '\e814'; } /* '' */
-.icon-housegame:before { content: '\e815'; } /* '' */
-.icon-odds:before { content: '\e816'; } /* '' */
-.icon-poker:before { content: '\e817'; } /* '' */
-.icon-slots:before { content: '\e818'; } /* '' */
-.icon-support:before { content: '\e819'; } /* '' */
-.icon-tournaments:before { content: '\e81a'; } /* '' */
-.icon-virtuals:before { content: '\e81b'; } /* '' */
-.icon-dark:before { content: '\e81c'; } /* '' */
-.icon-light:before { content: '\e81d'; } /* '' */
-.icon-smile-1:before { content: '\e81e'; } /* '' */
-.icon-attachments:before { content: '\e81f'; } /* '' */
-.icon-gif:before { content: '\e820'; } /* '' */
-.icon-water:before { content: '\e821'; } /* '' */
-.icon-bitcoin:before { content: '\e822'; } /* '' */
-.icon-close:before { content: '\e823'; } /* '' */
-.icon-users-wm-1:before { content: '\e824'; } /* '' */
-.icon-world:before { content: '\e825'; } /* '' */
-.icon-arrow-bottom-1:before { content: '\e826'; } /* '' */
-.icon-lock:before { content: '\e827'; } /* '' */
-.icon-view:before { content: '\e828'; } /* '' */
-.icon-arrow-right:before { content: '\e829'; } /* '' */
-.icon-arrow-left-bold:before { content: '\e82a'; } /* '' */
-.icon-arrow-right-bold:before { content: '\e82b'; } /* '' */
-.icon-water-polo:before { content: '\e82c'; } /* '' */
-.icon-baseball:before { content: '\e82d'; } /* '' */
-.icon-chess:before { content: '\e82e'; } /* '' */
-.icon-cricket:before { content: '\e82f'; } /* '' */
-.icon-cycling:before { content: '\e830'; } /* '' */
-.icon-darts:before { content: '\e831'; } /* '' */
-.icon-featured:before { content: '\e832'; } /* '' */
-.icon-football-1:before { content: '\e833'; } /* '' */
-.icon-formula-one:before { content: '\e834'; } /* '' */
-.icon-golf:before { content: '\e835'; } /* '' */
-.icon-handball:before { content: '\e836'; } /* '' */
-.icon-ice-hockey:before { content: '\e837'; } /* '' */
-.icon-mma:before { content: '\e838'; } /* '' */
-.icon-netball:before { content: '\e839'; } /* '' */
-.icon-snooker:before { content: '\e83a'; } /* '' */
-.icon-tennis:before { content: '\e83b'; } /* '' */
-.icon-volleyball:before { content: '\e83c'; } /* '' */
-.icon-google:before { content: '\e83d'; } /* '' */
-.icon-email:before { content: '\e83e'; } /* '' */
-.icon-checked:before { content: '\e83f'; } /* '' */
-.icon-casino:before { content: '\e840'; } /* '' */
-.icon-live-casino-play:before { content: '\e841'; } /* '' */
-.icon-deleted:before { content: '\e842'; } /* '' */
-.icon-roulette:before { content: '\e843'; } /* '' */
-.icon-odds-new:before { content: '\e844'; } /* '' */
-.icon-plus:before { content: '\e845'; } /* '' */
-.icon-cashout:before { content: '\e846'; } /* '' */
-.icon-lost:before { content: '\e847'; } /* '' */
-.icon-returned:before { content: '\e848'; } /* '' */
-.icon-unsettled:before { content: '\e849'; } /* '' */
-.icon-copy:before { content: '\e84a'; } /* '' */
-.icon-info:before { content: '\e84b'; } /* '' */
-.icon-calendar:before { content: '\e84c'; } /* '' */
+.icon-facebook:before {
+  content: "\e800";
+}
+
+.icon-instagram:before {
+  content: "\e801";
+}
+
+.icon-wallet:before {
+  content: "\e802";
+}
+
+.icon-twitter:before {
+  content: "\e803";
+}
+
+.icon-trophy:before {
+  content: "\e804";
+}
+
+.icon-notify:before {
+  content: "\e805";
+}
+
+.icon-telegram:before {
+  content: "\e806";
+}
+
+.icon-arrow-bottom:before {
+  content: "\e807";
+}
+
+.icon-user-inverse:before {
+  content: "\e808";
+}
+
+.icon-home:before {
+  content: "\e809";
+}
+
+.icon-football:before {
+  content: "\e80a";
+}
+
+.icon-transactions:before {
+  content: "\e80b";
+}
+
+.icon-vip:before {
+  content: "\e80c";
+}
+
+.icon-promo:before {
+  content: "\e80d";
+}
+
+.icon-settings:before {
+  content: "\e80e";
+}
+
+.icon-logout:before {
+  content: "\e80f";
+}
+
+.icon-live:before {
+  content: "\e810";
+}
+
+.icon-livegames:before {
+  content: "\e811";
+}
+
+.icon-smile-2:before {
+  content: "\e81e";
+}
+
+.icon-affiliates:before {
+  content: "\e812";
+}
+
+.icon-flag:before {
+  content: "\e813";
+}
+
+.icon-sports:before {
+  content: "\e814";
+}
+
+.icon-odds:before {
+  content: "\e815";
+}
+
+.icon-blackjack:before {
+  content: "\e817";
+}
+
+.icon-slots:before {
+  content: "\e818";
+}
+
+.icon-support:before {
+  content: "\e819";
+}
+
+.icon-tournaments:before {
+  content: "\e81a";
+}
+
+.icon-virtuals:before {
+  content: "\e81b";
+}
+
+.icon-dark:before {
+  content: "\e81c";
+}
+
+.icon-light:before {
+  content: "\e81d";
+}
+
+/* .icon-smile-1:before {
+  content: "\e81f"
+} */
+
+.icon-attachments:before {
+  content: "\e81f";
+}
+
+.icon-gif:before {
+  content: "\e820";
+}
+
+.icon-water:before {
+  content: "\e821";
+}
+
+.icon-bitcoin:before {
+  content: "\e822";
+}
+
+.icon-close:before {
+  content: "\e823";
+}
+
+.icon-users-wm-1:before {
+  content: "\e824";
+}
+
+.icon-world:before {
+  content: "\e825";
+}
+
+.icon-arrow-bottom-1:before {
+  content: "\e826";
+}
+
+.icon-lock:before {
+  content: "\e827";
+}
+
+.icon-view:before {
+  content: "\e828";
+}
+
+.icon-arrow-right:before {
+  content: "\e829";
+}
+
+.icon-search:before {
+  content: "\e82a";
+}
+
+.icon-email-1:before {
+  content: "\e82b";
+}
+
+.icon-water-polo:before {
+  content: "\e82c";
+}
+
+.icon-baseball:before {
+  content: "\e82d";
+}
+
+.icon-chess:before {
+  content: "\e82e";
+}
+
+.icon-cricket:before {
+  content: "\e82f";
+}
+
+.icon-cycling:before {
+  content: "\e830";
+}
+
+.icon-darts:before {
+  content: "\e831";
+}
+
+.icon-featured:before {
+  content: "\e832";
+}
+
+.icon-poker:before {
+  content: "\e833";
+}
+
+.icon-formula-one:before {
+  content: "\e834";
+}
+
+.icon-golf:before {
+  content: "\e835";
+}
+
+.icon-handball:before {
+  content: "\e836";
+}
+
+.icon-ice-hockey:before {
+  content: "\e837";
+}
+
+.icon-mma:before {
+  content: "\e838";
+}
+
+.icon-tennis:before {
+  content: "\e86d";
+}
+
+.icon-snooker:before {
+  content: "\e839";
+}
+
+.icon-netball:before {
+  content: "\e83a";
+}
+
+.icon-volleyball:before {
+  content: "\e83c";
+}
+
+.icon-google:before {
+  content: "\e83d";
+}
+
+.icon-email:before {
+  content: "\e83e";
+}
+
+.icon-checked:before {
+  content: "\e83f";
+}
+
+.icon-live-casino:before {
+  content: "\e840";
+}
+
+.icon-user:before {
+  content: "\e841";
+}
+
+.icon-deleted:before {
+  content: "\e842";
+}
+
+.icon-chat:before {
+  content: "\e843";
+}
+
+.icon-odds-new:before {
+  content: "\e844";
+}
+
+.icon-plus:before {
+  content: "\e845";
+}
+
+.icon-cashout:before {
+  content: "\e846";
+}
+
+.icon-lost:before {
+  content: "\e847";
+}
+
+.icon-returned:before {
+  content: "\e848";
+}
+
+.icon-unsettled:before {
+  content: "\e849";
+}
+
+.icon-copy:before {
+  content: "\e84a";
+}
+
+.icon-info:before {
+  content: "\e84b";
+}
+
+.icon-calendar:before {
+  content: "\e84c";
+}
+
+.icon-blast:before {
+  content: "\e84d";
+}
+
+.icon-rain:before {
+  content: "\e84e";
+}
+
+.icon-e-sports:before {
+  content: "\e84f";
+}
+
+.icon-warning:before {
+  content: "\e850";
+}
+
+.icon-success:before {
+  content: "\e851";
+}
+
+.icon-danger:before {
+  content: "\e852";
+}
+
+.icon-baccarat:before {
+  content: "\e853";
+}
+
+.icon-bitcoin-1:before {
+  content: "\e854";
+}
+
+.icon-games:before {
+  content: "\e855";
+}
+
+.icon-housegame:before {
+  content: "\e856";
+}
+
+.icon-dream-catcher:before {
+  content: "\e857";
+}
+
+.icon-basketball:before {
+  content: "\e858";
+}
+
+.icon-mobilemenu:before {
+  content: "\e859";
+}
+
+.icon-dragon-tiger:before {
+  content: "\e85a";
+}
+
+.icon-casino:before {
+  content: "\e85b";
+}
+
+.icon-arrow-left:before {
+  content: "\e87c";
+}
+
+.icon-crash:before {
+  content: "\e85d";
+}
+
+.icon-fishing:before {
+  content: "\e85e";
+}
+
+.icon-furkle:before {
+  content: "\e85f";
+}
+
+.icon-hilo:before {
+  content: "\e860";
+}
+
+.icon-mines:before {
+  content: "\e861";
+}
+
+.icon-monti:before {
+  content: "\e862";
+}
+
+.icon-ogwil:before {
+  content: "\e863";
+}
+
+.icon-plinko:before {
+  content: "\e864";
+}
+
+.icon-striker:before {
+  content: "\e865";
+}
+
+.icon-talisman:before {
+  content: "\e866";
+}
+
+.icon-wheel50x:before {
+  content: "\e867";
+}
+
+.icon-zeppeline:before {
+  content: "\e868";
+}
+
+.icon-ban:before {
+  content: "\e869";
+}
+
+.icon-dota2:before {
+  content: "\e86a";
+}
+
+.icon-filter:before {
+  content: "\e86b";
+}
+
+.icon-sportsbets:before {
+  content: "\e86c";
+}
+
+.icon-tabletennis:before {
+  content: "\e86d";
+}
+
+.icon-csgo:before {
+  content: "\e86e";
+}
+
+.icon-nfl:before {
+  content: "\e86f";
+}
+
+.icon-boxing:before {
+  content: "\e870";
+}
+
+.icon-futsal:before {
+  content: "\e871";
+}
+
+.icon-surfing:before {
+  content: "\e872";
+}
+
+.icon-leage-of-legends:before {
+  content: "\e873";
+}
+
+.icon-american-football:before {
+  content: "\e874";
+}
+
+.icon-curling:before {
+  content: "\e875";
+}
+
+.icon-hurling:before {
+  content: "\e876";
+}
+
+.icon-bonus:before {
+  content: "\e877";
+}
+
+.icon-discord:before {
+  content: "\e878";
+}
+
+.icon-menu:before {
+  content: "\e879";
+}
+
+.icon-up:before {
+  content: "\e87b";
+}
+
+.icon-up-1:before {
+  content: "\e87b";
+}
+
+.icon-frame-3242:before {
+  content: "";
+}
+
+.icon-smile:before {
+  content: "\e87d";
+}
+
+.icon-slider-arrow:before {
+  content: "\e87e";
+}
+
+.icon-close-1:before {
+  content: "\e87f";
+}
+
+.icon-cookie:before {
+  content: "\e880";
+}
+
+.icon-deposit:before {
+  content: "\e886";
+}
+
+.icon-withdraw:before {
+  content: "\e887";
+}
+
+.icon-wallet-1:before {
+  content: "\e888";
+}
+
+.icon-all:before {
+  content: "\e892";
+}
+
+.icon-popular:before {
+  content: "\e894";
+}
+
+.icon-live-sports:before {
+  content: "\e897";
+}
+
+.icon-favorites:before {
+  content: "\e89a";
+}
+
+.icon-new:before {
+  content: "\e89b";
+}
+
+.icon-sizescreen:before {
+  content: "\e89c";
+}
+
+.icon-email-2:before {
+  content: "\e89e";
+}
+
+.icon-stats:before {
+  content: "\e89f";
+}
+
+.icon-refresh:before {
+  content: "\e8a0";
+}
+
+.icon-alert-error:before {
+  content: "\e8a1";
+}
+
+.icon-alert-success:before {
+  content: "\e8a2";
+}
+
+.icon-alert-warning:before {
+  content: "\e8a3";
+}
+
+.icon-alert-info:before {
+  content: "\e8a4";
+}
+
+.icon-gameshow:before {
+  content: "\e8a5";
+}
+
+.icon-baccarat-1:before {
+  content: "\e8a6";
+}
+
+.icon-link:before {
+  content: "\e8a7";
+}
+
+.icon-win:before {
+  content: "\e8a9";
+}
+
+.icon-zoom-adjust:before {
+  content: "\e8b0";
+}
+
+.icon-arrow-turn:before {
+  content: "\e8b1";
+}
+
+.icon-trash:before {
+  content: "\e8b2";
+}
+
+.icon-sort-top:before {
+  content: "\e8b3";
+}
+
+.icon-check-verified:before {
+  content: "\e8b4";
+}
+
+.icon-email-unwrap:before {
+  content: "\e8b7";
+}
+
+.icon-view-hide:before {
+  content: "\e8b8";
+}
+
+.icon-play:before {
+  content: "\e8f4";
+}
+
+.icon-send:before {
+  content: "\e8f5";
+}
+
+.icon-contest:before {
+  content: "\e8f6";
+}
+
+.icon-minus:before {
+  content: "\e92a";
+}
+
+.icon-bonus-opened:before {
+  content: "\e93e";
+}
+
+.icon-play-secondary:before {
+  content: "\e944";
+}
+
+.icon-fullscreen:before {
+  content: "\e945";
+}
+
+.icon-upload:before {
+  content: "\f02f";
+}

@@ -1,28 +1,27 @@
-$scroll-color: var(--color-brand);
+::-webkit-scrollbar {
+  width: 0;
+  height: .5rem
+}
 
-* {
-  &::-webkit-scrollbar {
-    width: 0;
-  }
+::-webkit-scrollbar-button {
+  display: none
+}
 
-  &::-webkit-scrollbar-button {
-    display: none;
-  }
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  border: none;
+  border-radius: .31rem
+}
 
-  &::-webkit-scrollbar-track-piece {
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: $scroll-color;
-    border-radius: 5px;
-    border: 5px solid var(--color-background);
-  }
-  &::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
-  &::-webkit-resizer {
-    display: none;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line-1);
+  border-radius: .31rem
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent
+}
+
+::-webkit-resizer {
+  display: none
 }

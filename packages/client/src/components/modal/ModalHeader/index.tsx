@@ -7,23 +7,23 @@ type Props = {
   onClose?: () => void;
 };
 
-export const ModalHeader:FC<Props> = ({
-  onClose, children, 
-}) => 
-  (
-    <>
-      <div className={styles.header}>
-        {children}
-        <button 
-          className={styles.close}
-          onClick={onClose}
-          type="button"
-        >
-          <FontIcon name={FontIconName.Close} size={16} />
-        </button>
-      </div>
-      <div className={styles.line_wrap}>
-        <LineDivorce />
-      </div>
-    </>
-  );
+export const ModalHeader: FC<Props> = ({
+  onClose, children,
+}) =>
+(
+  <>
+    <div className={styles.header}>
+      {children}
+      <button
+        className={styles.close}
+        onClick={onClose}
+        type="button"
+      >
+        <FontIcon name={FontIconName.Close} size={'s'} />
+      </button>
+    </div>
+    <div className={styles.line_wrap}>
+      <LineDivorce />
+    </div>
+  </>
+);

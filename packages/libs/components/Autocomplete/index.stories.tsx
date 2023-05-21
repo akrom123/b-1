@@ -30,7 +30,7 @@ storiesOf('Basic', module).add('Autocomplete', () => {
           onSearch={onSearch}
           onChange={onChange}
           variants={variants}
-          left={<FontIcon name={FontIconName.Users} size={16} />}
+          left={<FontIcon name={FontIconName.Users} size={'s'} />}
           customRenderer={customRenderer}
           value={variants[0]}
         />
@@ -39,7 +39,7 @@ storiesOf('Basic', module).add('Autocomplete', () => {
           variants={variants}
           onSearch={onSearch}
           onChange={onChange}
-          left={<FontIcon name={FontIconName.Users} size={16} />}
+          left={<FontIcon name={FontIconName.Users} size={'s'} />}
           value={variants[0]}
         />
       )}

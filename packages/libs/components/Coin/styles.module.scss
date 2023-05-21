@@ -1,4 +1,35 @@
-.out {
-  width: 44px;
-  height: 44px;
+.coinSizeM {
+  --size: 1rem;
+
+  @media(max-width: 639.9px) {
+    --size: 1.33rem
+  }
+}
+
+
+.coinSizeL {
+  --size: 1.25rem;
+
+  @media(max-width: 639.9px) {
+    --size: 1.68rem
+  }
+}
+
+
+.coinSizeXL {
+  --size: 1.5rem
+}
+
+.coinSizeXXL {
+  --size: 1.66rem
+}
+
+.coinSizeXXXL {
+  --size: 2.75rem
+}
+
+.coin {
+  min-width: var(--size);
+  width: var(--size);
+  height: var(--size);
 }

@@ -62,9 +62,9 @@ export const SportsBetRow: React.FC<SportsBetRowProps> = ({
         </div>
         <SportsBetRowResult type={result.type} label={result.label} price={result.price} />
         <div className={styles.social_group}>
-          <FontIcon name={FontIconName.Facebook} size={16} />
-          <FontIcon name={FontIconName.Telegram} size={16} />
-          <FontIcon name={FontIconName.Twitter} size={16} />
+          <FontIcon name={FontIconName.Facebook} size={'s'} />
+          <FontIcon name={FontIconName.Telegram} size={'s'} />
+          <FontIcon name={FontIconName.Twitter} size={'s'} />
         </div>
         <button
           onClick={toggleOpen}
@@ -73,23 +73,23 @@ export const SportsBetRow: React.FC<SportsBetRowProps> = ({
           <div className={styles.arrow}>
             <FontIcon
               name={FontIconName.IconArrowBottom}
-              size={14}
+              size={'xs'}
             />
           </div>
         </button>
-      </div>      
-      {isOpen && items && (
-      <div className={styles.description}>
-        {items.map((el) => (
-          <SportsBetDescriptionRow 
-            key={el.startTime}
-            startTime={el.startTime}
-            gameName={el.gameName}
-            bet={el.bet}
-            odds={el.odds}
-          />
-        ))}
       </div>
+      {isOpen && items && (
+        <div className={styles.description}>
+          {items.map((el) => (
+            <SportsBetDescriptionRow
+              key={el.startTime}
+              startTime={el.startTime}
+              gameName={el.gameName}
+              bet={el.bet}
+              odds={el.odds}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -66,7 +66,7 @@ const Select: FC<Props> = ({
               )}
               <FontIcon
                 name={FontIconName.ChevronDown}
-                size={16}
+                size={'s'}
                 className={styles.chevron}
               />
             </TextInputWrap>

@@ -1,31 +1,48 @@
 @import "~@betnomi/libs/assets/styles/variables";
 
 .toggle {
-  display: inline-flex;
+
   position: relative;
   background-color: var(--color-input-background);
-  transition: all $transition-time;
+  transition: all var(--transition-time-primary);
+  height: var(--size);
+  width: calc(var(--size)*1.5);
+  border-radius: calc(var(--size)/2);
+
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-button);
+    border-radius: 100%;
+    transition: all var(--transition-time-primary);
+    height: calc(var(--size)*2/3);
+    width: calc(var(--size)*2/3);
+    top: calc(var(--size)/2);
+    left: calc(var(--size)/2);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+  }
 
   &.active {
-    background-color: var(--color-brand);
+    background-color: var(--color-brand)
+  }
+
+  &.active:after {
+    background-color: var(--color-white);
+    -webkit-transform: translate(calc(-50% + var(--size) / 2), -50%);
+    transform: translate(calc(-50% + var(--size) / 2), -50%)
   }
 
   &.disabled {
     background-color: var(--color-input-background);
-  }
-}
 
-.dot {
-  position: absolute;
-  background-color: var(--color-button);
-  border-radius: 100%;
-  transition: all $transition-time;
-
-  .active & {
-    background-color: var(--color-white);
+    &:after {
+      background-color: var(--color-checkbox-disabled)
+    }
   }
 
-  .disabled & {
-    background-color: var(--color-checkbox-disabled);
+  &.sizeM {
+    --size: 1.5rem
   }
+
 }

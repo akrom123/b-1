@@ -15,11 +15,11 @@ export interface TextInputProps extends HTMLProps<HTMLInputElement> {
 }
 
 const IconRenderer: FC<{ error?: boolean }> = ({ children, error }) =>
-  (children ? (
-    <div className={classNames(styles.icon, { [styles.text]: typeof children === 'string', [styles.error]: error })}>
-      {children}
-    </div>
-  ) : null);
+(children ? (
+  <div className={classNames(styles.icon, { [styles.text]: typeof children === 'string', [styles.error]: error })}>
+    {children}
+  </div>
+) : null);
 
 const TextInput: FC<TextInputProps> = ({ type = 'text',
   inputClasses,
@@ -42,14 +42,14 @@ const TextInput: FC<TextInputProps> = ({ type = 'text',
       {type === 'password' && (
         <IconRenderer>
           <button className={styles.reveal} onClick={toggleRevealed} type="button">
-            <FontIcon name={FontIconName.View} size={16} />
+            <FontIcon name={FontIconName.View} size={'s'} />
           </button>
         </IconRenderer>
       )}
 
       {type === 'search' && props.value && (
         <button className={styles.search} onClick={props.handleClearBtn} type="button">
-          <FontIcon name={FontIconName.Close} size={16} />
+          <FontIcon name={FontIconName.Close} size={'s'} />
         </button>
       )}
     </TextInputWrap>

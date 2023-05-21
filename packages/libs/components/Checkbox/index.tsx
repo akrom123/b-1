@@ -26,7 +26,7 @@ const Checkbox: FC<IProps> = ({
       type="button"
     >
       <span className={classNames(styles.inner, { [styles.error]: hasError })}>
-        {checked && <FontIcon name={FontIconName.Checked} size={12} />}
+        {checked && <FontIcon name={FontIconName.Checked} size={'xxs'} />}
       </span>
 
       {!!children && <div className={styles.label}>{children}</div>}

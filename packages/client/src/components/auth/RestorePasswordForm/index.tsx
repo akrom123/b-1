@@ -29,7 +29,7 @@ export const RestorePasswordForm: React.FC<IProps> = ({
         <TextInput 
           value={values.username} 
           onChange={onUserChange}
-          left={<FontIcon name={FontIconName.User} size={16} />}
+          left={<FontIcon name={FontIconName.User} size={'s'} />}
           placeholder={t('Username or Email')}
           hasError={!!(errors.username && touched.username)}
         />

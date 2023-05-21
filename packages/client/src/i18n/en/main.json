@@ -107,7 +107,7 @@
   "Choose username": "Choose username",
   "You've just tipped {{name}} with {{amount}} {{currency}}": "You've just tipped {{name}} with {{amount}} {{currency}}",
   "You've just rained {{amount}} {{currency}} to {{count}} users": "You've just rained {{amount}} {{currency}} to {{count}} users",
-  "Your coins": "Your coins",
+  "Coins": "Coins",
   "No linked metamask account found. Please, sign up using metamask first.": "No linked metamask account found. Please, sign up using metamask first.",
   "No linked telegram account found. Please, sign up using telegram first.": "No linked telegram account found. Please, sign up using telegram first.",
 

@@ -8,9 +8,9 @@ export enum GameType {
 }
 
 export const gameNames: Record<GameType, string> = {
-  [GameType.TrendingGames]: 'Trending Games',
+  [GameType.TrendingGames]: 'Slots',
   [GameType.Slots]: 'Slots',
-  [GameType.LiveCasino]: 'Live Casino',
+  [GameType.LiveCasino]: 'Live <span>Casino</span>',
   [GameType.GameProviders]: 'Game Providers',
   [GameType.Promotions]: 'Promotions',
   [GameType.RecommendedGames]: 'Recommended Games',

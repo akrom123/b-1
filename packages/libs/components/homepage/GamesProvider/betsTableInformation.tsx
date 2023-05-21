@@ -13,93 +13,100 @@ import Tron from '@betnomi/libs/assets/img/coins/tron.svg';
 import Zcash from '@betnomi/libs/assets/img/coins/zcash.svg';
 import Hidden from '@betnomi/libs/assets/img/hidden.svg';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
 
 
 interface IColumnData {
   name: string;
-  payout:IPayout;
+  payout: IPayout;
 }
 
 interface Data {
   name: string;
   username: string;
-  bet:IBet;
-  multiplier:number;
-  payout:IPayout;
+  bet: IBet;
+  multiplier: number;
+  payout: IPayout;
 }
 
-interface IBet{
-  value:number,
-  name:string
+interface IBet {
+  value: number,
+  name: string
 }
 
-interface IPayout{
-  value:number,
-  name:string
+interface IPayout {
+  value: number,
+  name: string
 }
 
-const SelectFooball = (value:string) =>{
-  switch(value){
+const SelectFooball = (value: string) => {
+  switch (value) {
     case "Football": return `${FontIconName.Football}`;
-    case "Cricket": return  `${FontIconName.Cricket}`;
-    case "Handball": return  `${FontIconName.Handball}`;
-    case "MMA": return  `${FontIconName.MMA}`;
-    case "Baseball": return  `${FontIconName.Baseball}`;
+    case "Cricket": return `${FontIconName.Cricket}`;
+    case "Handball": return `${FontIconName.Handball}`;
+    case "MMA": return `${FontIconName.MMA}`;
+    case "Baseball": return `${FontIconName.Baseball}`;
     default: return ''
   }
 }
 
-export const columns: Column<Data>[] = [
+export const columns: any[] = [
   {
     Header: "Game",
     accessor: "name",
-    Cell:(game)=>(
-      <div className={styles.gmaeFlex}>
-        <FontIcon name={SelectFooball(game.value)} size={12} />
-        <h3 className={styles.headingFootballer}>{game.value}</h3>
+    Cell: (game: any) => (
+      <div className={styles.game}>
+        <FontIcon name={SelectFooball(game.value)} size={'m'} className={styles.gameIcon} />
+        <span className={styles.headingFootballer}>{game.value}</span>
       </div>
-    )
+    ),
+    className: styles.gameCell,
   },
   {
     Header: "User",
     accessor: "username",
-    Cell:({value})=>(
-      value !=="" ? (<h3 className={styles.headingWhite}>{value}</h3> ):(
-        <div className={styles.gmaeFlex}>
-        <img src={Hidden} alt="icon" className={styles.imgHidden} />
-        <h3 className={styles.headingButton}>Hidden</h3>
+    Cell: ({ value }: any) => (
+      <div className={styles.user}>
+        {value !== "" ? (<span className={styles.headingWhite}>{value}</span>) : (
+          <>
+            <img src={Hidden} alt="icon" className={styles.imgHidden} />
+            <span className={styles.headingButton}>Hidden</span>
+          </>
+        )}
       </div>
-      )
-      
-    )
+    ),
+    className: styles.userCell
   },
   {
-    Header: "Bet",
+    Header: () => <div className={styles.bet}>Bet</div>,
     accessor: "bet",
-    Cell:({value})=>(
-      <div className={styles.gmaeFlex}>
-        <h3 className={styles.headingButton}>{value.value}</h3>
+    Cell: ({ value }: any) => (
+      <div className={styles.bet}>
+        <span className={styles.headingButton}>{value.value}</span>
         <img src={value.name} alt="icon" className={styles.img} />
       </div>
-    )
+    ),
+    className: styles.betPadding
   },
   {
-    Header: "Multiplier",
+    Header: () => <div className={styles.multiplier}>Multiplier</div>,
     accessor: "multiplier",
-    Cell:({value})=>(
-      <h3 className={styles.headingButton}>{`${value}x`}</h3> 
-    )
+    Cell: ({ value }: any) => (
+      <div className={styles.multiplier}>
+        <span className={styles.headingButton}>{`${value}x`}</span>
+      </div>
+    ),
   },
   {
-    Header: "Payout",
+    Header: () => <div className={classNames(styles.bet, styles.payout)}>Payout</div>,
     accessor: "payout",
-    Cell:({value})=>(
-      <div className={styles.gmaeFlex}>
-        <h3 className={value.value > 0 ? styles.headingBrand: styles.headingButton}>{value.value}</h3>
+    Cell: ({ value }: any) => (
+      <div className={classNames(styles.bet, styles.payout, value.value > 0 ? styles.win : '')}>
+        <span>{value.value}</span>
         <img src={value.name} alt="icon" className={styles.img} />
       </div>
-    )
+    ),
   },
 ];
 
@@ -107,115 +114,96 @@ export const data: Data[] = [
   {
     name: "Football",
     username: "ashegen",
-    bet:{
-      name:BitcoinCash,
-      value:123.21
+    bet: {
+      name: BitcoinCash,
+      value: 123.21
     },
-    multiplier:2.33,
-    payout:{
-      name:Doge,
-      value:-9.24000023
+    multiplier: 2.33,
+    payout: {
+      name: Doge,
+      value: -9.24000023
     },
   },
   {
     name: "Baseball",
     username: "jayveel1987",
-    bet:{
-      name:Doge,
-      value:123.21
+    bet: {
+      name: Doge,
+      value: 123.21
     },
-    multiplier:4.01,
-    payout:{
-      name:Doge,
-      value:9.24000056
+    multiplier: 4.01,
+    payout: {
+      name: Doge,
+      value: 9.24000056
     },
   },
   {
     name: "Cricket",
     username: "bot01",
-    bet:{
-      name:Bitcoin,
-      value:123.21
+    bet: {
+      name: Bitcoin,
+      value: 123.21
     },
-    multiplier:1.03,
-    payout:{
-      name:Doge,
-      value:9.24000034
+    multiplier: 1.03,
+    payout: {
+      name: Doge,
+      value: 9.24000034
     },
   },
   {
     name: "Football",
     username: "",
-    bet:{
-      name:Doge,
-      value:123.21
+    bet: {
+      name: Doge,
+      value: 123.21
     },
-    multiplier:12.01,
-    payout:{
-      name:Doge,
-      value:9.24000002
+    multiplier: 12.01,
+    payout: {
+      name: Doge,
+      value: 9.24000002
     },
   },
   {
     name: "MMA",
     username: "",
-    bet:{
-      name:Bitcoin,
-      value:9.24000003
+    bet: {
+      name: Bitcoin,
+      value: 9.24000003
     },
-    multiplier:2.08,
-    payout:{
-      name:Doge,
-      value:9.24000004
+    multiplier: 2.08,
+    payout: {
+      name: Doge,
+      value: 9.24000004
     },
   },
   {
     name: "Handball",
     username: "baltoro",
-    bet:{
-      name:Bitcoin,
-      value:9.24000003
+    bet: {
+      name: Bitcoin,
+      value: 9.24000003
     },
-    multiplier:6.01,
-    payout:{
-      name:Doge,
-      value:9.24000003
+    multiplier: 6.01,
+    payout: {
+      name: Doge,
+      value: 9.24000003
     },
   },
   {
     name: "Football",
     username: "string",
-    bet:{
-      name:Tron,
-      value:123.21
+    bet: {
+      name: Tron,
+      value: 123.21
     },
-    multiplier:5.09,
-    payout:{
-      name:Doge,
-      value:9.24000009
+    multiplier: 5.09,
+    payout: {
+      name: Doge,
+      value: 9.24000009
     },
   },
 ];
 
-export const columnsMobile: Column<IColumnData>[] = [
-  {
-    Header: "Game",
-    accessor: "name",
-    Cell:(game)=>(
-      <div className={styles.gmaeFlex}>
-        <FontIcon name={SelectFooball(game.value)} size={12} />
-        <h3 className={styles.headingFootballer}>{game.value}</h3>
-      </div>
-    )
-  },
-  {
-    Header: "Payout",
-    accessor: "payout",
-    Cell:({value})=>(
-      <div className={styles.gmaeFlex}>
-        <h3 className={value.value > 0 ? styles.headingBrand: styles.headingButton}>{value.value}</h3>
-        <img src={value.name} alt="icon" className={styles.img} />
-      </div>
-    )
-  },
-]
+export const columnsS: any[] = columns.filter(c => c.accessor === 'name' || c.accessor === 'username' || c.accessor === 'payout')
+
+export const columnsXS: any[] = columns.filter(c => c.accessor === 'name' || c.accessor === 'payout')

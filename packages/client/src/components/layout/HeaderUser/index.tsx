@@ -1,5 +1,5 @@
 import React, { FC, useCallback } from 'react';
-import {FontIcon, FontIconName} from '@betnomi/libs/components/FontIcon';
+import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
 import { CoinType } from '@betnomi/libs/types';
 import { WalletSelect } from '@betnomi/libs/components/widgets/WalletSelect';
 import { UserWidget, UserWidgetProps } from '@betnomi/libs/components/widgets/UserWidget';
@@ -67,21 +67,24 @@ const HeaderUser: FC<HeaderUserProps> = ({
         />
       </div>
 
-      {!isMobile && (
+      <div className={styles.aboveSidebar}>
+
+        <HeaderToggleButton
+          active={notificationActive}
+          onClick={onNotificationClick}
+          icon={FontIconName.Notify}
+          className={styles.notifyButton}
+        />
+
+        {!isMobile && (
           <HeaderToggleButton
-              active={chatActive}
-              onClick={onChatClick}
-              icon={FontIconName.Chat}
+            active={chatActive}
+            onClick={onChatClick}
+            icon={FontIconName.Chat}
+            className={styles.chatButton}
           />
-      )}
+        )}
 
-      <HeaderToggleButton
-        active={notificationActive}
-        onClick={onNotificationClick}
-        icon={FontIconName.Notify}
-      />
-
-      <div className={styles.user}>
         <UserWidget
           level={level}
           name={name}

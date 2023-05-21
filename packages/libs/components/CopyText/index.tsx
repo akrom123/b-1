@@ -12,14 +12,14 @@ type Props = {
 
 export const CopyText: React.FC<Props> = ({ text, disabled, onCopy }) => (
   <div className={cx(
-    styles.container, 
+    styles.container,
     { [styles.disabled]: disabled },
   )}
   >
     <div className={styles.text}>{text}</div>
     <CopyToClipboard text={text} onCopy={onCopy}>
       <button type="button" className={styles.button} disabled={disabled}>
-        <FontIcon name={FontIconName.Copy} size={16} />
+        <FontIcon name={FontIconName.Copy} size={'s'} />
       </button>
     </CopyToClipboard>
   </div>
