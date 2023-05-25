@@ -16,16 +16,13 @@ import { selectAuthUI } from '../../../store/auth/selectors';
 import { bannerHomeOverlay } from '@betnomi/client/src/components/common/BannerOverlays';
 import GameProvider from '@betnomi/libs/components/homepage/GamesProvider'
 import { Promotions } from '@betnomi/libs/components/Promotions';
-import Union from '@betnomi/libs/assets/img/promotions/Union.png';
-import SummerDots from '@betnomi/libs/assets/img/promotions/background2.png';
-import Ellips from '@betnomi/libs/assets/img/promotions/Ellipse1.png';
 import Round1 from '@betnomi/libs/assets/img/promotions/Round1.png';
 import BackgroundImage from '@betnomi/libs/assets/img/promotions/background1.png';
-import Ellips2 from '@betnomi/libs/assets/img/promotions/Ellips2.png';
 import Round2 from '@betnomi/libs/assets/img/promotions/Round2.png';
 import { useUserUI } from 'hooks/useUserUI';
 import { Chips } from '@betnomi/libs/components/Chips';
 import { FontIconName } from '@betnomi/libs/components/FontIcon';
+import { gameShow } from '../../../store/game/actionCreators';
 
 
 interface IProps {
@@ -204,6 +201,12 @@ const Games: FC<IProps> = ({ isMobile }) => {
   const categories = useCategories();
   const { isChatActive } = useShallowSelector(selectAuthUI);
 
+  const smScreen = window.matchMedia('(max-width:639px)').matches;
+  const openDrawer = useCallback(
+    () => smScreen && dispatch(gameShow()),
+    [],
+  );
+
   useEffect(() => {
     dispatch(homeGetGames());
   }, []);
@@ -260,14 +263,9 @@ const Games: FC<IProps> = ({ isMobile }) => {
     )
   }), []);
 
-  const smallScreen = window.matchMedia('(min-width:768px) and (max-width: 1200px)').matches;
   const midScreen = window.matchMedia('(min-width:1280px)').matches;
 
   const gameImgSizes = {
-    trending: {
-      width: isMobile ? 185 : 230,
-      height: isMobile ? 220 : smallScreen ? 250 : midScreen ? 250 : 300,
-    },
     slots: {
       width: 256,
       height: 356
@@ -277,8 +275,8 @@ const Games: FC<IProps> = ({ isMobile }) => {
       height: 356
     },
     gameProviders: {
-      width: midScreen && isChatActive ? 125 : midScreen ? 135 : isChatActive ? 140 : 145,
-      height: midScreen && isChatActive ? 60 : midScreen ? 70 : isChatActive ? 65 : isMobile ? 70 : 75,
+      width: 145,
+      height: 75,
     },
     promotions: {
       width: 320,
@@ -302,6 +300,7 @@ const Games: FC<IProps> = ({ isMobile }) => {
       </div> */}
       <div className={styles.games}>
         <GameList
+          onClick={openDrawer}
           games={isLoading ? generatePlaceholders(168, 220) : getGames(slots, gameImgSizes.slots)}
           gameType={GameType.Slots}
           breakpoints={slotsBreakpoints}
@@ -325,6 +324,7 @@ const Games: FC<IProps> = ({ isMobile }) => {
           }}
         />
         <GameList
+          onClick={openDrawer}
           games={isLoading ? generatePlaceholders(350, 220) : getGames(liveCasino, gameImgSizes.liveCasino)}
           gameType={GameType.LiveCasino}
           breakpoints={liveCasinoBreakpoints}

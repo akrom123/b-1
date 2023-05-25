@@ -4,5 +4,5 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src"
   },
-  "include": ["src/**/*", "../libs/components/Table", "../libs/components/homepage/GamesProvider"]
+  "include": ["src/**/*", "../libs/components/Table", "../libs/components/homepage/GamesProvider", "../libs/components/Drawer"]
 }

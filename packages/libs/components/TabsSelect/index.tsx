@@ -6,7 +6,7 @@ import React, {
 import { Manager, Popper, Reference } from 'react-popper';
 import classNames from 'classnames';
 import { FontIcon, FontIconName } from '../FontIcon';
-import { TextInputWrap } from '../TextInputWrap';
+import { TextInputWrap } from '../TextInput';
 import { usePopperDropdown } from '../../hooks/ui/usePopperDropdown';
 import styles from './styles.module.scss';
 import { useFocusEvent } from '../../hooks/useFocusEvent';

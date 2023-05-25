@@ -13,7 +13,7 @@ export const menuItems: MenuItem[] = [
   {
     type: MenuItemType.Link,
     options: {
-      to: '/casino1',
+      to: '/live-casino',
       label: 'Live Casino',
       icon: FontIconName.LiveCasinoPlay,
     },
@@ -45,7 +45,7 @@ export const menuItems: MenuItem[] = [
   {
     type: MenuItemType.Link,
     options: {
-      to: '/casino',
+      to: '/esport',
       label: 'E-Sport',
       icon: FontIconName.LiveSports,
     },
@@ -53,7 +53,7 @@ export const menuItems: MenuItem[] = [
   {
     type: MenuItemType.Link,
     options: {
-      to: '/casino',
+      to: '/poker',
       label: 'Poker',
       icon: FontIconName.LiveSports,
     },

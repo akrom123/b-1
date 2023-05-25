@@ -8,23 +8,6 @@ import cx from 'classnames';
 
 type IProps = {}
 
-export const bannerCasinoOverlay: FC<IProps> = (item: any) => {
-  return (
-    <div className={styles.bannerOverlay}>
-      <img className={styles.smallImg} src={item.image} alt='small banner image' />
-      <div className={styles.bottomBlock}>
-        <div>
-          <p className={styles.bannerTitle}>{item.title}</p>
-          <p className={styles.bannerText}>{item.text}</p>
-        </div>
-        <button className={playBtn} onClick={() => { }}>
-          <img src={playIcon} alt="play btn" />
-        </button>
-      </div>
-    </div>
-  )
-}
-
 export const bannerHomeOverlay: FC<IProps> = (item: any) => {
   return (
     <div className={cx(styles.bannerOverlay, styles.homeBanOverlay)}>

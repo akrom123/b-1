@@ -1,74 +1,212 @@
 @import "../../assets/styles/mixins";
 
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  background: var(--color-background-3);
+  height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: 1.38rem;
+  border: .06rem solid transparent;
+  overflow: hidden;
+
+  @media(max-width: 639.9px) {
+    height: 3.66rem;
+    padding: 0 1.33rem;
+    border-radius: 1.84rem;
+    border: .09rem solid transparent
+  }
+
+  &.secondary {
+    background: var(--color-background-4);
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:active,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:hover {
+      box-shadow: 0 0 0 1.88rem var(--color-background-4) inset;
+    }
+
+    @-moz-document url-prefix() {
+
+      & input:-webkit-autofill,
+      & input:-webkit-autofill:active,
+      & input:-webkit-autofill:focus,
+      & input:-webkit-autofill:hover {
+        box-shadow: unset
+      }
+    }
+  }
+
+  &.wrapError {
+    border-color: var(--color-error)
+  }
+
+  &.focused,
+  &:focus-within {
+    border-color: var(--color-brand)
+  }
+
+  &:not(:focus-within) .reveal {
+    display: none
+  }
+}
+
 .input {
   height: 100%;
-  flex: 1;
-  padding: 0 12px;
+  flex: 1 1;
+  font-size: 1rem;
+  font-weight: 500;
   border: none;
-  color: inherit;
-  background: var(--color-background-mesg);
+  padding: 0;
+  margin: 0;
+  color: var(--color-white);
+  caret-color: #fff;
+  background: 0 0;
   min-width: 0;
-  width: calc(100%);
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-text-fill-color: var(--color-white);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  @media(max-width: 639.9px) {
+    font-size: 1.16rem
+  }
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
 
   &:focus {
     outline: none;
+    color: var(--color-white)
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    box-shadow: 0 0 0 1.88rem var(--color-input-background) inset;
+    -webkit-text-fill-color: var(--color-white);
+    background-color: transparent;
+  }
+
+  @-moz-document url-prefix() {
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:active,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:hover {
+      box-shadow: unset
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    color: var(--color-icon);
+    font-weight: 500;
+    font-size: 1rem
+  }
+
+  &::placeholder {
+    color: var(--color-icon);
+    font-weight: 500;
+    font-size: 1rem
+  }
+
+  @media(max-width: 639.9px) {
+    &::-webkit-input-placeholder {
+      font-size: 1.33rem
+    }
+
+    &::placeholder {
+      font-size: 1.33rem
+    }
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none
+  }
+
+  @supports(-webkit-touch-callout:none) {
+    & {
+      font-size: var(--font-size-default)
+    }
   }
 }
 
-.icon {
-  @include flexbox(center, center);
-  padding: 0 12px;
-  height: 24px;
-  color: var(--color-icon);
 
-  // border-left: 1px solid var(--color-line-1);
-  // border-right: 1px solid var(--color-line-1);
+.reveal,
+.search {
+  color: inherit
+}
+
+.disabled {
+  color: var(--color-icon)
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.5rem;
+  color: inherit;
+
+  @media(max-width: 639.9px) {
+    height: 2rem;
+    font-size: var(--font-size-default)
+  }
 
   &:first-child {
-    border-left: none;
-    margin-right: 4px;
+    margin-right: .75rem;
+
+    @media(max-width: 639.9px) {
+      margin-right: 1rem
+    }
   }
 
   &:last-child {
-    border-right: none;
-    margin-left: 4px;
+    margin-left: 1rem;
+
+    @media(max-width: 639.9px) {
+      margin-left: 1.33rem
+    }
   }
 
-  &.text {
-    font-size: 14px;
-    line-height: 18px;
+  &.iconText {
+    line-height: 1.25;
     white-space: nowrap;
     border: none;
 
     &:first-child {
-      padding-right: 0;
+      padding-right: 0
     }
 
     &:last-child {
-      padding-left: 0;
+      padding-left: 0
     }
   }
-}
 
-.reveal {
-  color: inherit;
-}
+  &.disabled {
+    color: var(--color-line-1)
+  }
 
-.search {
-  color: red;
-  margin-right: 5px;
-  position: absolute;
-  right: 0;
+  .showOnFocus {
+    display: none
+  }
 
-  i{
-    background: var(--color-profile-menu-shadow)
+  &:focus~.showOnFocus {
+    display: flex
   }
 }
+
 
 .error {
   color: var(--color-error);

@@ -21,7 +21,8 @@ interface Props {
   action?: {
     text: string,
     handler: () => void
-  }
+  },
+  onClick?: () => void
 }
 
 const GameList: FC<PropsWithChildren<Props>> = ({
@@ -30,9 +31,9 @@ const GameList: FC<PropsWithChildren<Props>> = ({
   breakpoints,
   top = false,
   buttons,
-  action
+  action,
+  onClick
 }) => {
-
   const [sliderRef, instanceRef] = useKeenSlider(
     {
       breakpoints,
@@ -47,10 +48,8 @@ const GameList: FC<PropsWithChildren<Props>> = ({
   }, [games])
 
   const onResize = () => {
-    console.log(gameNames[gameType], breakpoints, instanceRef)
     instanceRef.current?.update()
   };
-
   const wrapperRef = useResizeObserver<HTMLDivElement>(onResize);
 
   return (
@@ -85,7 +84,7 @@ const GameList: FC<PropsWithChildren<Props>> = ({
             {gameType == 'Promotions' ? game : (
               <div className={styles.gameListItem}>
                 {game}
-                {gameType !== 'GameProviders' && <GameOverlay className={styles.overlay} />}
+                {gameType !== 'GameProviders' && <GameOverlay handlePlayGame={onClick} className={styles.overlay} />}
               </div>
             )
             }

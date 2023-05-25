@@ -2,8 +2,7 @@ import React, {
   ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren,
 } from 'react';
 import cx from 'classnames';
-import { ButtonColor, IconName } from '../../types';
-import { Icon } from '..';
+import { ButtonColor } from '../../types';
 import Loader from '../Loader';
 import styles from './styles.module.scss';
 
@@ -15,17 +14,13 @@ export type ButtonProps = DetailedHTMLProps<
   size?: 's' | 'm' | 'xs',
   fullWidth?: boolean,
   onClick?: (event: React.MouseEvent) => void,
-  icon?: IconName,
-  iconClassName?: string,
   isLoading?: boolean,
   inverse?: boolean,
-  alt?: boolean
 };
 
 const Button: FC<PropsWithChildren<ButtonProps>> = ({
   color = ButtonColor.Primary,
   inverse = false,
-  alt = false,
   size = 'm',
   fullWidth = false,
   onClick = () => { },
@@ -33,8 +28,6 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
   type = 'button',
   children,
   disabled,
-  icon,
-  iconClassName,
   isLoading,
   ...rest
 }) => (
@@ -50,7 +43,6 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
         [styles['size--s']]: size === 's',
         [styles['size--xs']]: size === 'xs',
         [styles.inverse]: inverse,
-        [styles.alt]: alt
       },
 
     )}
@@ -60,15 +52,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
     {...rest}
   >
     {isLoading ? <Loader /> : (
-      <>
-        {icon && (
-          <Icon
-            value={icon}
-            className={iconClassName}
-          />
-        )}
-        {children}
-      </>
+      children
     )}
   </button>
 );

@@ -5,9 +5,9 @@ export const useFocusEvent = (initialState = false) => {
 
   const onFocus = useCallback(() => setFocused(true), [setFocused]);
   const offFocus = useCallback(() => setTimeout(() => setFocused(false)), [setFocused]);
-  const onBlur = useCallback(() => setTimeout(() => setFocused(false), 300), [setFocused]);
+  const onBlur = useCallback(() => setTimeout(() => setFocused(false), 0), [setFocused]);
 
   return {
-    focused, onBlur, offFocus, onFocus, 
+    focused, onBlur, offFocus, onFocus,
   };
 };

@@ -6,6 +6,7 @@ import modal from './modal';
 import home from './home';
 import rates from './rates';
 import profile from './profile';
+import game from './game';
 
 export default {
   router: connectRouter(history),
@@ -15,4 +16,5 @@ export default {
   home,
   rates,
   profile,
+  game,
 };

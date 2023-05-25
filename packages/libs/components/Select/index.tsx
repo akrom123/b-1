@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import { Manager, Popper, Reference } from 'react-popper';
+import { usePopperDropdown } from '@betnomi/libs/hooks/ui/usePopperDropdown';
 import { useFocusEvent } from '@betnomi/libs/hooks/useFocusEvent';
 import classNames from 'classnames';
-import { usePopperDropdown } from '@betnomi/libs/hooks/ui/usePopperDropdown';
-import { TextInputWrap } from '@betnomi/libs/components/TextInputWrap';
 import styles from './styles.module.scss';
 import { FontIcon, FontIconName } from '../FontIcon';
+import { useOnClickOutside } from '@betnomi/libs/hooks/useOnClickOutside';
 
-export interface Option<T extends string = string> {
+export interface Option<T extends string = string> extends Record<string, any> {
   value: T;
   label: string;
 }
@@ -17,11 +17,14 @@ interface Props {
   value?: Option;
   optionRenderer?: (current: Option<any>) => JSX.Element;
   valueRenderer?: (current: Option<any>) => JSX.Element;
-  placeholder?: string;
+  placeholder?: JSX.Element;
   disabled?: boolean;
   justify?: boolean;
   onChange: (val: Option<any>) => void;
-  className?: string
+  className?: string;
+  listboxClassName?: string;
+  optionClassName?: string;
+  popperClassName?: string;
 }
 
 const defaultValueRenderer = (current: Option) => (
@@ -29,7 +32,7 @@ const defaultValueRenderer = (current: Option) => (
 );
 
 const defaultOptionRenderer = (current: Option) => (
-  <div className={styles.option}>{current.label}</div>
+  current.label
 );
 
 const Select: FC<Props> = ({
@@ -41,64 +44,73 @@ const Select: FC<Props> = ({
   valueRenderer = defaultValueRenderer,
   onChange,
   className,
+  listboxClassName,
+  optionClassName,
+  popperClassName,
   justify = true,
 }) => {
   const { onFocus, onBlur, focused } = useFocusEvent();
   const modifiers = usePopperDropdown(0, 10, justify);
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOnClickOutside(ref, () => onBlur());
 
   return (
-    <Manager>
-      <Reference>
-        {({ ref }) => (
-          <button
-            className={styles.button}
-            type="button"
-            ref={ref}
-            disabled={disabled}
-            onFocus={onFocus}
-            onBlur={onBlur}
-          >
-            <TextInputWrap className={className}>
-              {value ? (
-                <div className={styles.value}>{valueRenderer(value)}</div>
-              ) : (
-                <div className={styles.empty}>{placeholder}</div>
-              )}
-              <FontIcon
-                name={FontIconName.ChevronDown}
-                size={'s'}
-                className={styles.chevron}
-              />
-            </TextInputWrap>
-          </button>
-        )}
-      </Reference>
-
-      <Popper modifiers={modifiers}>
-        {({ ref, style }) => (
-          <div
-            className={classNames(styles.floater, {
-              [styles.hidden]: !focused,
-            }, className)}
-            ref={ref}
-            style={style}
-          >
-            <div className={styles.list}>
-              {variants.map((variant) => (
-                <button
-                  className={styles.variant}
-                  onClick={() => onChange(variant)}
-                  type="button"
-                  key={variant.value}
-                >
-                  {optionRenderer(variant)}
-                </button>
-              ))}
+    <div className={styles.wrapper} ref={ref}>
+      <Manager>
+        <Reference>
+          {({ ref }) => (
+            <div ref={ref} onClick={() => focused ? onBlur() : onFocus()}>
+              <button
+                className={classNames(styles.control, className, { [styles.expanded]: focused })}
+                type="button"
+                disabled={disabled}
+              >
+                {value ? (
+                  <div className={styles.value}>{valueRenderer(value)}</div>
+                ) : (
+                  <div className={styles.empty}>{placeholder}</div>
+                )}
+                <FontIcon
+                  name={FontIconName.ChevronDown}
+                  size={'s'}
+                  className={styles.arrow}
+                />
+              </button>
             </div>
-          </div>
-        )}
-      </Popper>
-    </Manager>
+          )}
+        </Reference>
+
+        <Popper modifiers={modifiers}>
+          {({ ref, style }) => (
+            <div
+              className={classNames(
+                styles.popper,
+                popperClassName,
+                {
+                  [styles.hidden]: !focused,
+                },
+              )}
+              onBlur={onBlur}
+              ref={ref}
+              style={style}
+            >
+              <div className={classNames(styles.listbox, listboxClassName)}>
+                {variants.map((variant) => (
+                  <div
+                    className={classNames(styles.option, optionClassName)}
+                    onClick={() => onChange(variant)}
+                    key={variant.value}
+                  >
+                    {optionRenderer(variant)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </Popper>
+      </Manager>
+    </div>
   );
 };
 

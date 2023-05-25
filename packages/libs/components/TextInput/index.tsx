@@ -1,10 +1,34 @@
-import React, { FC, HTMLProps, useCallback, useState } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, HTMLProps, useCallback, useState } from 'react';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 import { FontIcon, FontIconName } from '../FontIcon';
-import { TextInputWrap } from '../TextInputWrap';
+import { TextInputColor } from '../../types/ui';
+
+interface ITextInputWrapProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  ref?: React.Ref<HTMLDivElement>;
+  color?: TextInputColor;
+  error?: boolean;
+}
+
+export const TextInputWrap: FC<ITextInputWrapProps> = ({
+  color = TextInputColor.Primary,
+  children, ref, className, error, ...props
+}) => (
+  <div
+    className={classNames(
+      styles.wrap,
+      className, { [styles.wrapError]: error, [styles.wrapSecondary]: color === TextInputColor.Secondary },
+    )}
+    ref={ref}
+    {...props}
+  >
+    {children}
+  </div>
+);
 
 export interface TextInputProps extends HTMLProps<HTMLInputElement> {
+  color?: TextInputColor;
   inputClasses?: string;
   left?: JSX.Element | string;
   right?: JSX.Element | string;
@@ -16,12 +40,14 @@ export interface TextInputProps extends HTMLProps<HTMLInputElement> {
 
 const IconRenderer: FC<{ error?: boolean }> = ({ children, error }) =>
 (children ? (
-  <div className={classNames(styles.icon, { [styles.text]: typeof children === 'string', [styles.error]: error })}>
+  <div className={classNames(styles.icon, { [styles.iconText]: typeof children === 'string', [styles.error]: error })}>
     {children}
   </div>
 ) : null);
 
-const TextInput: FC<TextInputProps> = ({ type = 'text',
+const TextInput: FC<TextInputProps> = ({
+  color = TextInputColor.Primary,
+  type = 'text',
   inputClasses,
   left,
   right,
@@ -32,10 +58,10 @@ const TextInput: FC<TextInputProps> = ({ type = 'text',
   const toggleRevealed = useCallback(() => setRevealed(!revealed), [setRevealed, revealed]);
 
   return (
-    <TextInputWrap error={hasError} className={className}>
+    <TextInputWrap error={hasError} className={className} color={color}>
       <IconRenderer error={hasError}>{left}</IconRenderer>
 
-      <input type={revealed ? 'text' : type} {...props} className={classNames(styles.input, inputClasses)} size={1} />
+      <input type={revealed ? 'text' : type} {...props} className={classNames(styles.input, inputClasses)} />
 
       <IconRenderer>{right}</IconRenderer>
 

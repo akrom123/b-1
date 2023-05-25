@@ -1,0 +1,22 @@
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: 0 0;
+  color: var(--color-icon);
+  border-radius: 6.25rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-icon-hover);
+    background-color: var(--color-background-6)
+  }
+
+  @media(max-width: 1279.9px) {
+    width: 2.68rem;
+    height: 2.68rem
+  }
+}

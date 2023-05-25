@@ -1,0 +1,192 @@
+@import "@betnomi/libs/assets/styles/mixins";
+
+
+.searchInputWrapper {
+  position: relative;
+
+  @media(max-width: 639.9px) {
+    position: unset
+  }
+
+  .searchInput {
+    width: 100%
+  }
+
+  .inputClasses {
+    -webkit-text-fill-color: var(--color-icon);
+
+    @media(max-width: 639.9px) {
+      font-size: 1.33rem
+    }
+  }
+}
+
+.popper {
+  z-index: 1;
+  width: 100%;
+  background: var(--color-background-4);
+  color: var(--color-white);
+  border: .06rem solid var(--color-background-6);
+  border-radius: .75rem;
+  overflow: hidden;
+  padding: .5rem 0 .63rem .63rem;
+
+  @media(max-width: 639.9px) {
+    border: .09rem solid var(--color-background-6);
+    border-radius: 1rem;
+    padding: .66rem 0 .82rem .66rem
+  }
+
+  &.hidden {
+    @include hidden;
+  }
+}
+
+.searchInputDropdown {
+  background: var(--color-background-4);
+  border: .06rem solid var(--color-background-6);
+  border-radius: 1rem;
+  width: 100%;
+  padding: 1rem 0 0 1rem;
+  min-width: 15rem;
+
+  @media(max-width: 639.9px) {
+    width: calc(100% - var(--padding-main-layout)*2);
+    padding: 1.33rem 0 0 1.33rem;
+  }
+}
+
+
+
+.searchInputTitle {
+  padding: 0 .94rem 0 0;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  margin-bottom: .94rem;
+
+  @media(max-width: 639.9px) {
+    font-size: 1.16rem
+  }
+
+  .searchInputLength {
+    color: var(--color-button)
+  }
+
+  .searchInputValue {
+    color: var(--color-brand)
+  }
+}
+
+
+
+.searchInputList {
+  margin: 0;
+  padding: 0 1rem 0 0;
+  list-style: none;
+  overflow-y: auto;
+  max-height: 15rem;
+  scrollbar-width: thin;
+
+  scrollbar-color: var(--color-brand) transparent;
+
+  &::-webkit-scrollbar {
+    width: .25rem
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: .19rem solid var(--color-background-4);
+    background-color: var(--color-brand)
+  }
+
+  li {
+    padding-bottom: .94rem
+  }
+
+  li+li {
+    border-top: .06rem solid var(--color-line-1);
+    padding-top: .94rem
+  }
+
+  @media(max-width: 639.9px) {
+    max-height: 17rem;
+    padding: 0 1.33rem 0 0;
+  }
+
+  .searchInputListItem {
+    display: grid;
+    grid-template-columns: -webkit-min-content auto;
+    grid-template-columns: min-content auto;
+    grid-gap: .69rem;
+  }
+
+  .searchInputListItemImage {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    width: auto;
+    height: 5.3rem;
+    aspect-ratio: 65 / 85;
+  }
+
+  .searchInputListItemTitle {
+    display: grid;
+    grid-template-rows: -webkit-min-content auto -webkit-min-content;
+    grid-template-rows: min-content auto min-content;
+    width: 100%;
+  }
+
+  .searchInputListItemName {
+    font-weight: 600;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media(max-width: 639.9px) {
+      font-size: 1.16rem
+    }
+  }
+
+  .searchInputListItemHighlight {
+    color: var(--color-brand)
+  }
+
+  .searchInputListItemRTP {
+    font-weight: 500;
+    font-size: var(--font-size-smaller);
+    line-height: 2;
+    color: var(--color-icon);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media(max-width: 639.9px) {
+      font-size: 1.16rem
+    }
+
+    .searchInputListItemHighlight {
+      color: var(--color-brand-alt)
+    }
+  }
+
+
+  .searchInputListItemProviderContainer {
+    justify-self: flex-start;
+    display: grid;
+    line-height: 1.75rem;
+    background: var(--color-background-3);
+    font-size: var(--font-size-smaller);
+    font-weight: 500;
+    padding: 0 .5rem;
+    border-radius: .88rem;
+    color: var(--color-icon);
+    text-transform: uppercase;
+  }
+
+  .searchInputListItemProvider {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+  }
+}

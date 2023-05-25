@@ -1,0 +1,42 @@
+.drawer {
+  width: 0;
+  height: 0;
+
+  &.visible {
+    .overlay {
+      display: block
+    }
+
+    .container {
+      visibility: visible;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0)
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, .4);
+  height: calc(100% - 4.44rem)
+}
+
+.container {
+  position: fixed;
+  visibility: hidden;
+  transition: all;
+  z-index: 101;
+  transition-duration: var(--transition-time-primary);
+  left: 0;
+  right: 0;
+  bottom: calc(var(--height-mobile-menu) - .75rem);
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  width: 100%;
+  height: auto
+}

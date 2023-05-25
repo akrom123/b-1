@@ -1,6 +1,6 @@
 import React, { DetailedHTMLProps, FC, TextareaHTMLAttributes } from 'react';
 import { useAutosize } from '../../hooks/ui/useAutosize';
-import { TextInputWrap } from '../TextInputWrap';
+import { TextInputWrap } from '../TextInput';
 import styles from './styles.module.scss';
 
 interface IProps

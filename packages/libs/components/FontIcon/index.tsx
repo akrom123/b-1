@@ -93,11 +93,17 @@ export enum FontIconName {
   Home = 'icon-home',
   LiveSports = 'icon-live-sports',
   Popular = 'icon-popular',
+  New = 'icon-new',
   Bonus = 'icon-bonus',
   Baccarat1 = 'icon-baccarat-1',
   Blackjack = 'icon-blackjack',
+  Gameshow = 'icon-gameshow',
   All = 'icon-all',
-  Trophy = 'icon-trophy'
+  Trophy = 'icon-trophy',
+  Search = 'icon-search',
+  Filter = 'icon-filter',
+  Play = 'icon-play',
+  PlaySecondary = 'icon-play-secondary',
 
 }
 

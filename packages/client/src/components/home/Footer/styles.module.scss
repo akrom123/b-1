@@ -216,35 +216,7 @@
 	}
 }
 
-.logo {
-	width: 116px;
-	height: 32px;
-	margin-right: 75px;
-}
 
-.desc_img_wrap {
-	@include flexbox(center, center);
-	margin-left: 100px;
-
-	.gambling {
-		height: 30px;
-
-		@media(max-width: 768px) {
-			height: auto;
-		}
-	}
-}
-
-.shield {
-	max-width: 40px;
-	height: 40px;
-	margin-left: 16px;
-
-	@media(max-width: 768px) {
-		max-width: 22px;
-		height: auto;
-	}
-}
 
 .footer_bottom {
 
@@ -256,8 +228,9 @@
 
 .btc_rates {
 	grid-template-columns: 1rem auto;
+	justify-self: flex-end;
 
-	justify-self: flex-end img {
+	img {
 		margin-right: 8px;
 	}
 }

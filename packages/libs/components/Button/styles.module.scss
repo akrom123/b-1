@@ -55,21 +55,20 @@
         opacity: .5
       }
     }
+  }
 
+  &.primary-alt {
+    background-color: var(--color-brand);
+    color: var(--color-white);
 
-    &.alt {
-      background-color: var(--color-brand);
-      color: var(--color-white);
+    &:focus,
+    &:hover {
+      background-color: var(--color-brand-hover)
+    }
 
-      &:focus,
-      &:hover {
-        background-color: var(--color-brand-hover)
-      }
-
-      &:disabled {
-        background-color: var(--color-background-5);
-        color: var(--color-icon)
-      }
+    &:disabled {
+      background-color: var(--color-background-5);
+      color: var(--color-icon)
     }
   }
 
@@ -77,28 +76,29 @@
     color: var(--color-white);
     border-color: var(--color-button-secondary-border);
 
+    &,
     &:hover,
     &:focus {
-      background-color: $color-button-secondary-hover;
+      background-color: var(--color-background-3)
     }
 
     &:disabled {
       opacity: 0.5;
     }
+  }
 
-    &.alt {
-      color: var(--color-white);
-      border-color: var(--color-icon);
+  &.secondary-alt {
+    color: var(--color-white);
+    border-color: var(--color-icon);
 
-      &,
-      &:focus,
-      &:hover {
-        background-color: var(--color-background-6)
-      }
+    &,
+    &:focus,
+    &:hover {
+      background-color: var(--color-background-6)
+    }
 
-      &:disabled {
-        opacity: .5
-      }
+    &:disabled {
+      opacity: .5
     }
   }
 
@@ -128,19 +128,19 @@
     &:disabled {
       opacity: .5
     }
+  }
 
-    &.alt {
-      color: var(--color-button);
+  &.tertiary-alt {
+    color: var(--color-button);
 
-      &,
-      &:focus,
-      &:hover {
-        background-color: var(--color-background-4)
-      }
+    &,
+    &:focus,
+    &:hover {
+      background-color: var(--color-background-4)
+    }
 
-      &:disabled {
-        opacity: .5
-      }
+    &:disabled {
+      opacity: .5
     }
   }
 

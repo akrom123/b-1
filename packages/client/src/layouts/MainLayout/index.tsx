@@ -19,6 +19,10 @@ import styles from './styles.module.scss';
 import { useUserUI } from '../../hooks/useUserUI';
 import { useRates } from '../../hooks/money/useRates';
 import { Routes } from '../../constants/routes';
+import { Drawer } from '@betnomi/libs/components/Drawer';
+import { MobileGameView } from '@betnomi/libs/components/MobileGameView';
+import { selectGame } from '../../store/game/selectors';
+import { gameHide } from '../../store/game/actionCreators';
 
 interface IProps {
   isMobile?: boolean
@@ -43,9 +47,15 @@ const MainLayout: FC<IProps> = ({ children, isMobile = false }) => {
     viewInUSD,
   } = useUser();
   const { currency } = useShallowSelector(selectAuth);
+  const game = useShallowSelector(selectGame);
 
   const onChangeCoin = useCallback(
     (coin: CoinType) => dispatch(authSelectCurrency(coin)),
+    [],
+  );
+
+  const onCloseDrawer = useCallback(
+    () => dispatch(gameHide()),
     [],
   );
 
@@ -127,6 +137,9 @@ const MainLayout: FC<IProps> = ({ children, isMobile = false }) => {
           onChatToggle={setIsChatActive}
         />
       )}
+      <Drawer active={game.active} onClose={onCloseDrawer}>
+        <MobileGameView onClose={onCloseDrawer} />
+      </Drawer>
 
 
       <div className={cx(styles.right, { [styles.active]: isChatActive })}>

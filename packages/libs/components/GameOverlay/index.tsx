@@ -12,10 +12,10 @@ interface IProps {
 const GameOverlay: FC<IProps> = ({ className, handlePlayGame }) => {
 
     return (
-        <div className={cx(styles.gameOverlay, className)}>
-            <button className={styles.playBtn} onClick={handlePlayGame}>
+        <div className={cx(styles.gameOverlay, className)} onClick={handlePlayGame}>
+            <div className={styles.playBtn}>
                 <img src={playIcon} alt="play btn" />
-            </button>
+            </div>
             {/* <p>Fichin Reels</p>
           <span>Play Demo</span> */}
         </div>

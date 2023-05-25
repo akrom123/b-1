@@ -2,154 +2,107 @@
 @import "~@betnomi/libs/assets/styles/mixins";
 
 
-.search{
-  min-width: 240px;
-  margin-right: 24px;
+.searchPanel {
+  display: grid;
+  grid-template-columns: -webkit-min-content auto;
+  grid-template-columns: min-content auto;
+  grid-gap: .63rem;
+  align-items: center;
+  margin-top: 2.5rem;
 
-  @media(max-width: 768px) {
-    width: 100%;
-    margin-bottom: 12px;
-    margin-right: 0;
+  @media(max-width: 1279.9px) {
+    grid-template-columns: auto
   }
 
-  & > div{
-    background: var(--color-profile-menu-shadow)
-  }
-}
+  @media(max-width: 639.9px) {
+    grid-gap: 1.67rem;
+    margin-top: 3.33rem;
 
-.searchInput{
-  input{
-    background: var(--color-profile-menu-shadow);
-  }
-}
+    .chipsWrapper {
+      grid-gap: .84rem;
+    }
 
-.searchPanel{
-  @include flexbox(center, center);
-  margin: 24px 0;
-
-  @media(max-width: 768px) {
-    flex-wrap: wrap;
+    // .listboxProvider { // не нашел такого элемента
+    //   -webkit-column-gap: 2.6rem;
+    //   column-gap: 2.6rem
+    // }
   }
 
-  .searchWrap{
-    @include flexbox(center, center);
-    position: relative;
+  .container {
+    justify-self: flex-end;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .63rem;
+    max-width: 30.63rem;
 
-    @media(max-width: 768px) {
-      flex-wrap: wrap;
+    @media(max-width: 1279.9px) {
+      grid-row: 1
+    }
+
+    @media(max-width: 639.9px) {
+      max-width: 100%;
       width: 100%;
-    }
-
-    .searchResult{
-      z-index: 2;
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      transform: translateY(  100%);
-      background-color: #fff;
-      background: var(--color-black);
-      border: 1px solid #393E53;
-      box-shadow: 0 40px 80px rgba(21, 24, 37, 0.25);
-      border-radius: 8px;
-
-      @media(max-width: 768px) {
-        bottom: 50px;
-      }
-
-      & > p{
-        margin: 24px 0;
-        padding: 0 24px;
-      }
-    }
-
-    .searchResultlist{
-      margin: 0;
-      list-style: none;
-      padding: 24px;
-      padding-top: 0;
-      overflow-y: auto;
-      max-height: 245px;
-
-      li{
-        @include flexbox(center, flex-start);
-        cursor: pointer;
-
-        &:not(:last-child){
-          margin-bottom: 15px;
-          border-bottom: 1px dashed #313549;
-          padding-bottom: 15px;
-        }
-
-        img{
-          border-radius: 4px;
-          margin-right: 16px;
-        }
-
-        p{
-          span{
-            display: block;
-
-            &:last-child{
-              font-size: 12px;
-              line-height: 16px;
-              color: var(--color-button);
-            }
-          }
-        }
-      }
+      grid-template-columns: auto 3.69rem
     }
   }
 }
 
-.popularSlotBlock{
-  @include flexbox(center, flext-start);
-  flex-grow: 1;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 28px;
+.searchResult {
+  z-index: 2;
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+  background-color: #fff;
+  background: var(--color-black);
+  border: 1px solid #393E53;
+  box-shadow: 0 40px 80px rgba(21, 24, 37, 0.25);
+  border-radius: 8px;
 
   @media(max-width: 768px) {
-    margin-bottom: 24px;
-
-    h4{
-      font-size: 20px;
-    }
+    bottom: 50px;
   }
 
+  &>p {
+    margin: 24px 0;
+    padding: 0 24px;
+  }
+}
 
-  .popularSlotsList{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    margin-left: 24px;
-    @include flexbox(center, center);
-    color: var(--color-button);
+.searchResultlist {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+  padding-top: 0;
+  overflow-y: auto;
+  max-height: 245px;
 
-    li {
-      cursor: pointer;
-      &:not(:last-child){
-        margin-right: 24px;
-      }
+  li {
+    @include flexbox(center, flex-start);
+    cursor: pointer;
 
-      &.active{
-        color: var(--color-brand);
-      }
+    &:not(:last-child) {
+      margin-bottom: 15px;
+      border-bottom: 1px dashed #313549;
+      padding-bottom: 15px;
     }
 
-    @media(max-width: 768px) {
-      margin-left: 16px;
+    img {
+      border-radius: 4px;
+      margin-right: 16px;
+    }
 
-      li {
-        &:not(:last-child){
-          margin-right: 16px;
+    p {
+      span {
+        display: block;
+
+        &:last-child {
+          font-size: 12px;
+          line-height: 16px;
+          color: var(--color-button);
         }
       }
     }
   }
 }
-
-

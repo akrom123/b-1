@@ -1,118 +1,142 @@
 @import "~@betnomi/libs/assets/styles/variables";
 @import "~@betnomi/libs/assets/styles/mixins";
 
-.select{
-  min-width: 160px;
-  position: relative;
-  background: var(--color-input-background);
-  border-radius: 4px;
-  @include flexbox(center, center);
-  padding-left: 15px;
-  font-size: 14px;
 
-  & > button{
-    min-width: 145px;
-  }
-
-  @media(max-width: 768px) {
-    width: 100%;
-  }
-
-  & > p{
-    color: var(--color-button);
-  }
-
-  & > div {
-    width: 255px;
-  }
-}
-
-.button {
-  @include flexbox(center, space-between);
-  color: #fff;
-  min-height: 44px;
-  padding: 0 10px;
-
-  @media(max-width: 768px) {
-    width: 100%;
-  }
-
-  .chevron{
-    transition: transform 0.3s;
-
-    &.active {
-      transform: rotate(180deg);
-    }
-  }
-
-}
-
-.providers{
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.providerSelect {
   width: 100%;
-  transform: translateY(102%);
-  background: var(--color-input-background);
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid var(--color-select-border);
 
-  @include with_scrollbar(var(--color-input-background));
-}
+  @media(max-width: 639.9px) {
+    padding: 0;
+    text-align: center;
+    grid-gap: 0;
 
-.option {
-  @include flexbox(center, flex-start);
-  cursor: pointer;
-  color: var(--color-white);
-  min-height: 40px;
-  line-height: 1.1;
-  padding: 0 8px;
-  font-weight: 500;
+    i:not(.filterIcon) {
+      display: none
+    }
 
-  &.selected {
-    background: var(--color-select-background);
-    border-radius: 4px;
-  }
-
-  .checkboxLabel{
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    background-color: #ccc;
-    //color: var(--color-brand);
-    background: var(--color-profile-menu-shadow);
-    border-radius: 4px;
-    @include flexbox(center, center);
-    cursor: pointer;
-
-    &.active{
-      background-color:  var(--color-brand);
-
-      .check_icon {
-        color: #fff;
-        opacity: 1;
-      }
+    .filterIcon {
+      font-size: var(--font-size-default);
+      color: var(--color-white);
 
     }
   }
 
-  .check_icon {
-    opacity: 0;
+  @media (min-width: 640px) {
+    .filterIcon {
+      display: none;
+    }
   }
 
-  p{
-    margin-left: 10px;
+  .providerSelectButton {
+    text-align: left;
+
+    .providerSelectLabel {
+      color: var(--color-button)
+    }
+
+    @media(max-width: 639.9px) {
+      display: none
+    }
   }
-  
-  .games{
-    margin-left: auto;
-    padding: 5px;
-    background-color: var(  --color-button);
-    border-radius: 4px;
-    color: #fff;
-    min-width: 50px;
+}
+
+.providerSelectListbox {
+
+  max-height: 23.13rem;
+  padding-top: .1rem;
+  padding-right: .25rem;
+  scrollbar-width: thin;
+
+  scrollbar-color: var(--color-brand) transparent;
+
+  &::-webkit-scrollbar {
+    width: .25rem
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: .19rem solid var(--color-brand);
+    background-color: var(--color-brand)
+  }
+
+  @media(max-width: 639.9px) {
+    display: grid;
+    grid-row-gap: 1.96rem;
+    row-gap: 1.96rem;
+    max-height: 18.35rem;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 1.09rem;
+    padding-bottom: 1rem;
+
+    .gamesCount {
+      display: none;
+    }
+  }
+}
+
+.providerSelectOption {
+  display: grid;
+  grid-template-columns: -webkit-min-content auto -webkit-min-content;
+  grid-template-columns: min-content auto min-content;
+  grid-gap: .5rem;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 .75rem 0 .63rem;
+  height: 2.63rem;
+
+  @media(max-width: 639.9px) {
+    height: 1.66rem;
+    grid-gap: .83rem
+  }
+
+  &:hover {
+    background: unset
+  }
+
+  span {
+    padding: 0 .5rem;
+    border-radius: 1.25rem;
+    min-width: 3.13rem;
     text-align: center;
+    line-height: 1.5rem;
+    background: var(--color-background-6)
+  }
+
+  .checkIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: .63rem;
+    line-height: .63rem;
+    border-radius: .25rem;
+    background: var(--color-line-2);
+    border: .07rem solid #696e87;
+
+    @media(max-width: 639.9px) {
+      width: 1.66rem;
+      height: 1.66rem;
+      border: .1rem solid #696e87
+    }
+
+    &:before {
+      opacity: 0
+    }
+
+    &.checkIconActive {
+      background: var(--color-brand-alt);
+      color: var(--color-white);
+
+      &:before {
+        opacity: 1
+      }
+    }
+  }
+}
+
+.popper {
+  @media(max-width: 639.9px) {
+    width: calc(100vw - var(--padding-main-layout)*2);
+    padding: .7rem 0 .7rem 1.04rem
   }
 }

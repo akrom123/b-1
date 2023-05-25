@@ -1,8 +1,55 @@
 @import "@betnomi/libs/assets/styles/mixins";
 
-.button {
-  color: inherit;
+.wrapper {
+  position: relative
+}
+
+.control {
+  display: grid;
   width: 100%;
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+  grid-gap: .5rem;
+  align-items: center;
+  height: 2.75rem;
+  padding: .5rem 1rem;
+  border-radius: 1.38rem;
+  font-family: inherit;
+  font-size: var(--font-size-default);
+  font-weight: 500;
+  background: var(--color-background-3);
+  color: var(--color-white);
+  border: .06rem solid transparent;
+  outline: 0;
+  white-space: nowrap;
+  text-align: left;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+
+  @media(max-width: 639.9px) {
+    grid-gap: .66rem;
+    height: 3.67rem;
+    padding: .66rem 1.33rem;
+    border-radius: 1.84rem;
+    border: .09rem solid transparent;
+    font-size: 1.33rem
+  }
+
+  .arrow {
+    font-size: var(--font-size-smaller);
+    color: var(--color-button)
+  }
+
+  &.expanded {
+    border-color: var(--color-brand);
+
+    .arrow {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      color: var(--color-white)
+    }
+  }
 }
 
 .value {
@@ -15,54 +62,68 @@
   @include ellipsis(100%);
 }
 
-.floater {
-  background: var(--color-input-background);
-  padding: 8px;
-  border-radius: 4px;
-  z-index: 99;
-  border: 1px solid var(--color-select-border);
+.popper {
+  z-index: 1;
+  width: 100%;
+  background: var(--color-background-4);
+  color: var(--color-white);
+  border: .06rem solid var(--color-background-6);
+  border-radius: .75rem;
+  overflow: hidden;
+  padding: .5rem 0 .63rem .63rem;
 
-  @include with_scrollbar(var(--color-input-background));
-  @include max_dropdown_height;
+  @media(max-width: 639.9px) {
+    border: .09rem solid var(--color-background-6);
+    border-radius: 1rem;
+    padding: .66rem 0 .82rem .66rem
+  }
 
   &.hidden {
     @include hidden;
   }
 }
 
-.list {
-  @include flexbox(stretch, stretch);
-  flex-direction: column;
-  width: 100%;
+.listbox {
+  font-size: var(--font-size-small);
+  padding: 0 .5rem 0 0;
+  margin: 0;
+  overflow: auto;
+  outline: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand) transparent;
+
+  &::-webkit-scrollbar {
+    width: .25rem
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: .19rem solid var(--color-chat-background);
+    background-color: var(--color-brand)
+  }
+
+  @media(max-width: 639.9px) {
+    padding: 0 .66rem 0 0;
+    font-size: var(--font-size-default)
+  }
+
 }
 
 .option {
-  width: 100%;
-  text-align: left;
-  padding: 12px;
+  padding: .5rem 1rem;
+  font-weight: 500;
+  -webkit-user-select: none;
+  user-select: none;
+  border-radius: 3.13rem;
 
-  @include ellipsis(100%);
-}
+  @media(max-width: 639.9px) {
+    padding: .66rem
+  }
 
-.empty {
-  color: var(--color-icon);
-  text-align: left;
-  width: 100%;
-  padding: 10px;
-}
+  &:not(.disabled) {
+    cursor: pointer
+  }
 
-.chevron {
-  color: var(--color-icon);
-  padding-right: 10px;
-}
-
-.variant {
-  color: inherit;
-  border-radius: 4px;
-  text-align: left;
-
-  &:hover, &:focus {
-    background-color: var(--color-select-hover);
-    border-radius: 2px;
+  &:not(.disabled):hover {
+    background: var(--color-background-5)
   }
 }

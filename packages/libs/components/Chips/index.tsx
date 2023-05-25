@@ -10,14 +10,16 @@ export type ChipsProps = {
     icon?: string,
     title: string,
     className?: string
-  }[]
+  }[],
+  className?: string
 };
 
 export const Chips: FC<ChipsProps> = ({
-  items
+  items,
+  className,
 }) => {
   const [active, setActive] = useState(0);
-  return <div className={styles.wrapper}>
+  return <div className={classNames(styles.wrapper, className)}>
     {
       items.map((item, idx) => (
         <button

@@ -4,6 +4,7 @@ import { ChatState } from './chat';
 import { HomeState } from './home';
 import { RatesState } from './rates';
 import { ProfileState } from './profile';
+import { GameState } from './game';
 
 export interface State {
   auth: AuthState
@@ -12,4 +13,5 @@ export interface State {
   modal: ModalState
   rates: RatesState
   profile: ProfileState
+  game: GameState
 }

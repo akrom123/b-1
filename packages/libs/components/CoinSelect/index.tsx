@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 import { Manager, Popper, Reference } from 'react-popper';
 import classNames from 'classnames';
 import { coinNames, coinOrder, CoinType } from '../../types/ui';
-import { TextInputWrap } from '../TextInputWrap';
+import { TextInputWrap } from '../TextInput';
 import styles from './styles.module.scss';
 import { FontIcon, FontIconName } from '../FontIcon';
 import Coin from '../Coin';
