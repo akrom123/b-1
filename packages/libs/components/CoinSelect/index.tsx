@@ -8,75 +8,56 @@ import { FontIcon, FontIconName } from '../FontIcon';
 import Coin from '../Coin';
 import { useFocusEvent } from '../../hooks/useFocusEvent';
 import { usePopperDropdown } from '../../hooks/ui/usePopperDropdown';
+import { Select, SelectColor } from '@betnomi/libs/components/Select';
 
 interface IProps {
   selected: CoinType;
   onSelect: (val: CoinType) => void;
   disabled?: boolean;
   withName?: boolean;
-  withLine?: boolean;
   className?: string;
 }
 
 interface RowProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   coin: CoinType;
   withName?: boolean;
-  withLine?: boolean;
   className?: string;
 }
 
-const Row: FC<RowProps> = ({ coin, withName, withLine, ...props }) => (
-  <button className={styles.button} {...props} type="button">
-    <div className={styles.icon}>
-      <Coin coin={coin} size={16} />
-      {withLine && <div className={styles.line} />}
-    </div>
-
-    <div className={styles.name}>{coinNames[coin]}</div>
-
-    {withName && <div className={styles.type}>{coin}</div>}
-  </button>
+const Row: FC<RowProps> = ({ coin, withName, className, }) => (
+  <div className={classNames(styles.item, className)}>
+    <Coin coin={coin} size={'l'} className={styles.coin} />
+    {withName && <div className={styles.value}>{coin}</div>}
+    <div className={styles.label}>{coinNames[coin]}</div>
+  </div>
 );
 
-const CoinSelect: FC<IProps> = ({ selected, onSelect, disabled, withName, withLine, className }) => {
-  const { onFocus, onBlur, focused } = useFocusEvent();
-  const modifiers = usePopperDropdown(0, 10, true);
-  return (
-    <Manager>
-      <TextInputWrap className={className}>
-        <Reference>
-          {({ ref }) => (
-            <div className={classNames(styles.select)} ref={ref}>
-              <Row
-                coin={selected}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                disabled={disabled}
-                withName={withName}
-                withLine={withLine}
-              />
-              <button className={styles.icon} onFocus={onFocus} onBlur={onBlur} disabled={disabled} type="button">
-                <FontIcon name={FontIconName.IconArrowBottom} size={16} />
-              </button>
-            </div>
-          )}
-        </Reference>
-      </TextInputWrap>
+const CoinSelect: FC<IProps> = ({ selected, onSelect, disabled, withName }) => {
 
-      <Popper modifiers={modifiers} placement="bottom-start">
-        {({ ref, style }) => (
-          <div className={classNames(styles.float, { [styles.hidden]: !focused })} ref={ref} style={style}>
-            <div className={styles.list}>
-              {coinOrder
-                .filter((coin) => coin !== selected)
-                .map((coin) => (
-                  <Row coin={coin} onMouseDown={() => onSelect(coin)} key={coin} withName={withName} />
-                ))}
-            </div>
-          </div>
-        )}
-      </Popper>
-    </Manager>
-  );
+  return <Select
+    optionClassName={styles.option}
+    listboxClassName={styles.listbox}
+    color={SelectColor.Secondary}
+    valueRenderer={(option) => <button
+      className={styles.root}
+      type="button"
+      disabled={disabled}
+    >
+      <Row
+        coin={selected}
+        withName={withName}
+      />
+    </button>}
+    optionRenderer={(item) =>
+      <Row
+        coin={item.value}
+        withName={withName}
+      />
+    }
+    variants={coinOrder.filter((coin) => coin !== selected).map(coin => ({ label: coin, value: coin }))}
+    onChange={(item) => onSelect(item.value)}
+    value={{ label: selected, value: selected }}
+  />
+
 };
 export { CoinSelect };

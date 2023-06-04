@@ -7,6 +7,11 @@ import styles from './styles.module.scss';
 import { FontIcon, FontIconName } from '../FontIcon';
 import { useOnClickOutside } from '@betnomi/libs/hooks/useOnClickOutside';
 
+
+export enum SelectColor {
+  Primary = 'primary',
+  Secondary = 'secondary'
+}
 export interface Option<T extends string = string> extends Record<string, any> {
   value: T;
   label: string;
@@ -25,6 +30,8 @@ interface Props {
   listboxClassName?: string;
   optionClassName?: string;
   popperClassName?: string;
+  color?: SelectColor;
+  closeOnSelect?: boolean;
 }
 
 const defaultValueRenderer = (current: Option) => (
@@ -48,6 +55,8 @@ const Select: FC<Props> = ({
   optionClassName,
   popperClassName,
   justify = true,
+  color = SelectColor.Primary,
+  closeOnSelect = true
 }) => {
   const { onFocus, onBlur, focused } = useFocusEvent();
   const modifiers = usePopperDropdown(0, 10, justify);
@@ -55,8 +64,15 @@ const Select: FC<Props> = ({
 
   useOnClickOutside(ref, () => onBlur());
 
+  const handleChange = (value: any) => {
+    onChange(value);
+    if (closeOnSelect) {
+      onBlur();
+    }
+  }
+
   return (
-    <div className={styles.wrapper} ref={ref}>
+    <div className={classNames(styles.wrapper, styles[color])} ref={ref}>
       <Manager>
         <Reference>
           {({ ref }) => (
@@ -67,9 +83,9 @@ const Select: FC<Props> = ({
                 disabled={disabled}
               >
                 {value ? (
-                  <div className={styles.value}>{valueRenderer(value)}</div>
+                  <div>{valueRenderer(value)}</div>
                 ) : (
-                  <div className={styles.empty}>{placeholder}</div>
+                  <div className={styles.placeholder}>{placeholder}</div>
                 )}
                 <FontIcon
                   name={FontIconName.ChevronDown}
@@ -99,7 +115,7 @@ const Select: FC<Props> = ({
                 {variants.map((variant) => (
                   <div
                     className={classNames(styles.option, optionClassName)}
-                    onClick={() => onChange(variant)}
+                    onClick={() => handleChange(variant)}
                     key={variant.value}
                   >
                     {optionRenderer(variant)}

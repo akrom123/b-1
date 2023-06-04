@@ -72,7 +72,7 @@ const MainLayout: FC<IProps> = ({ children, isMobile = false }) => {
   const { rates } = useRates();
   const { push } = useHistory();
   const onDepositClick = useCallback(() => {
-    push(`${Routes.Profile}/wallet/deposit`);
+    push(`${Routes.ProfileWallet}/deposit`);
   }, [push]);
 
   useEffect(() => {

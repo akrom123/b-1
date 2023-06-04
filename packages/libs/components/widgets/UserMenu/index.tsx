@@ -24,19 +24,19 @@ interface IProps {
 }
 
 const profileLinks: { link: string; title: string; icon: FontIconName }[] = [
-  { link: Routes.ProfileRoot, title: 'Profile', icon: FontIconName.User },
+  { link: `${Routes.ProfileRoot}/kyc`, title: 'Profile', icon: FontIconName.User },
   {
     link: `${Routes.ProfileRoot}/wallet`,
     title: 'Wallet',
     icon: FontIconName.Wallet1,
   },
   {
-    link: `${Routes.ProfileRoot}/deposit`,
+    link: `${Routes.ProfileDeposit}`,
     title: 'Deposit',
     icon: FontIconName.Deposit,
   },
   {
-    link: `${Routes.ProfileRoot}/withdraw`,
+    link: `${Routes.ProfileWithdraw}`,
     title: 'Withdraw',
     icon: FontIconName.Withdraw,
   },
@@ -60,7 +60,7 @@ const profileLinks: { link: string; title: string; icon: FontIconName }[] = [
     title: 'Bonuses',
     icon: FontIconName.Promo,
   },
-  { link: '/#settings', title: 'Settings', icon: FontIconName.Settings },
+  { link: '/settings', title: 'Settings', icon: FontIconName.Settings },
 ];
 
 const UserMenu: FC<IProps> = ({

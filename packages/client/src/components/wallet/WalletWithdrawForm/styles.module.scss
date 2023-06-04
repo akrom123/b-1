@@ -1,28 +1,71 @@
 @import "~@betnomi/libs/assets/styles/mixins";
 
+
+.rootNetwork {
+  margin-bottom: .75rem
+}
+
+.WithdrawPage_optionNetwork__SgxoI,
+.WithdrawPage_valueNetwork__8wx63 {
+  color: var(--color-icon)
+}
+
+@media(max-width:639.9px) {
+
+  .WithdrawPage_optionNetwork__SgxoI,
+  .WithdrawPage_valueNetwork__8wx63 {
+    overflow: hidden
+  }
+}
+
+.WithdrawPage_optionNetwork__SgxoI .WithdrawPage_value__jnCp7,
+.WithdrawPage_valueNetwork__8wx63 .WithdrawPage_value__jnCp7 {
+  color: var(--color-white)
+}
+
+@media(max-width:639.9px) {
+
+  .WithdrawPage_optionNetwork__SgxoI .WithdrawPage_value__jnCp7,
+  .WithdrawPage_valueNetwork__8wx63 .WithdrawPage_value__jnCp7 {
+    font-size: 1.33rem;
+    overflow: hidden
+  }
+}
+
+
 .form {
-  display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 16px;
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    grid-row-gap: 0px;
+  width: 100%;
+  max-width: 25rem;
+
+  @media(max-width:639.9px) {
+    max-width: 100%
+  }
+
+  .input {
+    &::placeholder {
+      font-size: var(--font-size-small)
+    }
   }
 }
 
 .label {
-  @include flexbox(center, flex-start);
-
-  font-weight: var(--weight-500);
-  font-size: 14px;
-  line-height: 21px;
+  display: grid;
+  grid-auto-flow: column;
+  white-space: nowrap;
+  margin-bottom: .75rem;
+  font-size: var(--font-size-small);
+  line-height: 1.5rem;
+  font-weight: 500;
   color: var(--color-icon);
-  min-height: 28px;
-  width: 100%;
-  @media (max-width: 768px) {
-    min-height: auto;
-    margin-bottom: 16px;
+
+  &>:last-child {
+    color: var(--color-white);
+    font-weight: 400;
+    text-align: right
+  }
+
+  &~& {
+    margin-top: 1.5rem
   }
 }
 
@@ -30,8 +73,10 @@
   flex: 1;
   text-align: right;
   font-weight: var(--weight-400);
+
   @media (max-width: 768px) {
     display: flex;
+
     span {
       margin-right: 4px;
     }
@@ -42,52 +87,35 @@
   color: var(--color-white);
 }
 
+
+.footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: .06rem solid var(--color-line-1);
+  text-align: center
+}
+
+
 .total {
-  font-weight: var(--weight-600);
-  font-size: 32px;
-  line-height: 40px;
-  flex: 1;
+  margin-top: 1.5rem;
+  color: var(--color-white);
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 600
 }
 
 .fee {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: var(--weight-400);
-  margin-top: 4px;
-  @media (max-width: 768px) {
-    margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+  color: var(--color-white);
+  font-weight: 400;
+
+  i {
+    color: var(--color-icon);
+    margin-left: .38rem
   }
 }
 
-.footer {
-  @include flexbox(center, center);
-  flex-direction: row;
+.destTag {
+  margin-top: 1.25rem
 }
 
-.mobile_margin {
-  @media (max-width: 768px) {
-    margin-bottom: 16px;
-  }
-}
-.mobile_label_margin {
-  @media (max-width: 768px) {
-    margin-bottom: 8px;
-  }
-}
-
-.mobile_direction {
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-.mobile_width {
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-}
-
-.custom_background{
-  background-color: var(--color-background-mesg);
-}

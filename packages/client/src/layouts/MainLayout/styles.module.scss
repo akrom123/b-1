@@ -81,6 +81,11 @@
   grid-area: content;
   padding: 3.13rem var(--padding-main-layout) 0;
   margin: 0 auto;
+
+  @media (max-width: 1279.9px) {
+    padding: var(--padding-main-layout);
+  }
+
 }
 
 .right {

@@ -3,34 +3,36 @@ import classNames from 'classnames';
 import styles from './styles.module.scss';
 import { FontIcon, FontIconName } from '../FontIcon';
 
+export enum CheckboxColor {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary'
+}
+
 interface IProps {
   checked: boolean;
   onCheck: (val: boolean) => void;
   className?: string;
   hasError?: boolean;
+  color?: CheckboxColor
 }
 
 const Checkbox: FC<IProps> = ({
-  checked, onCheck, children, className, hasError,
+  checked, onCheck, children, className, hasError, color = CheckboxColor.Primary
 }) => {
-  const onMouseDown = useCallback((event) => {
-    event.stopPropagation();
-    event.preventDefault();
+  const onMouseDown = () => {
     onCheck(!checked);
-  }, [checked]);
+  };
 
   return (
-    <button
-      className={classNames(styles.checkbox, className, { [styles.checked]: checked })}
+    <label
+      className={classNames(styles.wrapper, className, { [styles.error]: hasError }, styles[color])}
       onMouseDown={onMouseDown}
-      type="button"
     >
-      <span className={classNames(styles.inner, { [styles.error]: hasError })}>
-        {checked && <FontIcon name={FontIconName.Checked} size={'xxs'} />}
-      </span>
-
+      <input className={styles.checkbox} type="checkbox" checked={checked} />
+      <FontIcon name={FontIconName.Checked} className={styles.icon} />
       {!!children && <div className={styles.label}>{children}</div>}
-    </button>
+    </label>
   );
 };
 

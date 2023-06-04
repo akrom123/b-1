@@ -5,10 +5,9 @@ import { WalletDepositForm } from '../../../../components/wallet/WalletDepositFo
 import { useProfileDepositFormik } from '../../../../hooks/formik/useProfileDepositFormik';
 
 interface Props {
-  isMobile: boolean;
 }
 
-export const ProfileWalletDeposit: FC<Props> = ({ isMobile }) => {
+export const ProfileWalletDeposit: FC<Props> = () => {
   const { t } = useTranslation('profile');
   const { showSuccessToast } = useToasts();
 
@@ -36,7 +35,6 @@ export const ProfileWalletDeposit: FC<Props> = ({ isMobile }) => {
         onChangeNetwork={handleChange('network')}
         onAddressCopy={onAddressCopy}
         isLoadingDepositAddress={isLoadingDepositAddress}
-        isMobile={isMobile}
       />
     </div>
   );

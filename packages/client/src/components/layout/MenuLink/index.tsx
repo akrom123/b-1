@@ -14,7 +14,7 @@ export interface MenuLinkOptions {
 export const MenuLink: React.FC<MenuLinkOptions> = ({
   icon, to, label, long,
 }) => (
-  <NavLink to={to} activeClassName={styles.activeLink} className={cx(styles.link, { [styles.active]: !long })}>
+  <NavLink to={to} activeClassName={styles.activeLink} className={cx(styles.link)}>
     {icon && (
       <FontIcon
         name={icon}

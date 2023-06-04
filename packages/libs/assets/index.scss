@@ -96,8 +96,8 @@
   --weight-500: 400;
   --weight-600: 500;
 
-  
-  --font-primary: Poppins,Arial,sans-serif;
+
+  --font-primary: Poppins, Arial, sans-serif;
   --font-size-largest: 2.62rem;
   --font-size-larger: 2rem;
   --font-size-large: 1.5rem;
@@ -108,6 +108,14 @@
   --font-size-smaller: 0.75rem;
   --font-size-smallest: 0.63rem;
   --transition-time-primary: 0.35s;
+
+
+  @media(max-width: 639.9px) {
+    --font-size-default: 1.16rem;
+    --font-size-smaller: 1rem;
+    --font-size-small: 1.14rem;
+    --font-size-big: 1.5rem
+  }
 
   // body
   --color-background: #181B29;
@@ -208,18 +216,21 @@ html {
 
 @media(max-width: 1279.9px) {
   html {
-      font-size:calc((100vw - 768px) * (15.92 - 11.94)/(1024 - 768) + 11.94px)
+    font-size: calc((100vw - 768px) * (15.92 - 11.94)/(1024 - 768) + 11.94px)
   }
 }
 
 @media(max-width: 639.9px) {
   html {
-      font-size:calc((100vw - 375px) * (20.38 - 11.94)/(640 - 375) + 11.94px)
+    font-size: calc((100vw - 375px) * (20.38 - 11.94)/(640 - 375) + 11.94px)
   }
 }
 
 
-body,div[id=__next],div[id=root],html {
+body,
+div[id=__next],
+div[id=root],
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -237,6 +248,7 @@ body,div[id=__next],div[id=root],html {
   background-color: var(--color-background-1);
   line-height: 1.4
 }
+
 button,
 input,
 optgroup,

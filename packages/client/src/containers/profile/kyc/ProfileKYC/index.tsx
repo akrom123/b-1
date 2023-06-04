@@ -8,17 +8,13 @@ import { useTabOrder } from '../../../../hooks/useTabOrder';
 import ProfileKYCBasic from '../ProfileKYCBasic';
 import { Routes } from '../../../../constants/routes';
 import styles from './styles.module.scss';
-import { ProfileKYCAdvanced } from '../ProfileKYCAdvanced';
 import { profileGetBasic } from '../../../../store/profile/actionCreators';
-import { ProfileKYCIntermediate } from '../ProfileKYCIntermediate';
 
 enum Tab {
   Basic = 'basic',
-  Intermediate = 'intermediate',
-  Advanced = 'advanced',
 }
 
-const tabOrder = [Tab.Basic, Tab.Intermediate, Tab.Advanced];
+const tabOrder = [Tab.Basic];
 
 interface Props {
 }
@@ -26,8 +22,8 @@ interface Props {
 const ProfileKYC: FC<Props> = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation('profile');
-  const { params: { subTab } } = useRouteMatch<{ subTab: Tab }>();
-  const { active, onTabChange } = useTabOrder(tabOrder, subTab, `${Routes.ProfileRoot}/kyc`);
+  const { params: { tab } } = useRouteMatch<{ tab: Tab }>();
+  const { active, onTabChange } = useTabOrder(tabOrder, tab, `${Routes.ProfileRoot}/kyc`);
 
   useEffect(() => {
     dispatch(profileGetBasic());
@@ -39,8 +35,6 @@ const ProfileKYC: FC<Props> = () => {
         <TabbedContent.Tabs>
           <Tabs.Head>
             <span>{t('Basic')}</span>
-            <span>{t('Intermediate')}</span>
-            <span>{t('Advanced')}</span>
           </Tabs.Head>
         </TabbedContent.Tabs>
 
@@ -49,8 +43,6 @@ const ProfileKYC: FC<Props> = () => {
             <div className={styles.basic_wrapper}>
               <ProfileKYCBasic />
             </div>
-            <ProfileKYCIntermediate />
-            <ProfileKYCAdvanced />
           </Tabs.Content>
         </TabbedContent.Content>
       </TabbedContent>

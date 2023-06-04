@@ -1,80 +1,113 @@
 @import "~@betnomi/libs/assets/styles/mixins";
 
-$margin_right: 16px;
+.label {
+  color: var(--color-icon);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-size: .87rem;
 
-.row {
-  display: flex;
-  @media (max-width: 768px) {
-    flex-direction: column;
+  @media(max-width:639.9px) {
+    font-weight: 500;
+    font-size: 1.13rem;
+    width: 100%
   }
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 
-  &:not(:last-child) {
-    margin-right: $margin_right;
+.personalData {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media(max-width:639.9px) {
+    grid-template-columns: 1fr
   }
 }
 
-.align_items_end {
-  justify-content: flex-end;
+
+.radioGroup {
+  display: flex;
+  flex-direction: row;
+  color: #fe895a
 }
 
-.title {
-  display: flex;
-  font-size: 14px;
-  color: var(--color-title);
-  margin: 16px 16px 16px 0;
+.country {
+  max-height: 20.38rem;
+  overflow-y: scroll;
+  scroll-snap-type: mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand) transparent;
 
-  &:last-child {
-    margin-right: 0;
+  &::-webkit-scrollbar {
+    width: .25rem
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: .19rem solid var(--color-background-4);
+    background-color: var(--color-brand)
   }
 }
 
-.input {
-  font-size: 14px;
-  color: var(--color-button);
-  border-radius: 4px;
-  background-color: var(--color-background-mesg);
-  @media (max-width: 768px) {
-    &:not(:last-child) {
-      margin-bottom: 16px;
+.address {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem 1.5rem;
+  margin-bottom: 1.75rem;
+
+  >div {
+    width: 100%;
+
+    &:first-child {
+      margin-right: 1.5rem
     }
   }
+
+  @media(max-width:639.9px) {
+    grid-template-columns: 1fr
+  }
+
 }
 
-.full_width {
+.selectOptionTitle {
+  color: var(--color-white);
+  overflow: hidden;
+  font-size: var(--font-size-default);
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.button {
   width: 100%;
+  margin-top: 1.38rem
 }
 
-.margin_top {
-  margin-top: 16px;
-}
+.gender {
+  font-weight: 500;
+  font-size: 1rem;
 
-.radio_buttons {
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  .radio_button_margin {
-    margin-right: $margin_right;
+  @media(max-width:639.9px) {
+    font-weight: 500;
+    font-size: 1.25rem
   }
+
 }
 
-.submit_button {
-  margin-top: 32px;
-  padding: 0 50px;
-  @media(max-width: 768px){
-    margin-top: 24px;
-    width: 100%;
+
+.checkbox {
+  margin-top: .75rem
+}
+
+.checkboxLabel {
+  font-weight: 500;
+  font-size: .87rem;
+
+
+  @media(max-width:639.9px) {
+    font-size: 1.16rem
   }
-}
 
-.margin_bottom{
-  @media (max-width: 768px) {
-    margin-bottom: 16px;
+  a {
+    color: var(--color-brand)
   }
 }

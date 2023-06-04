@@ -20,8 +20,9 @@ storiesOf('Profile', module).add('ProfileKYCBasicForm', () => {
     area: text('Area', ''),
     city: text('City', ''),
     gender: Gender.Male,
+    terms: false,
   };
-  
+
   const touched: FormikTouched<ProfileKYCBasicFormikValues> = {
     name: true,
     surname: true,
@@ -31,8 +32,9 @@ storiesOf('Profile', module).add('ProfileKYCBasicForm', () => {
     city: true,
     area: true,
     country: true,
+    terms: true
   };
-  
+
   const errors: FormikErrors<ProfileKYCBasicFormikValues> = {
     name: text('NameError', ''),
     surname: text('SurnameError', ''),
@@ -42,6 +44,7 @@ storiesOf('Profile', module).add('ProfileKYCBasicForm', () => {
     city: text('CityError', ''),
     area: text('AreaError', ''),
     country: text('CountryError', ''),
+    terms: text('TermsError', ''),
   };
 
   const onSubmit = action('onSubmit');
@@ -54,11 +57,11 @@ storiesOf('Profile', module).add('ProfileKYCBasicForm', () => {
   const onStreetChange = action('onStreetChange');
   const onCityChange = action('onCityChange');
   const onCountryChange = action('onCountryChange');
-  const onAreaChange = action('onAreaChange');
   const onGenderChange = action('onGenderChange');
+  const onTermsChange = action('onTermsChange');
 
   const onCountrySearch = action('onCountrySearch');
-  
+
   return (
     <div style={{ width: 600 }}>
       <ProfileKYCBasicForm
@@ -71,19 +74,11 @@ storiesOf('Profile', module).add('ProfileKYCBasicForm', () => {
         onDateChange={onDateChange}
         onStreetChange={onStreetChange}
         onSubmit={onSubmit}
-        onTouchStreet={onTouch}
-        onTouchDate={onTouch}
-        onTouchName={onTouch}
-        onTouchSurname={onTouch}
-        onTouchZipCode={onTouch}
-        onTouchCity={onTouch}
-        onTouchArea={onTouch}
-        onTouchCountry={onTouch}
         onCityChange={onCityChange}
-        onAreaChange={onAreaChange}
         onCountryChange={onCountryChange}
         countryOptions={options}
         onGenderChange={onGenderChange}
+        onTermsChange={onTermsChange}
         onCountrySearch={onCountrySearch}
       />
     </div>

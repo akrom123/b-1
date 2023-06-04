@@ -68,7 +68,7 @@ export const Header: React.FC<Props> = ({
 
   return (
     <header className={classNames(styles.header, { [styles.headerShort]: !menuActive })}>
-      <div className={classNames(styles.logo, {[styles.logoAuthorized]: isAuthorized})}>
+      <div className={classNames(styles.logo, { [styles.logoAuthorized]: isAuthorized })}>
         <Link className={styles.logoLink} to={Routes.Homepage}>
           {/* <img src={(isAuthorized && isMobile || midScreen) ? mobileLogo : logo} alt="Betnomi" height={32} /> */}
           <svg viewBox="0 0 30 30" fill="none" className={styles.logoIcon}><path d="M11.995 12.682s3.435-1.571 5.81-2.704c2.375-1.133 4.933-3.033 5.08-5.59.109-1.755-1.938-3.253-4.824-3.947-2.997-.731-7.053-.548-8.112.511-1.206 1.206-1.28 2.668-.293 5.372.987 2.704 2.339 6.358 2.339 6.358Zm.657 1.827s2.266 6.066 3.07 8.331c.804 2.266 2.12 6.212 5.92 4.422s7.6-13.776 5.663-16.59c-2.12-3.106-12.168 2.887-14.653 3.837Zm-1.754.841s1.28 3.434 2.156 5.883c.877 2.448 1.535 6.467.183 8.112-.914 1.133-3.8.548-5.408-.439-1.937-1.17-5.152-3.179-5.59-5.664-.512-2.777 1.497-4.567 4.092-5.773 2.63-1.242 4.567-2.12 4.567-2.12Zm-.693-1.864S8.889 9.905 7.939 7.31c-.913-2.558-2.448-4.276-4.933-2.193C.777 7.018.12 10.965.01 12.974c-.146 2.777 1.315 4.641 4.312 3.216 3.033-1.352 5.883-2.704 5.883-2.704Z" fill="#6DD338"></path></svg>
@@ -89,13 +89,13 @@ export const Header: React.FC<Props> = ({
 
       {!isMobile && (
         <div className={styles.links}>
-          <Link className={styles.link} to={Routes.Homepage}>{t('Home')}</Link>
-          <Link className={styles.link} to={Routes.Games}>{t('Games')}</Link>
-          <Link className={styles.link} to={Routes.InPlays}>{t('InPlays')}</Link>
-          <Link className={styles.link} to={Routes.Sports}>{t('Sports')}</Link>
+          <Link className={styles.link} to={Routes.Homepage}>{t('Live')}</Link>
+          <Link className={styles.link} to={Routes.Games}>{t('Sports')}</Link>
           <Link className={styles.link} to={Routes.Casino}>{t('Casino')}</Link>
           <Link className={styles.link} to={Routes.LiveCasino}>{t('Live Casino')}</Link>
-          <Link className={styles.link} to={Routes.ESports}>{t('E-Sports')}</Link>
+          <Link className={styles.link} to={'/'}>{t('Blast')}</Link>
+          <Link className={styles.link} to={'/'}>{t('Poker')}</Link>
+          <Link className={styles.link} to={'/'}>{t('E-sport')}</Link>
         </div>
       )}
 

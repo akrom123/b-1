@@ -2,21 +2,12 @@ import { SportsBetFormikValues } from '../../hooks/formik/useSportsBetFormik';
 import { TransactionAllFormikValues } from '../../hooks/formik/useTransactionAllForm';
 import { ProfileKYCBasicFormikValues } from '../../hooks/formik/useProfileKYCBasicForm';
 import { ProfileActionTypes } from './actionTypes';
-import { ProfileKYCAdvancedError, ProfileKYCBasicError, ProfileState } from '../../types/store/profile';
-import { ProfileKYCFileUploadValues } from '../../hooks/formik/useProfileKYCFileUploadForm';
+import { ProfileKYCBasicError, ProfileState } from '../../types/store/profile';
 import { ProfileWithdrawFormikValues } from '../../hooks/formik/useProfileWithdrawFormik';
 import { KYCFileType, WithdrawErrorTransformResult } from './types';
 
 export const profileGetBasic = () => ({
   type: ProfileActionTypes.GetBasic,
-});
-
-export const profileGetIntermediate = () => ({
-  type: ProfileActionTypes.GetIntermediate,
-});
-
-export const profileGetAdvanced = () => ({
-  type: ProfileActionTypes.GetAdvanced,
 });
 
 export const profileSubmitBasic = (
@@ -30,38 +21,6 @@ export const profileSubmitBasic = (
 export const profileSetBasic = (payload: Partial<ProfileState['basic']>) => ({
   type: ProfileActionTypes.SetBasic,
   payload,
-});
-
-export const profileUploadIntermediate = (
-  payload: ProfileKYCFileUploadValues,
-  callback: (e?: ProfileKYCAdvancedError) => void,
-) => ({
-  type: ProfileActionTypes.UploadIntermediate,
-  payload,
-  callback,
-});
-
-export const profileSetIntermediate = (
-  payload: Partial<ProfileState['intermediate']>,
-) => ({
-  type: ProfileActionTypes.SetIntermediate,
-  payload,
-});
-
-export const profileSetAdvanced = (
-  payload: Partial<ProfileState['advanced']>,
-) => ({
-  type: ProfileActionTypes.SetAdvanced,
-  payload,
-});
-
-export const profileUploadAdvanced = (
-  payload: ProfileKYCFileUploadValues,
-  callback: (e?: ProfileKYCAdvancedError) => void,
-) => ({
-  type: ProfileActionTypes.UploadAdvanced,
-  payload,
-  callback,
 });
 
 export const profileWithdraw = (

@@ -1,67 +1,108 @@
 @import "../../assets/styles/mixins";
 
-.checkbox {
-  @include flexbox(center, center);
-  color: inherit;
-  display: inline-flex;
+.radioWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  color: var(--color-button);
+  font-size: inherit;
+  line-height: 2rem;
+  width: 100%;
+  -webkit-user-select: none;
+  user-select: none;
+
+  @media(max-width:639.9px) {
+    line-height: 2.66rem;
+
+    &:hover .Radio_icon__MZMwv {
+      border-color: transparent
+    }
+  }
+
+  &:not(.disabled) {
+    cursor: pointer
+  }
+
+  &.error .icon {
+    border-color: var(--color-error)
+  }
+
+
+  &.secondary {
+    --color-brand: var(--color-brand-alt)
+  }
 }
 
-.inner {
-  @include flexbox(center, center);
-
-  width: 24px;
-  height: 24px;
-  background: var(--color-checkbox-background);
-  box-shadow: var(--color-checkbox-border) 0 0 0 1px;
-  transition: all $transition-time;
-  border: 1px solid transparent;
+.icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  font-size: .63rem;
+  line-height: .63rem;
   border-radius: 50%;
+  background: var(--color-line-2);
+  border: .06rem solid var(--color-line-1);
 
-  .checked & {
-    border-color: var(--color-brand);
+  @media(max-width:639.9px) {
+    width: 1.66rem;
+    min-width: 1.66rem;
+    height: 1.66rem;
+    font-size: .84rem;
+    line-height: .84rem;
   }
 
-  .inner_circle {
-    display: flex;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    background: var(--color-brand);
-  }
-
-  &:hover {
-    background-color: var(--color-checkbox-hover);
-    border-color: transparent;
-
-    .inner_circle {
-      display: none;
-    }
-  }
-
-  .checked.disabled &:hover {
-    border-color: var(--color-brand);
-
-    .inner_circle {
-      display: block;
-    }
-  }
-
-  .disabled &:hover {
-    background-color: transparent;
-    background-color: var(--color-checkbox-background);
+  &:before {
+    opacity: 0
   }
 }
 
-.close {
-  color: var(--color-icon);
+
+.radio:checked:not(.disabled)~.icon {
+  background: 0 0;
+  border-color: var(--color-brand)
+}
+
+.radio:checked:not(.disabled)~.icon:after {
+  content: "";
+  position: absolute;
+  width: .83rem;
+  height: .83rem;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: var(--color-brand);
+
+
+  @media(max-width:639.9px) {
+    width: 1.11rem;
+    height: 1.11rem
+  }
+}
+
+.radio:disabled~.icon {
+  background: var(--color-line-1);
+
+  &:before {
+    opacity: 1;
+    color: var(--color-button)
+  }
+}
+
+.radio {
+  display: none
 }
 
 .label {
-  margin-left: 16px;
-  font-size: 16px;
-  line-height: 24px;
-}
+  display: block;
+  margin-left: .75rem;
 
-.error {
-  border-color: var(--color-error);
+  @media(max-width:639.9px) {
+    margin-left: 1rem
+  }
 }

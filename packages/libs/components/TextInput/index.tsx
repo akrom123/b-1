@@ -18,7 +18,11 @@ export const TextInputWrap: FC<ITextInputWrapProps> = ({
   <div
     className={classNames(
       styles.wrap,
-      className, { [styles.wrapError]: error, [styles.wrapSecondary]: color === TextInputColor.Secondary },
+      className,
+      {
+        [styles.error]: error,
+        [styles.secondary]: color === TextInputColor.Secondary
+      },
     )}
     ref={ref}
     {...props}

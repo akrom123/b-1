@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { boolean, object, string } from 'yup';
 import { useCallback, useEffect, useRef } from 'react';
 import { FormikHelpers, useFormik } from 'formik';
 import { useToasts } from '@betnomi/libs/hooks/useToasts';
@@ -22,6 +22,7 @@ export interface ProfileKYCBasicFormikValues {
   city: string;
   area: string;
   country: string;
+  terms: boolean;
 }
 
 export const profileKYCBasicFormikValues: ProfileKYCBasicFormikValues = {
@@ -34,6 +35,7 @@ export const profileKYCBasicFormikValues: ProfileKYCBasicFormikValues = {
   area: '',
   city: '',
   gender: undefined,
+  terms: false,
 };
 
 const zipCodeReg = new RegExp('^\\d{5}(?:[-\\s]\\d{4})?$');
@@ -47,6 +49,7 @@ const validationSchema = object().shape({
   country: string().required(),
   area: string().required(),
   city: string().required(),
+  terms: boolean().required(),
 });
 
 export const useProfileBasicFormik = (

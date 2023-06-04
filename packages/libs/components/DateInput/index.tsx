@@ -1,10 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import cx from 'classnames';
-import { format, isValid, parse } from 'date-fns';
+import { format, getMonth, getYear, isValid, parse } from 'date-fns';
 import { useTranslation } from '@betnomi/client/src/i18n';
 import { FontIcon, FontIconName } from '../FontIcon';
 import styles from './styles.module.scss';
+import { TextInput } from '@betnomi/libs/components/TextInput';
+import { TextInputColor } from '@betnomi/libs/types';
+import classNames from 'classnames';
 
 interface Props {
   value?: string;
@@ -16,6 +19,7 @@ interface Props {
   placeholder?: string;
   onBlur?: (value: React.FocusEvent<HTMLInputElement>) => void;
   hasError?: boolean;
+  color?: TextInputColor
 }
 
 const DateInput: React.FunctionComponent<Props> = ({
@@ -25,12 +29,15 @@ const DateInput: React.FunctionComponent<Props> = ({
   className,
   dateFormat = 'yyyy-MM-dd',
   customInput,
-  placeholder,
+  placeholder = 'Select a date',
   onBlur,
   hasError,
+  color = TextInputColor.Secondary
 }) => {
   const { t } = useTranslation('main');
   const [date, setDate] = useState<Date>();
+
+  const [mode, setMode] = useState<'day' | 'month' | 'year'>('day');
 
   const onDateChange = useCallback(
     (selected: Date) => {
@@ -54,19 +61,52 @@ const DateInput: React.FunctionComponent<Props> = ({
     setDate(parsedDate);
   }, [value, dateFormat]);
 
-  const defaultInput = (
-    <div className={cx(styles.input, disabled ? styles.disabled : '')}>
-      <div>{date ? format(date, 'dd') : t('Day')}</div>
-      <div className={styles.vertical_hr} />
-      <div className={styles.month}>
-        {date ? format(date, 'MMMM') : t('Month')}
+  const DefaultInput = forwardRef((props, ref: any) => (
+    <TextInput
+      {...props}
+      ref={ref}
+      left={<FontIcon name={FontIconName.Calendar} size={'m'} className={styles.icon} />}
+      color={color}
+    />
+  ));
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const renderCustomHeader: React.FC<any> = ({
+    date,
+    decreaseMonth,
+    increaseMonth,
+  }) => (
+    <div className={styles.header}>
+      <div
+        className={classNames(styles.select, { [styles.active]: mode === 'year' })}
+        onClick={() => setMode(mode === 'year' ? 'day' : 'year')}
+      >
+        {getYear(date)}<FontIcon name={FontIconName.ArrowRight} />
       </div>
-      <div className={styles.vertical_hr} />
-      <div className={styles.year}>
-        {date ? format(date, 'yyyy') : t('Year')}
+      <div
+        className={classNames(styles.select, { [styles.active]: mode === 'month' })}
+        onClick={() => setMode(mode === 'month' ? 'day' : 'month')}
+      >
+        {months[getMonth(date)]}<FontIcon name={FontIconName.ArrowRight} />
       </div>
+      <FontIcon name={FontIconName.ArrowRight} className={classNames(styles.monthButton, styles.prev)} onClick={decreaseMonth} />
+      <FontIcon name={FontIconName.ArrowRight} className={classNames(styles.monthButton)} onClick={increaseMonth} />
     </div>
-  );
+  )
+
 
   return (
     <div className={cx(
@@ -83,26 +123,16 @@ const DateInput: React.FunctionComponent<Props> = ({
         disabled={disabled}
         selected={date}
         onChange={onDateChange}
-        nextMonthButtonLabel={(
-          <FontIcon
-            className={styles.arrow}
-            name={FontIconName.ArrowRightBold}
-            size={'s'}
-          />
-        )}
-        previousMonthButtonLabel={(
-          <FontIcon
-            className={styles.arrow}
-            name={FontIconName.ArrowLeftBold}
-            size={'s'}
-          />
-        )}
-        fixedHeight
-        showYearDropdown
-        showMonthDropdown
+
+        showPreviousMonths={false}
+        monthsShown={1}
+        showYearPicker={mode === 'year'}
+        showMonthYearPicker={mode === 'month'}
         popperClassName={styles.popper}
         dayClassName={() => styles.day}
-        customInput={customInput || defaultInput}
+        customInput={customInput || <DefaultInput />}
+        renderCustomHeader={renderCustomHeader}
+        showPopperArrow={false}
       />
     </div>
   );

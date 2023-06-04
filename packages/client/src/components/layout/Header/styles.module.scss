@@ -25,21 +25,27 @@
 
 @media(min-width: 1280px) {
   .headerShort {
-    .logo a {
-      width: var(--width-side-menu-shrink);
+    .logo {
+      margin-right: 3.13rem;
+
+      a {
+        width: var(--width-side-menu-shrink);
+      }
     }
 
     .menu_toggle {
       transform: translate(1.7rem, -1.25rem);
+
+      i {
+        transform: translateX(0.13rem) scaleX(-1);
+      }
     }
 
-    @media(min-width: 1280px) {
-      .logoText {
-        -webkit-transform: scaleX(0);
-        transform: scaleX(0);
-        width: 0;
-        opacity: 0;
-      }
+    .logoText {
+      -webkit-transform: scaleX(0);
+      transform: scaleX(0);
+      width: 0;
+      opacity: 0;
     }
   }
 }
@@ -140,6 +146,11 @@
 
   @media(max-width: 1279.9px) {
     display: none
+  }
+
+  i {
+    transform: translateX(-0.06rem);
+    transition: transform var(--transition-time-primary), -webkit-transform var(--transition-time-primary);
   }
 }
 

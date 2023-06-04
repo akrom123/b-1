@@ -27,9 +27,9 @@ export const coinNames: Record<CoinType, string> = {
   [CoinType.tether]: 'Tether',
   [CoinType.tron]: 'Tron',
   [CoinType.zcash]: 'Z-Cash',
-  [CoinType.erc20]: 'Ethereum (ETH)',
-  [CoinType.bep20]: 'Binance Smart chain (BSC)',
-  [CoinType.trc20]: 'Tron (TRX)',
+  [CoinType.erc20]: 'Ethereum',
+  [CoinType.bep20]: 'Binance Smart chain',
+  [CoinType.trc20]: 'Tron',
 };
 
 export const coinIcons: Record<CoinType, string> = {

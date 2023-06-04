@@ -53,6 +53,7 @@ const SelectWrap: FC<IProps> = ({ justify = true }) => {
 
     return (
         <Select
+            closeOnSelect={false}
             className={styles.providerSelect}
             listboxClassName={styles.providerSelectListbox}
             optionClassName={styles.providerSelectOption}

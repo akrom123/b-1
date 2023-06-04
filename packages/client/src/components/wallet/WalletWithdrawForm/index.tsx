@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { ChangeEventHandler, FC, FormEventHandler, useMemo } from 'react';
 import { CoinSelect } from '@betnomi/libs/components/CoinSelect';
-import { CoinType } from '@betnomi/libs/types';
+import { CoinType, TextInputColor } from '@betnomi/libs/types';
 import { TextInput } from '@betnomi/libs/components/TextInput';
 import cx from 'classnames';
 import styles from './styles.module.scss';
@@ -9,7 +9,6 @@ import { useTranslation } from '../../../i18n';
 import { withdrawPairs } from '../../../constants/withdraw';
 import { WalletWithdrawFormAmount } from '../WalletWithdrawFormAmount';
 import { WalletSelectNetwork } from '../WalletSelectNetwork';
-import { WalletWithdrawOtherThings } from '../WalletWithdrawOtherThings';
 
 interface Props {
   coin: CoinType;
@@ -57,53 +56,41 @@ const WalletWithdrawForm: FC<Props> = ({ coin,
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <div className={cx(styles.label)}>{t('Select Coin')}</div>
-      <CoinSelect className={styles.mobile_margin} selected={coin} onSelect={onChangeCoin} withName disabled={isLoading} withLine />
+      <CoinSelect selected={coin} onSelect={onChangeCoin} withName disabled={isLoading} />
       <div className={cx(styles.label)}>{t('Withdraw to')}</div>
+      {!!targets && (
+        <WalletSelectNetwork
+          coins={targets}
+          selected={targetCoin}
+          onSelect={onChangeNetwork}
+          disabled={isLoading}
+          className={cx(styles.rootNetwork)}
+        />
+      )}
       <TextInput
-        placeholder="0x535B26df504dcBc12C6dbA49fB1F05dA05a44381"
+        placeholder="Address"
         value={address}
         onChange={onChangeAddress}
         onBlur={onTouchAddress}
         hasError={!!(errors.address && touched.address)}
         disabled={isLoading}
-        className={styles.mobile_margin}
+        color={TextInputColor.Secondary}
+        inputClasses={styles.input}
       />
 
-      {!!targets && (
-        <WalletSelectNetwork
-          coins={targets}
-          selected={targetCoin} 
-          onSelect={onChangeNetwork}
-          disabled={isLoading}
-          className={cx(styles.custom_background, styles.mobile_margin)}
-        />
-      )}
-
-      {!targets || targetCoin ? (
-        <WalletWithdrawFormAmount
-          total={total}
-          balance={balance}
-          coin={coin}
-          amount={amount}
-          errors={errors}
-          touched={touched}
-          limit={limit}
-          limitLeft={limitLeft}
-          fee={fee}
-          onChangeAmount={onChangeAmount}
-          isLoading={isLoading}
-        />
-      ) : (
-        <WalletWithdrawOtherThings
-          coin={coin}
-          spotBalance={0}
-          minWithdrawal={0}
-          feeMin={0}
-          feeMax={0}
-          limit={0}
-          limitLeft={0}
-        />
-      )}
+      <WalletWithdrawFormAmount
+        total={total}
+        balance={balance}
+        coin={coin}
+        amount={amount}
+        errors={errors}
+        touched={touched}
+        limit={limit}
+        limitLeft={limitLeft}
+        fee={fee}
+        onChangeAmount={onChangeAmount}
+        isLoading={isLoading}
+      />
     </form>
   );
 };

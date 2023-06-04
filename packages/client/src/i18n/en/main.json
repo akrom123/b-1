@@ -1,37 +1,31 @@
 {
   "Hello": "Hello (This is i18 message)",
   "We use natural keys, without any dashes in i18n": "We use natural keys, without any dashes in i18n (this is also translated message)",
-
   "Home": "Home",
   "Games": "Games",
   "Inplays": "Inplays",
   "Sports": "Sports",
   "Casino": "Casino",
   "Live Casino": "Live Casino",
-  "E-Sports": "E-Sports",
+  "E-sport": "E-sport",
   "About Us": "About Us",
-
   "About": "About",
   "Responsible Gaming": "Responsible Gaming",
   "Affiliate Program": "Affiliate Program",
   "Promotions": "Promotions",
-
   "Help": "Help",
   "FAQ": "FAQ",
   "Contact us": "Contact us",
   "Sport betting rules": "Sport betting rules",
   "Poker": "Poker",
-
   "Statistics": "Statistics",
   "Live Calendar": "Live Calendar",
   "Results": "Results",
-
   "Regulations": "Regulations",
   "RNG Certificate": "RNG Certificate",
   "Terms & Conditions": "Terms & Conditions",
   "Privacy Policy": "Privacy Policy",
   "AML Web Policy": "AML Web Policy",
-
   "Sport": "Sport",
   "Live Sports": "Live Sports",
   "Starting Soon": "Starting Soon",
@@ -46,7 +40,6 @@
   "Tournaments": "Tournaments",
   "Affiliates": "Affiliates",
   "Support": "Support",
-
   "Nightmode": "Nightmode",
   "Lightmode": "Lightmode",
   "Currently": "Currently",
@@ -71,18 +64,15 @@
   "I agree to all": "I agree to all",
   "and I am over 18 years of age": "and I am over 18 years of age",
   "Enter your code": "Enter your code",
-
   "Balance {{count}}": "Balance: {{count}}",
   "Message (Optional)": "Message (Optional)",
   "Min {{count}} {{coin}}": "Min: {{count}} {{coin}}",
   "Amount": "Amount",
   "Number of people": "Number of people",
-
   "Make it rain": "Make it rain",
   "Send a tip": "Send a tip",
   "Tip": "Tip",
   "Rain": "Rain",
-
   "Warning": "Warning",
   "password is too short": "password is too short",
   "password is too simple": "password is too simple",
@@ -110,7 +100,6 @@
   "Coins": "Coins",
   "No linked metamask account found. Please, sign up using metamask first.": "No linked metamask account found. Please, sign up using metamask first.",
   "No linked telegram account found. Please, sign up using telegram first.": "No linked telegram account found. Please, sign up using telegram first.",
-
   "Day": "Day",
   "Month": "Month",
   "Year": "Year",

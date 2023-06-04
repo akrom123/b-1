@@ -1,13 +1,7 @@
 export enum ProfileActionTypes {
   GetBasic = 'PROFILE.GET_BASIC',
-  GetIntermediate = 'PROFILE.GET_INTERMEDIATE',
-  GetAdvanced = 'PROFILE.GET_ADVANCED',
   SubmitBasic = 'PROFILE.SUBMIT_BASIC',
   SetBasic = 'PROFILE.SET_BASIC',
-  UploadIntermediate = 'PROFILE.UPLOAD_INTERMEDIATE',
-  UploadAdvanced = 'PROFILE.UPLOAD_ADVANCED',
-  SetIntermediate = 'PROFILE.SET_INTERMEDIATE',
-  SetAdvanced = 'PROFILE.SET_ADVANCED',
   Withdraw = 'PROFILE.WITHDRAW',
   WithdrawConfirm = 'PROFILE.WITHDRAW_CONFIRM',
   WithdrawRequestCode = 'PROFILE.REQUEST_CODE',

@@ -11,7 +11,7 @@
   color: var(--color-icon);
   border-radius: 1.44rem;
 
-  &.active {
+  &.activeLink {
     @include flexbox(center, flex-start);
     background-color: var(--color-background-4);
   }
@@ -30,7 +30,7 @@
       color: var(--color-brand-white)
     }
 
-    &.active {
+    &.activeLink {
       color: var(--color-brand)
     }
   }
@@ -43,9 +43,9 @@
 
 }
 
-.active .icon {
-  font-size: var(--font-size-bigger);
-}
+// .activeLink .icon {
+//   font-size: var(--font-size-bigger);
+// }
 
 @media(max-width: 1279.9px) {
   .link .icon {
@@ -96,8 +96,6 @@
     display: none
   }
 }
-
-
 
 .text {
   overflow: hidden;

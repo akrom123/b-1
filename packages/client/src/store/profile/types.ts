@@ -13,6 +13,7 @@ export interface ProfileKYCCreateRequest {
   country: string;
   region: string;
   zipCode: string;
+  terms: boolean;
 }
 
 export type WithdrawErrorTransformResult = {
@@ -55,7 +56,7 @@ export type TransactionAllList = TransactionAllItem[] | undefined;
 
 export type TransactionAllResponse = {
   total: number;
-  list: TransactionAllList;  
+  list: TransactionAllList;
 };
 
 export type TransactionAllRequest = {

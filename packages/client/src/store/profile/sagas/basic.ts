@@ -16,7 +16,7 @@ export function* profileSubmitBasicSaga({
 }: ReturnType<typeof profileSubmitBasic>) {
   try {
     yield put(profileSetBasic(values));
-    
+
     const data: ProfileKYCCreateRequest = {
       firstName: values.name,
       lastName: values.surname,
@@ -27,17 +27,18 @@ export function* profileSubmitBasicSaga({
       zipCode: values.zipCode,
       city: values.city,
       country: values.country,
+      terms: values.terms,
     };
 
     const state: ProfileState['basic'] = yield select();
-    
+
     if (state.isLoaded) {
       yield call(profileKYCUpdate, data);
     } else {
       yield call(profileKYCCreate, data);
       yield put(profileSetBasic({ isLoaded: true }));
     }
-    
+
     callback();
   } catch (e) {
     callback(profileBasicErrorToErrors(e.response.data));
@@ -57,6 +58,7 @@ export function* profileGetBasicSaga() {
       country: data.country,
       city: data.city,
       gender: data.gender.charAt(0).toUpperCase() + data.gender.slice(1) as Gender,
+      terms: data.terms,
     };
     yield put(profileSetBasic({ ...parsedData, isLoaded: true }));
   } catch (e) {

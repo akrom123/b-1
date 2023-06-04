@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo, ButtonHTMLAttributes } from 'react';
 import { coinNames, CoinType } from '@betnomi/libs/types';
-import { Option, Select } from '@betnomi/libs/components/Select';
+import { Option, Select, SelectColor } from '@betnomi/libs/components/Select';
 import { useTranslation } from '../../../i18n';
 import styles from './styles.module.scss';
 
@@ -79,6 +79,7 @@ const WalletSelectNetwork: FC<Props> = ({
       optionRenderer={optionRenderer}
       disabled={disabled}
       className={className}
+      color={SelectColor.Secondary}
     />
   );
 };

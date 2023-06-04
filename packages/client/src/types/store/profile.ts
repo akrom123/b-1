@@ -16,18 +16,6 @@ export interface ProfileFileState {
 
 export interface ProfileState {
   basic: BasicState
-  advanced: {
-    isLoaded: boolean,
-    isLoading: boolean,
-    [KYCFileType.SourceOfFunds]: ProfileFileState,
-    [KYCFileType.ProofOfAddress]: ProfileFileState,
-  },
-  intermediate: {
-    isLoaded: boolean,
-    isLoading: boolean,
-    [KYCFileType.ProofOfIdentityFront]: ProfileFileState,
-    [KYCFileType.ProofOfIdentityBack]: ProfileFileState,
-  },
   withdraw: {
     isLoading: boolean;
     coin: CoinType;
@@ -55,9 +43,4 @@ export interface ProfileState {
 export interface ProfileKYCBasicError {
   message: string
   fields?: { [key in keyof ProfileKYCBasicFormikValues]?: string }
-}
-
-export interface ProfileKYCAdvancedError {
-  message?: string
-  fields?: { [key in KYCFileType]?: string }
 }

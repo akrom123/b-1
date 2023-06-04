@@ -1,7 +1,10 @@
 export enum Routes {
   Homepage = '/',
   ProfileRoot = '/profile',
-  Profile = '/profile/:tab?/:subTab?',
+  ProfileKYC = '/profile/kyc/:tab?',
+  ProfileWallet = '/profile/wallet/:tab?',
+  ProfileDeposit = '/profile/wallet/deposit',
+  ProfileWithdraw = '/profile/wallet/withdraw',
   Casino = '/casino',
   Games = '/games',
   GamesSlug = '/game/:id',

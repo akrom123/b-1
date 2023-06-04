@@ -11,18 +11,6 @@ export const profileInitialState: Readonly<ProfileState> = {
     isLoaded: false,
     ...profileKYCBasicFormikValues,
   },
-  intermediate: {
-    isLoaded: false,
-    isLoading: true,
-    [KYCFileType.ProofOfIdentityBack]: emptyProfileFileState,
-    [KYCFileType.ProofOfIdentityFront]: emptyProfileFileState,
-  },
-  advanced: {
-    isLoaded: false,
-    isLoading: true,
-    [KYCFileType.ProofOfAddress]: emptyProfileFileState,
-    [KYCFileType.SourceOfFunds]: emptyProfileFileState,
-  },
   transactionAll: {
     isLoading: false,
     total: 0,

@@ -1,44 +1,133 @@
 @import "../../assets/styles/mixins";
 
-.container {
-  width: 100%;
-  @include flexbox(center, space-between);
 
-  background: var(--color-copytext-background);
-  border-radius: 8px;
-  padding: 8px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    margin-bottom: 16px;
+
+.wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 2.25rem;
+  justify-content: space-between;
+  grid-gap: .5rem;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: .5rem .5rem .5rem 1.13rem;
+  border-radius: 1.63rem;
+  background: var(--color-background-4);
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  line-height: 1.13rem;
+  font-weight: 500;
+
+  @media(max-width:639.9px) {
+    min-height: 4.33rem;
+    grid-template-columns: auto 3rem
   }
+}
+
+.secondary,
+.tertiary {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 2.75rem;
+  padding: 0 .56rem 0 1.25rem;
+
+  @media(max-width:639.9px) {
+
+    .CopyText_secondary__QJh_U,
+    .CopyText_tertiary__IiQl0 {
+      padding: 0 .81rem 0 1.5rem
+    }
+  }
+
+  .actionWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 14rem;
+    color: var(--color-brand);
+
+    .secondaryText {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .buttonGreen {
+      position: absolute;
+      right: .22rem;
+      display: flex;
+      align-items: center;
+      background: #6ad035;
+      border-radius: 4.08rem;
+      height: 2.24rem;
+      padding: 0 .89rem;
+      color: #fff;
+
+      @media(max-width:639.9px) {
+        height: 3.33rem;
+        font-size: 1.16rem
+      }
+    }
+
+    .tertiaryWrapper {
+      max-width: 13rem
+    }
+  }
+
+
+  @media(max-width:639.9px) {
+    .hideMobile {
+      display: none
+    }
+  }
+}
+
+.disabled,
+.disabled .actionWrapper {
+  color: var(--color-icon);
 }
 
 .text {
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: var(--font-weight-500);
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-white);
-  margin-right: 34px;
-  word-break: break-all;
-  @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
+  display: flex;
+  align-items: center;
+  word-break: break-all
 }
 
-.button {
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
   background: var(--color-copytext-button-background);
-  border-radius: 8px;
   color: var(--color-icon);
-  padding: 10px;
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 5px;
+  cursor: pointer;
+
+
+  @media(max-width:639.9px) {
+    width: 3rem;
+    height: 3rem
   }
+
 }
 
-.disabled {
-  opacity: 0.7;
+.disabled .icon {
+  display: none
+}
+
+.icon .secondary,
+.tertiary .icon {
+  background: transparent
+}
+
+.icon.copied {
+  color: var(--color-brand)
+}
+
+.iconWrapper {
+  display: flex
 }

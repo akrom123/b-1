@@ -6,9 +6,7 @@
   "VIP Lounge": "VIP Lounge",
   "Bonuses": "Bonuses",
   "Basic": "Basic",
-  "Intermediate": "Intermediate",
-  "Advanced": "Advanced",
-  "Deposits": "Deposits",
+  "Deposit": "Deposit",
   "Withdraw": "Withdraw",
   "Buy crypto": "Buy crypto",
   "Send a tip": "Send a tip",
@@ -17,7 +15,6 @@
   "Casino": "Casino",
   "Sports Bets History": "Sports Bets History",
   "General Settings": "General Settings",
-
   "Profile": "Profile",
   "Birthday": "Birthday",
   "Gender": "Gender",
@@ -32,15 +29,12 @@
   "Male": "Male",
   "Female": "Female",
   "Save Changes": "Save Changes",
-
   "Upload": "Upload",
   "Following file types are accepted {{types}}": "Following file types are accepted: {{types}}",
-
   "Starting time": "Starting time",
   "Game name": "Game name",
   "Bet": "Bet",
   "Odds": "Odds",
-
   "Select Coin": "Select Coin",
   "Available balance": "Available balance:",
   "Deposit Notice": "Deposit Notice",
@@ -48,19 +42,14 @@
   "2. Coins will be deposited after": "2. Coins will be deposited after",
   "{{count}} network": "{{count}} network",
   "{{count}} network_plural": "{{count}} networks",
-
   "confirmations.": "confirmations.",
   "Send only {{curency}} to this deposit address": "Send only {{curency}} to this deposit address",
   "Sending coin or token other than {{curency}} to this address may result in the loss of your deposit.": "Sending coin or token other than {{curency}} to this address may result in the loss of your deposit.",
   "Network name {{name}} {{curency}}": "Network name: {{name}} {{curency}}",
   "Average arrival time {{count}} minutes": "Average arrival time: {{count}} minute",
   "Average arrival time {{count}} minutes_plural": "Average arrival time: {{count}} minutes",
-  
-
   "Proof of Identity (Front)": "Proof of Identity (Front)",
   "Proof of Identity (Back)": "Proof of Identity (Back)",
-  "Profile KYC intermediate info title": "Please upload your Proof of Identity. All documents must be lying on a flat surface with all 4 corners inside the frame, and all information should be clear and identifiable. While screenshots of ID cards and Passport are acceptable, scanned documents are not.",
-  "Profile KYC advanced info title": "Please upload supporting documentation for your Source of Funds and Proof of Address. Documents lying on a flat surface must show all 4 corners and all information should be clear and identifiable.",
   "Source of Funds": "Source of Funds",
   "Proof of Address": "Proof of Address",
   "Please complete level one verification first": "Please complete level one verification first",
@@ -77,8 +66,6 @@
   "Unknown file type": "Unknown file type",
   "front file not found": "front file not found",
   "You can't modify this settings now": "You can't modify this settings now",
-  "Please complete intermediate level verification first": "Please complete intermediate level verification first",
-
   "Select your time range within 3 months": "Select your time range within 3 months",
   "Transaction Type": "Transaction Type",
   "Result": "Result",
@@ -105,7 +92,6 @@
   "Start Time": "Start Time",
   "End Time": "End Time",
   "to": "to",
-
   "{{coin}} spot balance": "{{coin}} spot balance",
   "Network fee": "Network fee",
   "Minimum withdrawal": "Minimum withdrawal",
@@ -131,4 +117,3 @@
   "Potential  Win": "Potential  Win",
   "Share": "Share"
 }
-

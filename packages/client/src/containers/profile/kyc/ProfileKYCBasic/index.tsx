@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import ProfileKYCBasicForm from '../../../../components/profile/ProfileKYCBasicForm';
 import { useProfileBasicFormik } from '../../../../hooks/formik/useProfileKYCBasicForm';
 
@@ -10,7 +10,7 @@ const ProfileKYCBasic: FC = () => {
       handleChange,
       errors,
       touched,
-      handleBlur,
+      setFieldValue,
     },
     variants,
     onSearch,
@@ -18,6 +18,11 @@ const ProfileKYCBasic: FC = () => {
     country,
     isLoading,
   } = useProfileBasicFormik();
+
+
+  const handleTerms = useCallback((v: boolean) => {
+    setFieldValue('terms', v);
+  }, [values]);
 
   return (
     <ProfileKYCBasicForm
@@ -32,20 +37,12 @@ const ProfileKYCBasic: FC = () => {
       onZipCodeChange={handleChange('zipCode')}
       onStreetChange={handleChange('street')}
       onCityChange={handleChange('city')}
-      onAreaChange={handleChange('area')}
       onCountryChange={onChangeCountry}
       onGenderChange={handleChange('gender')}
+      onTermsChange={handleTerms}
       onCountrySearch={onSearch}
-      onTouchName={handleBlur('name')}
-      onTouchSurname={handleBlur('surname')}
-      onTouchDate={handleBlur('date')}
-      onTouchZipCode={handleBlur('zipCode')}
-      onTouchStreet={handleBlur('street')}
-      onTouchCity={handleBlur('city')}
-      onTouchCountry={handleBlur('country')}
-      onTouchArea={handleBlur('area')}
       countryValue={country}
-      loading={isLoading}
+      loading={false}
     />
   );
 };

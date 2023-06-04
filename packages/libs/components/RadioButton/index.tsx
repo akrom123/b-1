@@ -3,16 +3,23 @@ import classNames from 'classnames';
 import { FontIcon, FontIconName } from '../FontIcon';
 import styles from './styles.module.scss';
 
+export enum RadioColor {
+  Primary = 'primary',
+  Secondary = 'secondary'
+}
+
 interface IProps {
   checked: boolean;
   onCheck: (val: boolean) => void;
   className?: string;
   hasError?: boolean;
   disabled?: boolean;
+  value?: any;
+  color?: RadioColor
 }
 
 const RadioButton: FC<IProps> = ({
-  checked, onCheck, children, className, hasError, disabled,
+  checked, onCheck, children, className, hasError, disabled, value, color = RadioColor.Primary
 }) => {
   const onMouseDown = useCallback((event) => {
     if (disabled) {
@@ -24,22 +31,20 @@ const RadioButton: FC<IProps> = ({
   }, [checked, disabled]);
 
   return (
-    <button
+    <label
       className={classNames(
-        styles.checkbox, className,
-        { [styles.checked]: checked },
+        styles.radioWrapper,
+        className,
+        styles[color],
         { [styles.disabled]: disabled },
+        { [styles.error]: hasError },
       )}
       onMouseDown={onMouseDown}
-      type="button"
     >
-      <span className={classNames(styles.inner, { [styles.error]: hasError })}>
-        {checked && <i className={styles.inner_circle} />}
-        {disabled && !checked &&
-          <FontIcon name={FontIconName.Close} size={'xxs'} className={styles.close} />}
-      </span>
-      {!!children && <div className={styles.label}>{children}</div>}
-    </button>
+      <input type={'radio'} value={value} className={styles.radio} checked={checked} />
+      <FontIcon name={FontIconName.Close} size={'xxs'} className={styles.icon} />
+      {!!children && <span className={styles.label}>{children}</span>}
+    </label>
   );
 };
 

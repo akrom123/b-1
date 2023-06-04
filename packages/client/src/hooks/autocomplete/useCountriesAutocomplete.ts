@@ -1,6 +1,6 @@
 import { useFakeSelectOptions } from '@betnomi/libs/hooks/storybook/useFakeSelectOptions';
 import {
-  useCallback, useEffect, useMemo, useState, 
+  useCallback, useEffect, useMemo, useState,
 } from 'react';
 
 export const useCountriesAutocomplete = (value: string) => {
@@ -11,9 +11,7 @@ export const useCountriesAutocomplete = (value: string) => {
     value,
   ]);
 
-  const variants = useMemo(() => options.filter(
-    (option) => option.label.toLowerCase().indexOf(input.toLowerCase() || value.toLowerCase()) >= 0,
-  ), [options, input, value]);
+  const variants = useMemo(() => options, [options]);
 
   const onSearch = useCallback((val: string) => setInput(val), [setInput]);
 

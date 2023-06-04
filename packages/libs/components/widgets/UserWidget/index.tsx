@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import classNames from 'classnames';
 import { Manager, Popper, Reference } from 'react-popper';
 import { PlayerLevel } from '../../../types/casino/levels';
@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 import imgConfirmed from '../../../assets/img/profile/confirmed.svg';
 import imgUnconfirmed from '../../../assets/img/profile/unconfirmed.svg';
 import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
+import { useOnClickOutside } from '@betnomi/libs/hooks/useOnClickOutside';
 
 export interface UserWidgetProps {
   level: PlayerLevel;
@@ -37,15 +38,19 @@ const UserWidget: FC<UserWidgetProps> = ({
     focused, onBlur, onFocus,
   } = useFocusEvent();
 
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOnClickOutside(ref, onBlur);
+
+
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} ref={ref}>
       <Manager>
         <Reference>
           {({ ref }) => (
             <button
               className={styles.widget}
-              onFocus={onFocus}
-              onBlur={onBlur}
+              // onBlur={onBlur}
               ref={ref}
               onClick={!focused ? onFocus : onBlur}
             >
@@ -72,12 +77,14 @@ const UserWidget: FC<UserWidgetProps> = ({
         {focused && (
           <Popper>
             {({
-              ref, style,
+              ref,
+              style,
             }) => (
               <div
                 className={classNames(styles.popper, { [styles.hidden]: !focused })}
                 ref={ref}
                 style={style}
+
               >
                 <UserMenu
                   confirmed={confirmed}

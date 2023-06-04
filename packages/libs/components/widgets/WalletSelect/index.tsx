@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useRef } from 'react';
 import { useHistory } from "react-router-dom"
 import { keys } from 'ramda';
 import classNames from 'classnames';
@@ -8,12 +8,11 @@ import Coin from '../../Coin';
 import { FontIcon, FontIconName } from '../../FontIcon';
 import Button from '../../Button';
 import styles from './styles.module.scss';
-import { PopperArrow } from '../../PopperArrow';
 import { useFocusEvent } from '../../../hooks/useFocusEvent';
 import { usePopperDropdown } from '../../../hooks/ui/usePopperDropdown';
 import { WalletSelectPopup } from '../WalletSelectPopup';
 import { Balance } from '../../Balance';
-import { HeaderToggleButton } from "@betnomi/client/src/components/layout/HeaderToggleButton";
+import { useOnClickOutside } from '@betnomi/libs/hooks/useOnClickOutside';
 
 export interface WalletSelectProps {
   balances: Partial<Record<CoinType, number>>;
@@ -39,6 +38,12 @@ const WalletSelect: FC<WalletSelectProps> = ({
   const { focused, onFocus, onBlur } = useFocusEvent();
   const modifiers = usePopperDropdown(0, 8);
   const history = useHistory();
+
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOnClickOutside(ref, () => onBlur());
+
 
   const selectedCoin = useMemo(
     () => (keys(balances).includes(selected) ? selected : ''),
@@ -69,8 +74,6 @@ const WalletSelect: FC<WalletSelectProps> = ({
             {({ ref }) => (
               <button
                 className={styles.widget}
-                onFocus={onFocus}
-                onBlur={onBlur}
                 ref={ref}
                 onClick={!focused ? onFocus : onBlur}
               >
@@ -90,7 +93,7 @@ const WalletSelect: FC<WalletSelectProps> = ({
           </Reference>
 
           <Popper modifiers={modifiers}>
-            {({ ref, style }) => (
+            {({ style }) => (
               <div
                 className={classNames(styles.popper, {
                   [styles.hidden]: !focused || keys(balances).length === 0,

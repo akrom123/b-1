@@ -3,7 +3,6 @@ import { Tabs } from '@betnomi/libs/components/tabs/Tabs';
 import { useRouteMatch } from 'react-router-dom';
 import { useTranslation } from '../../../../i18n';
 import { TabbedContent } from '../../../../components/common/TabbedContent';
-import { ProfileWalletTipping } from '../ProfileWalletTipping';
 import { useTabOrder } from '../../../../hooks/useTabOrder';
 import { Routes } from '../../../../constants/routes';
 import { ProfileWalletDeposit } from '../ProfileWalletDeposit';
@@ -12,11 +11,9 @@ import { ProfileWalletWithdraw } from '../ProfileWalletWithdraw';
 enum Tab {
   Deposit = 'deposit',
   Withdraw = 'withdraw',
-  Buy = 'buy',
-  Tip = 'tip',
 }
 
-const tabOrder = [Tab.Deposit, Tab.Withdraw, Tab.Buy, Tab.Tip];
+const tabOrder = [Tab.Deposit, Tab.Withdraw];
 
 interface Props {
   isMobile: boolean;
@@ -24,8 +21,8 @@ interface Props {
 
 const ProfileWallet: FC<Props> = ({ isMobile = false }) => {
   const { t } = useTranslation('profile');
-  const { params: { subTab } } = useRouteMatch<{ subTab: Tab }>();
-  const { active, onTabChange } = useTabOrder(tabOrder, subTab, `${Routes.ProfileRoot}/wallet`);
+  const { params: { tab } } = useRouteMatch<{ tab: Tab }>();
+  const { active, onTabChange } = useTabOrder(tabOrder, tab, `${Routes.ProfileRoot}/wallet`);
 
   return (
     <Tabs active={active} onChange={onTabChange} controlled>
@@ -33,37 +30,23 @@ const ProfileWallet: FC<Props> = ({ isMobile = false }) => {
         <TabbedContent.Tabs>
           {isMobile && (
             <Tabs.Head>
-              <span>{t('Deposits')}</span>
+              <span>{t('Deposit')}</span>
               <span>{t('Withdraw')}</span>
-              <span>{t('Send a tip')}</span>
             </Tabs.Head>
           )}
           {!isMobile && (
             <Tabs.Head>
-              <span>{t('Deposits')}</span>
+              <span>{t('Deposit')}</span>
               <span>{t('Withdraw')}</span>
-              <span>{t('Buy crypto')}</span>
-              <span>{t('Send a tip')}</span>
             </Tabs.Head>
           )}
         </TabbedContent.Tabs>
 
         <TabbedContent.Content>
-          {!isMobile && (
-            <Tabs.Content>
-              <ProfileWalletDeposit isMobile={isMobile} />
-              <ProfileWalletWithdraw />
-              <div>CONTENT (TBD)</div>
-              <ProfileWalletTipping />
-            </Tabs.Content>
-          )}
-          {isMobile && (
-            <Tabs.Content>
-              <ProfileWalletDeposit isMobile={isMobile} />
-              <ProfileWalletWithdraw />
-              <ProfileWalletTipping />
-            </Tabs.Content>
-          )}
+          <Tabs.Content>
+            <ProfileWalletDeposit />
+            <ProfileWalletWithdraw />
+          </Tabs.Content>
         </TabbedContent.Content>
       </TabbedContent>
     </Tabs>
