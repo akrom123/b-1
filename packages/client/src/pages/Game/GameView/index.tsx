@@ -5,6 +5,7 @@ import { Button } from '@betnomi/libs/components';
 import { useTranslation } from '../../../i18n';
 import cx from 'classnames';
 import playIcon from '@betnomi/libs/assets/img/icons/play.svg';
+import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
 
 
 interface IProps {
@@ -14,26 +15,33 @@ interface IProps {
 
 const GameView: FC<IProps> = ({ game, activeScreen }) => {
   const { t } = useTranslation();
-
+  game = {
+    background: 'https://images.betnomi.com/bb79a22e-6f37-4983-a10c-7e3dc184516a?auto=format&fit=max&w=3840&q=5',
+    url: 'https://demogamesfree.pragmaticplay.net/gs2c/html5Game.do?extGame=1&symbol=vs20kraken2&gname=Release%20the%20Kraken%202&jurisdictionID=99&lobbyUrl=https%3A%2F%2Fgames.betnomi.com%2FGoToHome%3FId%3D&mgckey=stylename@generic~SESSION@3ff6328a-2ca1-4fdc-b857-3439f0eecfb2'
+  }
+  const [play, setPlay] = useState(false)
+  const handlePlay = () => {
+    setPlay(true)
+  }
   return (
-    <div className={cx({ [styles.activeScreen]: activeScreen }, styles.gameView)}>
-      {game?.background ? <img className={styles.bgrImage} src={game.background} alt='' /> : <div className={styles.cap}>{''}</div>}
-      <div className={styles.gameOverlay}>
-        <Button className={styles.mobile_width}>
-          <img src={playIcon} width={12} height={16} alt="play btn" />
-          <span>{t('Real Play')}</span>
-        </Button>
-        <Button color={'gray'} className={styles.mobile_width}>
-          <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.04 7.3949L1.13091 0.122156C0.907638 -0.0262079 0.620365 -0.0407533 0.384728 0.0857924C0.147636
-                  0.212338 0 0.458884 0 0.727248V15.2727C0 15.5411 0.147637 15.7876 0.384001 15.9142C0.491637 15.9716 0.609456
-                  16 0.727274 16C0.868365 16 1.00946 15.9585 1.13091 15.8778L12.04 8.60508C12.2422 8.46981 12.3637 8.2429
-                  12.3637 7.99999C12.3637 7.75708 12.2422 7.53017 12.04 7.3949Z" fill="#C3C5CF" />
-          </svg>
-          <span>{t('Fun Play')}</span>
-        </Button>
-      </div>
-    </div>
+    <div className={cx({ [styles.activeScreen]: activeScreen }, styles.wrapper)}>
+      {
+        !play ?
+          <>
+            {game?.background ? <img className={styles.bgrImage} src={game.background} alt='' /> : <div className={styles.cap}>{''}</div>}
+            <div className={styles.overlay}>
+              <Button className={styles.button} onClick={handlePlay}>
+                <FontIcon name={FontIconName.PlaySecondary} />
+                <span>{t('Play now')}</span>
+              </Button>
+              <Button color={'gray'} className={styles.button} onClick={handlePlay}>
+                <FontIcon name={FontIconName.PlaySecondary} />
+                <span>{t('Fun Play')}</span>
+              </Button>
+            </div>
+          </> : <iframe className={styles.iframe} src={game.url} allowFullScreen />
+      }
+    </div >
   );
 }
 

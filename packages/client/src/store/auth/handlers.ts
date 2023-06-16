@@ -2,7 +2,7 @@ import { ActionFn } from '@betnomi/libs/types/redux';
 import { assocPath } from 'ramda';
 import { AuthState } from '../../types/store/auth';
 import {
-  authSetLogin, authSetRanks, authSetSignUp, authSetState, authSetTelegram, authSetUI, authSetUser,
+  authSetLogin, authSetRanks, authSetSignUp, authSetState, authSetUI, authSetUser,
 } from './actionCreators';
 import { AuthActionTypes } from './actionsTypes';
 
@@ -49,16 +49,6 @@ const setUI: AuthHandlerFn<typeof authSetUI> = (
   { payload },
 ) => assocPath(['ui'], { ...state.ui, ...payload }, state);
 
-const setOAuth: AuthHandlerFn<typeof authSetUI> = (
-  state,
-  { payload },
-) => assocPath(['oauth'], { ...state.oauth, ...payload }, state);
-
-const setTelegram: AuthHandlerFn<typeof authSetTelegram> = (
-  state,
-  { payload },
-) => assocPath(['telegram'], { ...state.telegram, ...payload }, state);
-
 export const authHandlers = {
   [AuthActionTypes.SetState]: setState,
   [AuthActionTypes.SetTokens]: setTokens,
@@ -67,6 +57,4 @@ export const authHandlers = {
   [AuthActionTypes.SetUser]: setUser,
   [AuthActionTypes.SetRanks]: setRanks,
   [AuthActionTypes.SetUI]: setUI,
-  [AuthActionTypes.SetOAuth]: setOAuth,
-  [AuthActionTypes.AuthSetTelegram]: setTelegram,
 };

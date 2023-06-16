@@ -1,8 +1,6 @@
 import { CoinType } from '@betnomi/libs/types';
-import { OAuthSuccessResponse } from '@betnomi/libs/types/auth/oauth';
-import { TelegramUser, AuthErrorTransformResult, AuthState } from '../../types/store/auth';
+import { AuthErrorTransformResult, AuthState } from '../../types/store/auth';
 import { AuthActionTypes } from './actionsTypes';
-import { OAuthLoginFormikValues } from '../../hooks/formik/useOAuthLoginFormik';
 
 export const authReady = () => ({ type: AuthActionTypes.Ready });
 
@@ -37,19 +35,6 @@ export const authLogin = (
   payload: { values: payload, callback },
 });
 
-export const authLoginWithMetamask = (callback: (error?: AuthErrorTransformResult) => void) => ({
-  type: AuthActionTypes.LoginMetamask,
-  payload: { callback },
-});
-
-export const authLoginTelegram = (
-  payload: TelegramUser,
-  callback: (error?: AuthErrorTransformResult) => void,
-) => ({
-  type: AuthActionTypes.LoginTelegram,
-  payload: { telegram: payload, callback },
-});
-
 export const authSignUp = (payload: {
   email: string;
   username: string;
@@ -61,28 +46,6 @@ callback: (error?: AuthErrorTransformResult) => void) => ({
   payload: { values: payload, callback },
 });
 
-export const authSignupTelegram = (
-  payload: { login: string, referralCode?: string; },
-  callback: (e?: string) => void,
-) => ({
-  type: AuthActionTypes.SignUpTelegram,
-  payload: { values: payload, callback },
-});
-
-export const authSetTelegram = (payload: TelegramUser) => ({
-  type: AuthActionTypes.AuthSetTelegram,
-  payload,
-});
-
-export const authSignUpWithMetamask = (payload: {
-  login: string
-  referralCode?: string;
-},
-callback: (error?: string) => void) => ({
-  type: AuthActionTypes.SignUpMetamask,
-  payload: { values: payload, callback },
-});
-
 export const authLogout = (payload?: { reason?: string }) => ({
   type: AuthActionTypes.Logout,
   payload,
@@ -90,11 +53,6 @@ export const authLogout = (payload?: { reason?: string }) => ({
 
 export const authSetUser = (payload: Partial<AuthState['user']>) => ({
   type: AuthActionTypes.SetUser,
-  payload,
-});
-
-export const authSetOAuth = (payload: Partial<AuthState['oauth']>) => ({
-  type: AuthActionTypes.SetOAuth,
   payload,
 });
 
@@ -122,18 +80,3 @@ export const authRestorePassword = (
 });
 
 export const authRefresh = () => ({ type: AuthActionTypes.Refresh });
-export const authOAuthLogin = (data: OAuthSuccessResponse) => ({
-  type: AuthActionTypes.OAuthLogin,
-  payload: {
-    data,
-  },
-});
-
-export const authOAuthSignup = (
-  payload: OAuthLoginFormikValues,
-  callback: (e?: string) => void,
-) => ({
-  type: AuthActionTypes.OAuthSignup,
-  payload,
-  callback,
-});

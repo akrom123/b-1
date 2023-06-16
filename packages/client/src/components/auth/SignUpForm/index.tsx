@@ -7,6 +7,7 @@ import { FontIconName, FontIcon } from '@betnomi/libs/components/FontIcon';
 import { FormikErrors, FormikTouched } from 'formik';
 import { SignUpFormikValues } from '../../../hooks/formik/useSignUpFormik';
 import styles from './styles.module.scss';
+import { TextInputColor } from '@betnomi/libs/types';
 
 interface IProps {
   values: SignUpFormikValues;
@@ -40,8 +41,8 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
   loading }) => {
   const { t } = useTranslation('main');
   return (
-    <form onSubmit={onSubmit}>
-      <div className={styles.user}>
+    <div className={styles.wrapper}>
+      <form onSubmit={onSubmit} className={styles.form}>
         <TextInput
           value={values.username}
           onChange={onUserChange}
@@ -49,60 +50,53 @@ export const SignUpForm: FC<IProps> = ({ onSubmit,
           placeholder={t('Username')}
           hasError={!!(errors.username && touched.username)}
           onBlur={handleBlurUser}
-          inputClasses={styles.background}
+          inputClasses={styles.textInput}
+          className={styles.input}
+          color={TextInputColor.Secondary}
+
         />
-      </div>
-      <div className={styles.email}>
         <TextInput
           value={values.email}
           onChange={onEmailChange}
-          left={<FontIcon name={FontIconName.Email} size={'s'} />}
+          left={<FontIcon name={FontIconName.Email} size={'s'} className={styles.fontIcon} />}
           placeholder={t('Email')}
           onBlur={handleBlurEmail}
           hasError={!!(errors.email && touched.email)}
-          inputClasses={styles.background}
+          inputClasses={styles.textInput}
+          className={styles.input}
+          color={TextInputColor.Secondary}
         />
-      </div>
-      <div className={styles.password}>
         <TextInput
           type="password"
           value={values.password}
           onChange={onPasswordChange}
-          left={<FontIcon name={FontIconName.Lock} size={'s'} />}
+          left={<FontIcon name={FontIconName.Lock} size={'s'} className={styles.fontIcon} />}
           placeholder={t('Password')}
           hasError={!!(errors.password && touched.password)}
           onBlur={handleBlurPassword}
-          inputClasses={styles.background}
+          inputClasses={styles.textInput}
+          className={styles.input}
+          color={TextInputColor.Secondary}
         />
-      </div>
-      <div className={styles.referral}>
-        <Spoiler title={<span>{t('Referral/ Promo code (optional)')}</span>}>
-          <TextInput
-            placeholder={t('Enter your code')}
-            onChange={onRefferalChange}
-            value={values.referralCode}
-          />
-        </Spoiler>
-      </div>
-      <div className={styles.terms}>
-        <Checkbox
-          checked={values.terms}
-          onCheck={onTermsChange}
-          className={styles.terms_checkbox}
-          hasError={!!(errors.terms && touched.terms)}
-        >
-          <div className={styles.terms_text}>
+        <div className={styles.terms}>
+          <Checkbox
+            checked={values.terms}
+            onCheck={onTermsChange}
+            className={styles.checkbox}
+            hasError={!!(errors.terms && touched.terms)}
+            labelClassName={styles.checkboxLabel}
+          >
             {t('I agree to all')}
+            {' '}
             <Link to={process.env.REACT_APP_TERMS_URL || '#'} className={styles.terms_link} stopPropagation>
-              {' '}
               {t('Terms & Conditions')}
-              {' '}
             </Link>
+            {' '}
             {t('and I am over 18 years of age')}
-          </div>
-        </Checkbox>
-      </div>
-      <Button type="submit" className={styles.submit_button} isLoading={loading}>{t('Sign Up')}</Button>
-    </form>
+          </Checkbox>
+        </div>
+        <Button type="submit" className={styles.submit} isLoading={loading}>{t('Sign Up')}</Button>
+      </form>
+    </div>
   );
 };

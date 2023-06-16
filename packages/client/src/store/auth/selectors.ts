@@ -11,5 +11,3 @@ export const selectAuthRanksMy = (state: State) => state.auth.ranks.my;
 export const selectAuthUI = (state: State) => state.auth.ui;
 export const selectAuthLogin = (state: State) => state.auth.login;
 export const selectAuthSignUp = (state:State) => state.auth.signUp;
-export const selectAuthOAuth = (state:State) => state.auth.oauth;
-export const selectAuthTelegram = (state:State) => state.auth.telegram;

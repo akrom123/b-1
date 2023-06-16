@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from '@betnomi/libs/utils/i18n';
 import { FormikHelpers } from 'formik';
@@ -11,12 +11,26 @@ import { RestorePasswordValues, useRestorePasswordFormik } from '../../hooks/for
 import { ModalComponentProps } from '../../components/modal/Modal';
 import styles from './styles.module.scss';
 
-interface IProps extends ModalComponentProps {}
+interface IProps extends ModalComponentProps { }
 
 export const RestorePasswordModal: React.FC<IProps> = ({ onCloseModal }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('main');
   const { showErrorToast, hideToast } = useToasts();
+
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    setIsMobile(isMobile)
+  }
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+
 
   const onSubmit = useCallback(
     (
@@ -24,7 +38,7 @@ export const RestorePasswordModal: React.FC<IProps> = ({ onCloseModal }) => {
       { resetForm, setErrors }: FormikHelpers<RestorePasswordValues>,
     ) => {
       hideToast();
-      
+
       const callback = (e?: AuthErrorTransformResult) => {
         if (e) {
           if (e.message) {
@@ -33,7 +47,7 @@ export const RestorePasswordModal: React.FC<IProps> = ({ onCloseModal }) => {
           if (e.fields) {
             setErrors(e.fields);
           }
-          return; 
+          return;
         }
         resetForm();
       };
@@ -52,24 +66,24 @@ export const RestorePasswordModal: React.FC<IProps> = ({ onCloseModal }) => {
     <HocModal
       onClose={onCloseModal}
       title={(
-        <span className={styles.label}>
+        <span className={styles.head}>
           {t('Lost your password?')}
         </span>
       )}
+      className={styles.wrapper}
+      style={{ width: isMobile ? '100%' : '27rem' }}
     >
-      <div className={styles.out}>
-        <p className={styles.desc}>
-          {t('No worries, just enter the email registered to your Betnomi account and we will send you a password reset link.')}
-        </p>
-        <RestorePasswordForm
-          values={values}
-          onUserChange={handleChange('username')}
-          handleBlurUser={handleBlur('username')}
-          onSubmit={handleSubmit}
-          errors={errors}
-          touched={touched}
-        />
-      </div>
+      <p className={styles.desc}>
+        {t('No worries, just enter the email registered to your Betnomi account and we will send you a password reset link.')}
+      </p>
+      <RestorePasswordForm
+        values={values}
+        onUserChange={handleChange('username')}
+        handleBlurUser={handleBlur('username')}
+        onSubmit={handleSubmit}
+        errors={errors}
+        touched={touched}
+      />
     </HocModal>
   );
 };

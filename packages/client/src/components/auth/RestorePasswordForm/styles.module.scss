@@ -1,7 +1,32 @@
-.input_out {
-  margin-bottom: 16px;
-}
+.wrapper .form {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: .75rem;
 
-.submit_button {
-  width: 100%;
+
+  @media(max-width: 639.9px) {
+    margin-top: 1rem;
+    grid-gap: 1rem
+  }
+
+  .input {
+    color: var(--color-icon);
+
+    @media(max-width: 639.9px) {
+      height: 3.66rem;
+      border-radius: 3.66rem
+    }
+  }
+
+  .submit {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: .75rem;
+
+    @media(max-width: 639.9px) {
+      font-size: 1.33rem;
+      height: 3.66rem;
+      border-radius: 3.66rem
+    }
+  }
 }

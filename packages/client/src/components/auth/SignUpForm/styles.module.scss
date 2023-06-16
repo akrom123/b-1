@@ -1,58 +1,87 @@
 @import "~@betnomi/libs/assets/styles/_variables";
 @import "~@betnomi/libs/assets/styles/_mixins";
 
-.user {
-  margin-bottom: 12px;
+.wrapper .form {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: .75rem;
+
+
+  @media(max-width: 639.9px) {
+    margin-top: 1rem;
+    grid-gap: 1rem
+  }
+
+  .input {
+    color: var(--color-icon);
+
+    @media(max-width: 639.9px) {
+      height: 3.66rem;
+      border-radius: 3.66rem
+    }
+  }
+
+  .submit {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-top: .75rem;
+
+    @media(max-width: 639.9px) {
+      font-size: 1.33rem;
+      height: 3.66rem;
+      border-radius: 3.66rem
+    }
+  }
 }
 
-.email {
-  margin-bottom: 12px;
+
+@media(max-width: 639.9px) {
+  .textInput {
+    font-size: 1.33rem;
+
+    &::-webkit-input-placeholder {
+      font-size: 1.33rem
+    }
+
+    &::placeholder {
+      font-size: 1.33rem
+    }
+  }
+
+  .fontIcon {
+    font-size: 1.33rem
+  }
 }
 
-.password {
-  margin-bottom: 12px;
+
+
+
+.checkbox {
+  margin-top: .75rem;
+
+  @media(max-width: 639.9px) {
+    margin-top: 1rem;
+
+    i {
+      flex-shrink: 0;
+      width: 1.66rem;
+      height: 1.66rem;
+      border-radius: .33rem
+    }
+  }
 }
 
-.referral {
-  margin-bottom: 24px;
-  transition: all $transition-time;
-}
+.checkboxLabel {
+  font-size: var(--font-size-small);
+  line-height: calc(var(--font-size-small) + .25rem);
 
-.restore_button {
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-button);
-  margin-bottom: 33px;
-}
+  a {
+    color: var(--color-brand)
+  }
 
-.terms {
-  margin-bottom: 16px;
-}
-
-.terms_checkbox {
-  @include flexbox(flex-start, space-between);
-}
-
-.terms_text {
-  max-width: 329px;
-  font-family: Inter;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-button);
-  text-align: left;
-}
-
-.terms_link {
-  color: var(--color-brand) !important;
-  display: inline;
-}
-
-.submit_button {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.background {
-  background-color: var(--color-input-background);
+  @media(max-width: 639.9px) {
+    font-size: 1.16rem;
+    line-height: 1.5rem;
+    margin-left: .66rem
+  }
 }

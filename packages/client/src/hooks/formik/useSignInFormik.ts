@@ -7,16 +7,18 @@ type Config = FormikConfig<SignInFormikValues>;
 export interface SignInFormikValues {
   username: string;
   password: string;
+  rememberMe: boolean;
 }
 
 export const signInInitialValues: SignInFormikValues = {
   username: '',
   password: '',
+  rememberMe: false,
 };
 
 const signinSchema = yup.object({
   username: yup.string().required(),
-  password: yup.string().required(), 
+  password: yup.string().required(),
 });
 
 export const useSignInFormik = (

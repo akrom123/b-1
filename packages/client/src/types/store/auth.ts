@@ -1,6 +1,5 @@
 import { PlayerLevel } from '@betnomi/libs/types/casino/levels';
 import { CoinType } from '@betnomi/libs/types';
-import { OAuthProvider } from '@betnomi/libs/types/auth/oauth';
 
 export interface AuthState {
   access: string;
@@ -32,11 +31,6 @@ export interface AuthState {
     list: Record<PlayerLevel, AffiliateRank> | undefined;
     my: AffiliateStatus;
   };
-  oauth: {
-    provider?: OAuthProvider,
-    token: string,
-  };
-  telegram: TelegramUser,
   viewInUSD: boolean,
 }
 
@@ -69,13 +63,6 @@ export interface AffiliateStatus {
   updatedAt: number;
 }
 
-export enum SocialRegisterButtons {
-  Google = 'google',
-  Facebook = 'facebook',
-  Telegram = 'telegram',
-  Metamask = 'metamask',
-}
-
 export type SignUpErrorReponse = {
   code: number,
   message: string, 
@@ -94,13 +81,3 @@ export type AuthErrorTransformResult = {
   message: string;
   fields: { [key in FieldKey]?: string };
 };
-
-export interface TelegramUser {
-  id: string
-  first_name: string
-  last_name: string
-  username: string
-  photo_url: string
-  auth_date: string
-  hash: string
-}

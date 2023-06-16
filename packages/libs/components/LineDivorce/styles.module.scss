@@ -1,19 +1,33 @@
 @import "~@betnomi/libs/assets/styles/mixins";
 
-.out {
-  @include flexbox(center, center);
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+
+  @media(max-width: 639.9px) {
+    margin: 1.33rem 0
+  }
 }
 
+
 .line {
-  width: 50%;
-  height: 1px;
+  flex: 1 1;
   background: var(--color-line-1);
+  height: .06rem
 }
 
 .text {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: var(--font-size-small);
+  line-height: 1;
+  font-weight: 500;
   color: var(--color-icon);
-  margin: 0 10px;
-  flex-shrink: 0;
+  margin: 0 .63rem;
+  white-space: nowrap;
+
+  @media(max-width: 639.9px) {
+    font-size: 1.16rem;
+    line-height: 1.16rem
+  }
 }

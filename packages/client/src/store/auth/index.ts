@@ -45,19 +45,6 @@ export const authInitialState: Readonly<AuthState> = {
       updatedAt: 0,
     },
   },
-  oauth: {
-    provider: undefined,
-    token: '',
-  },
-  telegram: {
-    id: '',
-    first_name: '',
-    last_name: '',
-    username: '',
-    photo_url: '',
-    auth_date: '',
-    hash: '',
-  },
   viewInUSD: true,
 };
 

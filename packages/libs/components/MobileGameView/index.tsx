@@ -4,15 +4,21 @@ import Button from '@betnomi/libs/components/Button';
 import { FontIcon, FontIconName } from '@betnomi/libs/components/FontIcon';
 import { CloseButton } from '@betnomi/libs/components/CloseButton';
 import { ButtonColor } from '@betnomi/libs/types';
+import { useHistory } from 'react-router-dom';
 
 interface IMobileGameViewProps {
   onClose: () => void
 }
 
-export const MobileGameView: React.FC<IMobileGameViewProps> = ({onClose}) => {
+export const MobileGameView: React.FC<IMobileGameViewProps> = ({ onClose }) => {
+  const { push } = useHistory()
+  const handleClick = () => {
+    push('/game/123');
+    onClose()
+  }
   return <div className={styles.gameDrawer}>
     <div className={styles.content}>
-      <CloseButton className={styles.closeIcon} onClick={onClose}/>
+      <CloseButton className={styles.closeIcon} onClick={onClose} />
       <div className={styles.gameImg}>
         <img
           src={'https://images.betnomi.com/8be03935-91dd-44f4-a47c-044d4f88af6cn?auto=format&fit=max&w=256&q=10'} />
@@ -31,11 +37,11 @@ export const MobileGameView: React.FC<IMobileGameViewProps> = ({onClose}) => {
           </span>
         </div>
         <div className={styles.playButtons}>
-          <Button size="m" className={styles.button}>
+          <Button size="m" className={styles.button} onClick={handleClick}>
             <FontIcon name={FontIconName.PlaySecondary} />
             Play now
           </Button>
-          <Button size="m" className={styles.button} color={ButtonColor.SecondaryAlt}>
+          <Button size="m" className={styles.button} color={ButtonColor.SecondaryAlt} onClick={handleClick}>
             <FontIcon name={FontIconName.PlaySecondary} />
             Fun Play
           </Button>

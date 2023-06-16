@@ -8,11 +8,6 @@ export interface AuthLoginResponse {
   playCurrency: CoinType;
 }
 
-export interface AuthMetamaskPreSignedResponse {
-  walletAddress: string;
-  nonce: string;
-}
-
 export interface AuthSignUpResponse {}
 
 export interface AuthRefreshResponse {
@@ -71,11 +66,4 @@ export interface AuthAffiliateGetAccountsResponse {
     createdAt: string;
     updatedAt: string;
   }[];
-}
-
-export interface AuthOAuthSignupRequest {
-  login: string;
-  referrerID?: string;
-  referrerLogin?: string;
-  referralCode?: string;
 }

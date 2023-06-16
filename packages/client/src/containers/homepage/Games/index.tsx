@@ -23,6 +23,7 @@ import { useUserUI } from 'hooks/useUserUI';
 import { Chips } from '@betnomi/libs/components/Chips';
 import { FontIconName } from '@betnomi/libs/components/FontIcon';
 import { gameShow } from '../../../store/game/actionCreators';
+import { useHistory } from 'react-router-dom';
 
 
 interface IProps {
@@ -195,6 +196,7 @@ const promotionsBreakpoints: Breakpoints = {
 
 const Games: FC<IProps> = ({ isMobile }) => {
   const dispatch = useDispatch();
+  const { push } = useHistory()
   const {
     gameProviders, isLoading,
   } = useShallowSelector(selectHomeGames);
@@ -203,7 +205,9 @@ const Games: FC<IProps> = ({ isMobile }) => {
 
   const smScreen = window.matchMedia('(max-width:639px)').matches;
   const openDrawer = useCallback(
-    () => smScreen && dispatch(gameShow()),
+    () => {
+      smScreen ? dispatch(gameShow()) : push('/game/123')
+    },
     [],
   );
 

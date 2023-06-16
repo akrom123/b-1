@@ -6,17 +6,17 @@ import { GameOverlay } from '@betnomi/libs/components/GameOverlay';
 
 interface IProps {
     className?: string
-    handlePlayGamxe?: () => void
+    handlePlayGame?: () => void
 }
 
 const GameCard: FC<IProps> = ({ className, handlePlayGame }) => {
 
     return (
-        <div className={cx(styles.gameCard, className)}>
+        <div className={cx(styles.gameCard, className)} onClick={handlePlayGame}>
             <img
-            className={styles.gameCardImage}
-             src="https://images.betnomi.com/8be03935-91dd-44f4-a47c-044d4f88af6c?auto=format&fit=max&w=3840&q=20"
-              />
+                className={styles.gameCardImage}
+                src="https://images.betnomi.com/8be03935-91dd-44f4-a47c-044d4f88af6c?auto=format&fit=max&w=3840&q=20"
+            />
             <GameOverlay className={styles.gameCardOverlay} />
         </div>
     )

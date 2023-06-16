@@ -1,32 +1,41 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { LineDivorce } from '@betnomi/libs/components';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from '@betnomi/libs/utils/i18n';
 import { FormikHelpers } from 'formik';
 import { useModal } from 'hooks/useModal';
 import { useToasts } from '@betnomi/libs/hooks/useToasts';
-import { LoginBanner } from '../../components/auth/LoginBanner';
 import { HocModal } from '../../components/modal/HocModal';
 import { SignUpForm } from '../../components/auth/SignUpForm';
 import { ModalType } from '../../store/modal/types';
-import { ModalSwitcher } from '../../components/modal/ModalSwitcher';
 import { authSignUp } from '../../store/auth/actionCreators';
 import { SignUpFormikValues, useSignUpFormik } from '../../hooks/formik/useSignUpFormik';
 import { ModalComponentProps } from '../../components/modal/Modal';
 import useShallowSelector from '../../hooks/useShallowSelector';
 import { selectAuthSignUp } from '../../store/auth/selectors';
 import { AuthErrorTransformResult } from '../../types/store/auth';
-import { SocialButtonContainer } from '../SocialButtonContainer';
 import styles from './styles.module.scss';
 
-interface IProps extends ModalComponentProps {}
+interface IProps extends ModalComponentProps { }
 
-export const SignUpModal:React.FC<IProps> = ({ onCloseModal }) => {
+export const SignUpModal: React.FC<IProps> = ({ onCloseModal }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation('main');
   const { isLoading } = useShallowSelector(selectAuthSignUp);
   const { showModal } = useModal();
   const { showErrorToast, hideToast } = useToasts();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    setIsMobile(isMobile)
+  }
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
 
   const onSubmit = useCallback(
     (
@@ -43,7 +52,7 @@ export const SignUpModal:React.FC<IProps> = ({ onCloseModal }) => {
           if (e.fields) {
             setErrors(e.fields);
           }
-          return; 
+          return;
         }
 
         resetForm();
@@ -58,30 +67,28 @@ export const SignUpModal:React.FC<IProps> = ({ onCloseModal }) => {
     setFieldValue, errors, touched, handleBlur,
   } = useSignUpFormik(
     {
-      username: '', password: '', email: '', referralCode: '', terms: false, 
+      username: '', password: '', email: '', referralCode: '', terms: false,
     },
     onSubmit,
   );
   const handleTerms = useCallback((v: boolean) => {
     setFieldValue('terms', v);
   }, [values]);
-  
+
   return (
     <HocModal
       onClose={onCloseModal}
       title={(
         <span className={styles.label}>
-          {t('Welcome to')}
-          <b>
+          {t('Welcome back to')}
+          <span className={styles.brand}>
             {' '}
             {t('Betnomi')}
-          </b>
+          </span>
         </span>
       )}
+      style={{ width: isMobile ? '100%' : '27rem' }}
     >
-      <div className={styles.banner}>
-        <LoginBanner />
-      </div>
       <SignUpForm
         values={values}
         onUserChange={handleChange('username')}
@@ -97,14 +104,11 @@ export const SignUpModal:React.FC<IProps> = ({ onCloseModal }) => {
         handleBlurPassword={handleBlur('password')}
         handleBlurEmail={handleBlur('email')}
       />
-      <LineDivorce text={t('Or sign in with')} />
-      <div className={styles.socials_wrap}>
-        <SocialButtonContainer />
+      <LineDivorce />
+      <div className={styles.footer}>
+        {t("Do you have an account?")} {' '}
+        <span onClick={showModal(ModalType.SignIn)}>{t('Sign In')}</span>
       </div>
-      <div className={styles.line_out}>
-        <LineDivorce />
-      </div>
-      <ModalSwitcher labelTo={t('Signin')} onModalSwitch={showModal(ModalType.SignIn)} desc={t('Do you have an account?')} />
     </HocModal>
   );
 };

@@ -6,7 +6,7 @@ type Props = {
 };
 
 const LineDivorce: React.FC<Props> = ({ text }) => (
-  <div className={styles.out}>
+  <div className={styles.wrapper}>
     <div className={styles.line} />
     {text && <div className={styles.text}>{text}</div>}
     <div className={styles.line} />

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { LineDivorce } from '@betnomi/libs/components';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from '@betnomi/libs/utils/i18n';
@@ -7,20 +7,17 @@ import { FormikHelpers } from 'formik';
 import { useModal } from 'hooks/useModal';
 import { useToasts } from '@betnomi/libs/hooks/useToasts';
 import { AuthErrorTransformResult } from '../../types/store/auth';
-import { LoginBanner } from '../../components/auth/LoginBanner';
 import { HocModal } from '../../components/modal/HocModal';
 import { SignInForm } from '../../components/auth/SignInForm';
 import { ModalType } from '../../store/modal/types';
-import { ModalSwitcher } from '../../components/modal/ModalSwitcher';
 import { authLogin } from '../../store/auth/actionCreators';
 import { SignInFormikValues, useSignInFormik } from '../../hooks/formik/useSignInFormik';
 import useShallowSelector from '../../hooks/useShallowSelector';
 import { selectAuthLogin } from '../../store/auth/selectors';
 import { ModalComponentProps } from '../../components/modal/Modal';
-import { SocialButtonContainer } from '../SocialButtonContainer';
 import styles from './styles.module.scss';
 
-interface IProps extends ModalComponentProps {}
+interface IProps extends ModalComponentProps { }
 
 export const SignInModal: React.FC<IProps> = ({ onCloseModal }) => {
   const dispatch = useDispatch();
@@ -28,6 +25,18 @@ export const SignInModal: React.FC<IProps> = ({ onCloseModal }) => {
   const { isLoading } = useShallowSelector(selectAuthLogin);
   const { showModal } = useModal();
   const { showErrorToast, hideToast } = useToasts();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    setIsMobile(isMobile)
+  }
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
 
   const onSubmit = useCallback(
     (
@@ -62,8 +71,13 @@ export const SignInModal: React.FC<IProps> = ({ onCloseModal }) => {
     errors,
     touched,
     handleBlur,
+    setFieldValue,
   } = useSignInFormik(
-    { username: 'testvnd@test.com', password: 'Password1a' },
+    {
+      username: 'testvnd@test.com',
+      password: 'Password1a',
+      rememberMe: false,
+    },
     onSubmit,
   );
 
@@ -73,20 +87,19 @@ export const SignInModal: React.FC<IProps> = ({ onCloseModal }) => {
       title={(
         <span className={styles.label}>
           {t('Welcome back to')}
-          <b>
+          <span className={styles.brand}>
             {' '}
             {t('Betnomi')}
-          </b>
+          </span>
         </span>
       )}
+      style={{ width: isMobile ? '100%' : '27rem' }}
     >
-      <div className={styles.banner}>
-        <LoginBanner />
-      </div>
       <SignInForm
         values={values}
         onUserChange={handleChange('username')}
         onPasswordChange={handleChange('password')}
+        onRememberMeChange={(val) => setFieldValue('rememberMe', val)}
         onSubmit={handleSubmit}
         onRestoreOpen={showModal(ModalType.RestorePassword)}
         handleBlurUser={handleBlur('username')}
@@ -95,18 +108,11 @@ export const SignInModal: React.FC<IProps> = ({ onCloseModal }) => {
         touched={touched}
         loading={isLoading}
       />
-      <LineDivorce text={t('Or sign in with')} />
-      <div className={styles.socials_wrap}>
-        <SocialButtonContainer signin />
+      <LineDivorce />
+      <div className={styles.footer}>
+        {t("Don't have an account?")} {' '}
+        <span onClick={showModal(ModalType.SignUp)}>{t('Sign Up')}</span>
       </div>
-      <div className={styles.line_out}>
-        <LineDivorce />
-      </div>
-      <ModalSwitcher
-        labelTo={t('Signup')}
-        onModalSwitch={showModal(ModalType.SignUp)}
-        desc={t("Don't have an account?")}
-      />
     </HocModal>
   );
 };

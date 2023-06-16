@@ -12,13 +12,5 @@ export enum AuthActionTypes {
   SetRanks = 'AUTH.SET_RANKS',
   SelectCurrency = 'AUTH.SELECT_CURRENCY',
   SetUI = 'AUTH.SET_UI',
-  SetOAuth = 'AUTH.SET_OAUTH',
   RestorePassword = 'AUTH.RESTORE_PASSWORD',
-  LoginMetamask = 'AUTH.LOGIN_METAMASK',
-  SignUpMetamask = 'AUTH.SIGNUP_METAMASK',
-  OAuthLogin = 'AUTH.OAUTH_LOGIN',
-  OAuthSignup = 'AUTH.OAUTH_SIGNUP',
-  LoginTelegram = 'AUTH.LOGIN_TELEGRAM',
-  SignUpTelegram = 'AUTH.SING_UP_TELEGRAM',
-  AuthSetTelegram = 'AUTH.SET_TELEGRAM',
 }

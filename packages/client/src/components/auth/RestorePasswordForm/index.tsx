@@ -6,6 +6,7 @@ import { useTranslation } from '@betnomi/libs/utils/i18n';
 import { FormikErrors, FormikTouched } from 'formik';
 import { RestorePasswordValues } from '../../../hooks/formik/useRestorePasswordFormik';
 import styles from './styles.module.scss';
+import { TextInputColor } from '@betnomi/libs/types';
 
 interface IProps {
   loading?: boolean;
@@ -24,23 +25,26 @@ export const RestorePasswordForm: React.FC<IProps> = ({
   const { t } = useTranslation('main');
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className={styles.input_out}>
-        <TextInput 
-          value={values.username} 
+    <div className={styles.wrapper}>
+      <form onSubmit={onSubmit} className={styles.form}>
+        <TextInput
+          value={values.username}
           onChange={onUserChange}
           left={<FontIcon name={FontIconName.User} size={'s'} />}
           placeholder={t('Username or Email')}
           hasError={!!(errors.username && touched.username)}
+          inputClasses={styles.textInput}
+          className={styles.input}
+          color={TextInputColor.Secondary}
         />
-      </div>
-      <Button
-        type="submit"
-        className={styles.submit_button}
-        isLoading={loading}
-      >
-        {t('Resend password')}
-      </Button>
-    </form>
+        <Button
+          type="submit"
+          className={styles.submit}
+          isLoading={loading}
+        >
+          {t('Resend password')}
+        </Button>
+      </form>
+    </div>
   );
 };

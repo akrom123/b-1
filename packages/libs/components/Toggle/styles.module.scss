@@ -1,7 +1,36 @@
 @import "~@betnomi/libs/assets/styles/variables";
 
-.toggle {
+.wrapper {
+  display: flex;
+  grid-auto-flow: column;
+  align-items: center;
+  cursor: pointer;
+}
 
+.label,
+.preLabel {
+  white-space: nowrap;
+  color: var(--color-button)
+}
+
+.label {
+  margin-left: .5rem
+}
+
+.checkbox:checked:not(:disabled)~.label {
+  color: var(--color-white)
+}
+
+.preLabel {
+  margin-right: .5rem
+}
+
+.checkbox:not(:checked):not(:disabled)~.preLabel {
+  color: var(--color-white)
+}
+
+.toggle {
+  display: inline-flex;
   position: relative;
   background-color: var(--color-input-background);
   transition: all var(--transition-time-primary);
@@ -22,27 +51,30 @@
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%)
   }
+}
 
-  &.active {
-    background-color: var(--color-brand)
-  }
+.checkbox:checked~.toggle {
+  background-color: var(--color-brand)
+}
 
-  &.active:after {
-    background-color: var(--color-white);
-    -webkit-transform: translate(calc(-50% + var(--size) / 2), -50%);
-    transform: translate(calc(-50% + var(--size) / 2), -50%)
-  }
+.checkbox:checked~.toggle:after {
+  background-color: var(--color-white);
+  -webkit-transform: translate(calc(-50% + var(--size)/2), -50%);
+  transform: translate(calc(-50% + var(--size)/2), -50%)
+}
 
-  &.disabled {
-    background-color: var(--color-input-background);
+.checkbox:disabled~.toggle {
+  background-color: var(--color-input-background)
+}
 
-    &:after {
-      background-color: var(--color-checkbox-disabled)
-    }
-  }
+.checkbox:disabled~.toggle:after {
+  background-color: var(--color-checkbox-disabled)
+}
 
-  &.sizeM {
-    --size: 1.5rem
-  }
+.sizeM {
+  --size: 1.5rem
+}
 
+.checkbox {
+  display: none
 }

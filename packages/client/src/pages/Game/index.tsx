@@ -14,39 +14,70 @@ import GameBottomMenu from './GameMenu';
 import { useShallowSelector } from '../../hooks';
 import { useTranslation } from '../../i18n';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { gameShow } from '../../store/game/actionCreators';
 
 import {
   useParams,
 } from 'react-router-dom';
 
 import styles from './styles.module.scss';
+import { useDispatch } from 'react-redux';
 
 interface IProps {
 }
 
-
-const slotsBreakpoints: Breakpoints = {
-  '(max-width: 639px)': {
-    slides: {
-      perView: 5
-    }
-  },
-  '(min-width: 640px)': {
-    slides: {
-      perView: 6
-    }
-  },
-};
-
 const GameSlug: FC<IProps> = () => {
   const [isMobile, setIsMobile] = useState(false);
   const { gameProviders, isLoading, ...allGames } = useShallowSelector(selectHomeGames);
+
+  const dispatch = useDispatch();
   const { isChatActive } = useShallowSelector(selectAuthUI);
   const { t } = useTranslation();
   let { id: gameId } = useParams();
 
 
+  const slotsBreakpoints: Breakpoints = {
+    '(max-width: 479px)': {
+      slides: {
+        perView: 3,
+        spacing: 14
+      }
+    },
+    '(min-width: 480px) and (max-width: 639px)': {
+      slides: {
+        perView: 5,
+        spacing: 16
+      }
+    },
+    '(min-width: 640px)': {
+      slides: {
+        perView: 6,
+        spacing: 14
+      }
+    },
+  };
+
+
   const [activeGame, setActiveGame]: any = useState(null);
+
+  const gameImgSizes = {
+    slots: {
+      width: 256,
+      height: 356
+    },
+  };
+
+  const slots = Array(15).fill({
+    icon_3: 'https://images.betnomi.com/37697206-322b-4a14-9ce8-e6b502e54a36?auto=format&fit=max&w=3840&q=20',
+    background: '',
+    blocked_currencies: [],
+    categories: [],
+    description: 'string',
+    front_game_id: '',
+    icon_2: '',
+    id: '',
+    name: '',
+  })
 
   useEffect(() => {
     let game: any;
@@ -88,18 +119,12 @@ const GameSlug: FC<IProps> = () => {
     />
   )), []);
 
-  const smallScreen = window.matchMedia('(min-width:768px) and (max-width: 1200px)').matches;
-  const midScreen = window.matchMedia('(min-width:1201px) and (max-width: 1500px)').matches;
-  const gameImgSizes = {
-    gameProviders: {
-      width: midScreen && isChatActive ? 125 : midScreen ? 135 : isChatActive ? 140 : 145,
-      height: midScreen && isChatActive ? 60 : midScreen ? 70 : isChatActive ? 65 : 75,
-    },
-    recommended: {
-      width: 160,
-      height: isMobile ? 220 : 250,
-    },
-  };
+
+  const smScreen = window.matchMedia('(max-width:639px)').matches;
+  const openDrawer = useCallback(
+    () => smScreen && dispatch(gameShow()),
+    [],
+  );
 
   const [activeScreen, setActiveScreen]: any = useState(false);
   const handleActiveScreen = () => {
@@ -118,34 +143,21 @@ const GameSlug: FC<IProps> = () => {
 
   return (
     <MainLayout isMobile={isMobile}>
-      <div className={styles.page}>
+      <div className={styles.wrapper}>
+        <FullScreen handle={gameFullScreen} onChange={reportChange} className={styles.fullScreen}>
+          <GameView activeScreen={activeScreen} game={activeGame} />
+        </FullScreen>
+        <GameBottomMenu handleActiveScreen={handleActiveScreen} handle={gameFullScreen.enter} />
+      </div>
 
-        <div>
-          <FullScreen handle={gameFullScreen} onChange={reportChange}>
-            <GameView activeScreen={activeScreen} game={activeGame} />
-          </FullScreen>
-          <GameBottomMenu handleActiveScreen={handleActiveScreen} handle={gameFullScreen.enter} />
-        </div>
-
-        <div className={styles.list}>
-          <GameList
-            games={generatePlaceholders(160, 220)}
-            gameType={GameType.RecommendedGames}
-            breakpoints={slotsBreakpoints}
-          />
-        </div>
-
-        <div className={styles.list}>
-          <GameList
-            games={isLoading ? generatePlaceholders(130, 80) : getGames(gameProviders, gameImgSizes.gameProviders)}
-            gameType={GameType.GameProviders}
-            breakpoints={gameProvidersBreakpoints}
-          />
-        </div>
-
-        <div className={styles.list}>
-          <GameProvider />
-        </div>
+      <div className={styles.list}>
+        <GameList
+          onClick={openDrawer}
+          games={isLoading ? generatePlaceholders(168, 220) : getGames(slots, gameImgSizes.slots)}
+          gameType={GameType.RecommendedGames}
+          breakpoints={slotsBreakpoints}
+          top
+        />
       </div>
     </MainLayout>
   );

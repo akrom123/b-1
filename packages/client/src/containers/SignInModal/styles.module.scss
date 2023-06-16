@@ -1,26 +1,31 @@
-.line_out {
-  margin: 24px 0;
-
-  @media(max-width: 768px)  {
-    margin: 16px 0 24px 0;
-  }
-}
-
-.banner {
-  margin-bottom: 24px;
-}
-
 .label {
-  font-size: 18px;
-  line-height: 24px;
-  color: var(--color-white);
-  font-weight: var(--weight-400);
+  font-weight: 100;
+  font-weight: 400;
+  font-size: 1.13rem;
 
-  @media(max-width: 768px)  {
-    font-size: 16px;
+  @media(max-width: 639.9px) {
+    font-size: 1.5rem
   }
 }
 
-.socials_wrap {
-  margin-top: 16px;
+
+.label .brand {
+  font-weight: 600
+}
+
+.footer {
+  color: var(--color-button);
+  font-weight: 400;
+  font-size: .87rem;
+  text-align: center;
+
+  @media(max-width: 639.9px) {
+    font-weight: 400;
+    font-size: 1.13rem
+  }
+
+  span {
+    cursor: pointer;
+    color: var(--color-brand)
+  }
 }

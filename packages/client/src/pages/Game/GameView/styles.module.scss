@@ -1,65 +1,95 @@
 @import "~@betnomi/libs/assets/styles/variables";
 @import "~@betnomi/libs/assets/styles/mixins";
 
-.gameView {
-  width: 100%;
-  height: 35.5vw;
-  max-height: 600px;
-  border-radius: 12px 12px 0 0;
-  overflow: hidden;
-  position: relative;
 
-  .bgrImage{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px 12px 0 0;
-  }
 
-  .cap{
-    width: 100%;
-    height: 100%;
-    background: url("https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg")no-repeat center/cover;
-  }
-
-  &.activeScreen{
-    max-height: unset;
-    height: 100%;
-    border-radius: unset;
-  }
-
-  @media(max-width: 1700px){
-    max-height: 510px;
-  }
-
-  @media(max-width: 768px){
-    height: 62vw;
-  }
-}
-
-.gameOverlay{
-  @include flexbox(center, center);
-  position: absolute;
-  left: 0;
-  top: 0;
-
+.wrapper {
   width: 100%;
   height: 100%;
-  background-color: rgba(34,38,56, 0.5);
+  border-radius: .75rem .75rem 0 0;
+  overflow: hidden;
+  position: relative;
+  color: var(--color-white);
+  background: #000;
+  will-change: auto;
 
-  .mobile_width{
-    min-width: 135px;
-    margin-right: 16px;
 
-    @media(max-width: 768px){
-      height: 44px !important;
+
+  @media(min-width: 48rem) {
+    &.theatreMode {
+      padding-top: calc(100vh - 12.5rem)
     }
-    img, svg{
-      margin-right: 11px;
+  }
+
+  &.activeScreen {
+    max-height: unset;
+    height: 100%;
+    border-radius: unset
+  }
+
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 38, 56, .5);
+
+    .button {
+      font-size: .87rem;
+      font-weight: 600;
+      padding: 0 1rem 0 .56rem;
+      --height: 2.81rem;
+
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.69rem;
+        height: 1.69rem;
+        font-size: .81rem;
+        background: hsla(0, 0%, 100%, .4);
+        border-radius: 50%;
+
+        &:before {
+          -webkit-transform: translateX(.07rem);
+          transform: translateX(.07rem)
+        }
+      }
     }
   }
 }
 
+.iframe {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border: 0;
 
+  body {
+    margin: 0 !important
+  }
+}
 
+.bgrImage {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  border-radius: .75rem .75rem 0 0;
+}
+
+.cap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-iframe-game-bg)
+}

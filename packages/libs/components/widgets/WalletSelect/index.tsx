@@ -59,7 +59,7 @@ const WalletSelect: FC<WalletSelectProps> = ({
   }, [balances, rates, viewInUSD, selected]);
 
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} ref={ref}>
       <Button
         size="m"
         onClick={() => { history.push('/profile/wallet') }}
@@ -98,7 +98,6 @@ const WalletSelect: FC<WalletSelectProps> = ({
                 className={classNames(styles.popper, {
                   [styles.hidden]: !focused || keys(balances).length === 0,
                 })}
-                ref={ref}
                 style={style}
               >
                 <WalletSelectPopup

@@ -104,6 +104,8 @@ export enum FontIconName {
   Filter = 'icon-filter',
   Play = 'icon-play',
   PlaySecondary = 'icon-play-secondary',
+  Fullscreen = 'icon-fullscreen',
+  Sizescreen = 'icon-sizescreen',
 
 }
 

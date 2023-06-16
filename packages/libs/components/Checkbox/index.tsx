@@ -15,10 +15,11 @@ interface IProps {
   className?: string;
   hasError?: boolean;
   color?: CheckboxColor
+  labelClassName?: string
 }
 
 const Checkbox: FC<IProps> = ({
-  checked, onCheck, children, className, hasError, color = CheckboxColor.Primary
+  checked, onCheck, children, className, hasError, color = CheckboxColor.Primary, labelClassName
 }) => {
   const onMouseDown = () => {
     onCheck(!checked);
@@ -31,7 +32,7 @@ const Checkbox: FC<IProps> = ({
     >
       <input className={styles.checkbox} type="checkbox" checked={checked} />
       <FontIcon name={FontIconName.Checked} className={styles.icon} />
-      {!!children && <div className={styles.label}>{children}</div>}
+      {!!children && <div className={classNames(styles.label, labelClassName)}>{children}</div>}
     </label>
   );
 };
